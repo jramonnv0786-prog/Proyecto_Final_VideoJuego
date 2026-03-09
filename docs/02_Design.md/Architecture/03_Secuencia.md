@@ -1,16 +1,16 @@
 #### 2. En `03_Secuencia.md`
 
-```markdown
+# Diagrama de Secuencia: Flujo de Respuesta
 # Diagrama de Secuencia: Flujo de Respuesta
 
-
+```mermaid
 sequenceDiagram
     actor Jugador
-    participant V as Vista (PanelJuego)
-    participant C as ControladorJuego
-    participant M as Modelo (Partida)
+    participant V as Vista
+    participant C as Controlador
+    participant M as Modelo
 
-    Jugador->>V: Clic en Botón de Respuesta (Ej: 'A')
+    Jugador->>V: Clic en Botón (Ej: A)
     V->>C: notificarClic(indiceBoton)
     
     activate C
