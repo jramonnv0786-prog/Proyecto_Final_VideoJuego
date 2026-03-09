@@ -1,10 +1,5 @@
 #### 2. En `03_Secuencia.md`
-El diagrama de secuencia es vital para el MVC porque explica **el orden temporal** en el que se pasan los mensajes. Este es el que le encanta a los profesores.
 
-
-[Image of UML sequence diagram]
-
-Puedes copiar este código Mermaid, que describe exactamente lo que pasa cuando el jugador hace clic en una respuesta:
 ```markdown
 # Diagrama de Secuencia: Flujo de Respuesta
 
