@@ -4,7 +4,7 @@
 * **Título Provisional:** DevQuiz: Edición DAW (o Trivial DAW)
 * **Género:** Trivia / Preguntas y Respuestas / Educativo
 * **Plataforma Objetivo:** PC (Aplicación de Escritorio)
-* **Motor/Tecnología:** Java 17 (Custom Engine con patrón MVC, interfaz gráfica con Swing o JavaFX)
+* **Motor/Tecnología:** Java 21 (Custom Engine con patrón MVC, interfaz gráfica con Swing o JavaFX)
 * **Público Objetivo (Target):** Estudiantes del ciclo de DAW, profesores de informática y desarrolladores junior.
 * **Estilo Visual:** Diseño moderno y limpio (Flat Design), preferiblemente con un tema oscuro ("Dark Mode") típico de los editores de código, y colores vibrantes para diferenciar cada categoría.
 
