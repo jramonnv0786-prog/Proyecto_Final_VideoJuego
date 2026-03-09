@@ -1,8 +1,9 @@
 #### 2. En `03_Secuencia.md`
 
+```markdown
 # Diagrama de Secuencia: Flujo de Respuesta
 
-```mermaid
+
 sequenceDiagram
     actor Jugador
     participant V as Vista (PanelJuego)
