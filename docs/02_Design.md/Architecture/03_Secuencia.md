@@ -31,4 +31,3 @@ sequenceDiagram
     
     C->>V: actualizarTextos(Puntos, Vidas)
     deactivate C
-```
