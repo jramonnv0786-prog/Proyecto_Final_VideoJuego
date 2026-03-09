@@ -1,6 +1,5 @@
 #### 2. En `03_Secuencia.md`
 
-```markdown
 # Diagrama de Secuencia: Flujo de Respuesta
 
 ```mermaid
@@ -31,3 +30,4 @@ sequenceDiagram
     
     C->>V: actualizarTextos(Puntos, Vidas)
     deactivate C
+    ```
