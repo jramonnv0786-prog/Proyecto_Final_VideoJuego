@@ -1,0 +1,24 @@
+# Diseño de la Interfaz (UI Mockup)
+
+Este documento muestra el boceto inicial de la pantalla principal del juego y cómo se construirá utilizando las herramientas nativas de Java Swing.
+
+## 1. Boceto Visual
+![Mockup Pantalla de Juego]()
+
+## 2. Traducción a Componentes Swing (Layouts)
+Para que la ventana en Java se vea exactamente como en el boceto de arriba sin tener que posicionar las cosas píxel a píxel, usaremos esta estructura de contenedores:
+
+* **Contenedor Raíz:** `VentanaPrincipal` (Hereda de `JFrame`).
+* **Fondo:** `PanelJuego` (Hereda de `JPanel`). Usará un **`BorderLayout`** principal y su color de fondo cambiará dinámicamente según la categoría de la pregunta.
+
+### Distribución del BorderLayout:
+1. **Norte (`BorderLayout.NORTH`): Barra de Estado**
+   * Un `JPanel` transparente que usa un `FlowLayout`.
+   * Contiene 3 `JLabel`: Puntuación (Izquierda), Vidas (Centro) y Temporizador (Derecha).
+
+2. **Centro (`BorderLayout.CENTER`): La Pregunta**
+   * Un `JLabel` grande con el texto centrado y fuente de tamaño grande.
+
+3. **Sur (`BorderLayout.SOUTH`): Zona de Respuestas**
+   * Un `JPanel` secundario que utiliza un **`GridLayout(2, 2)`**.
+   * Este layout creará automáticamente una cuadrícula perfecta para colocar los 4 `JButton` (Opciones A, B, C y D) del mismo tamaño.
