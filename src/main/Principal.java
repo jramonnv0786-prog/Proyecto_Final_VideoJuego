@@ -1,3 +1,5 @@
+package main;
+
 import vista.Ventana;
 import vista.PanelCategorias;
 import vista.PanelJuego;
