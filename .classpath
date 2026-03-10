@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< Updated upstream
 	<classpathentry excluding="controller/|model/|view/" kind="src" path="src/mitrivial"/>
 	<classpathentry kind="src" path="src/mitrivial/controller"/>
 	<classpathentry kind="src" path="src/mitrivial/model"/>
 	<classpathentry kind="src" path="src/mitrivial/view"/>
+=======
+	<classpathentry kind="src" path="src"/>
+>>>>>>> Stashed changes
 	<classpathentry kind="output" path="bin"/>
 </classpath>
