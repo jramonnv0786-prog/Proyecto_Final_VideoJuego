@@ -1,6 +1,6 @@
 package main;
 
-import vista.Ventana;
+import view.Ventana;
 
 public class Principal {
 
