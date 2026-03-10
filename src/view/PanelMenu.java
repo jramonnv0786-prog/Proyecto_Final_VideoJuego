@@ -1,4 +1,4 @@
-package vista;
+package view;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
