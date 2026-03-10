@@ -6,5 +6,6 @@
 	<classpathentry kind="src" path="src/mitrivial/model"/>
 	<classpathentry kind="src" path="src/mitrivial/view"/>
 	<classpathentry kind="src" path="src/main"/>
+	<classpathentry excluding="mitrivial/|mitrivial/controller/|mitrivial/model/|mitrivial/view/|main/" kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
