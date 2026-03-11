@@ -109,6 +109,13 @@ public class PanelCategorias extends JPanel {
 
 		Sostenibilidad.addActionListener((ActionEvent e) -> {
 			System.out.println("Categoria Sostenibilidad");
+			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (ventana != null) {
+				ventana.getContentPane().removeAll();
+				ventana.add(new PanelSostenibilidad(partida));
+				ventana.revalidate();
+				ventana.repaint();
+			}
 		});
 
 	}

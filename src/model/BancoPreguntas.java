@@ -342,5 +342,130 @@ public class BancoPreguntas {
                                                 "Copia incremental",
                                                 "Copia diferencial",
                                                 3)));
+
+        }
+
+        public static List<Pregunta> getPreguntasSostenibilidad() {
+                return new ArrayList<>(List.of(
+
+                                new Pregunta(
+                                                "¿Qué es el desarrollo sostenible?",
+                                                "Satisfacer necesidades actuales sin comprometer las futuras",
+                                                "Evitar el uso de recursos naturales",
+                                                "Producir más energía sin límites",
+                                                "Reducir el consumo sin importar el impacto",
+                                                1),
+
+                                new Pregunta(
+                                                "¿Cuál de los siguientes es un gas de efecto invernadero?",
+                                                "Oxígeno",
+                                                "Dióxido de carbono (CO₂)",
+                                                "Helio",
+                                                "Nitrógeno",
+                                                2),
+
+                                new Pregunta(
+                                                "¿Qué tipo de energía es renovable?",
+                                                "Carbón",
+                                                "Gas natural",
+                                                "Energía solar",
+                                                "Petróleo",
+                                                3),
+
+                                new Pregunta(
+                                                "¿Qué significa la regla de las 3R?",
+                                                "Reparar, Reusar, Reemplazar",
+                                                "Reducir, Reutilizar, Reciclar",
+                                                "Repetir, Reusar, Reciclar",
+                                                "Reducir, Rehacer, Reusar",
+                                                2),
+
+                                new Pregunta(
+                                                "¿Cuál es una consecuencia del cambio climático?",
+                                                "Mayor estabilidad climática",
+                                                "Disminución del nivel del mar",
+                                                "Aumento de fenómenos meteorológicos extremos",
+                                                "Reducción de temperaturas globales",
+                                                3),
+
+                                new Pregunta(
+                                                "¿Qué recurso natural es no renovable?",
+                                                "Energía eólica",
+                                                "Energía solar",
+                                                "Energía hidráulica",
+                                                "Petróleo",
+                                                4),
+
+                                new Pregunta(
+                                                "¿Qué contenedor se usa para el vidrio?",
+                                                "Amarillo",
+                                                "Azul",
+                                                "Verde",
+                                                "Gris",
+                                                3),
+
+                                new Pregunta(
+                                                "¿Cuál es una práctica sostenible en el hogar?",
+                                                "Usar bombillas LED",
+                                                "Dejar luces encendidas",
+                                                "Tirar aceite por el fregadero",
+                                                "Comprar productos desechables",
+                                                1),
+
+                                new Pregunta(
+                                                "¿Qué organismo promueve los Objetivos de Desarrollo Sostenible (ODS)?",
+                                                "OTAN",
+                                                "OMS",
+                                                "ONU",
+                                                "Unión Europea",
+                                                3),
+
+                                new Pregunta(
+                                                "¿Cuál es un ejemplo de economía circular?",
+                                                "Usar productos y tirarlos",
+                                                "Fabricar sin reciclar",
+                                                "Consumir más recursos",
+                                                "Reparar y reutilizar productos",
+                                                4),
+
+                                new Pregunta(
+                                                "¿Qué sector genera más emisiones de CO₂?",
+                                                "Educación",
+                                                "Tecnología",
+                                                "Transporte",
+                                                "Agricultura",
+                                                3),
+
+                                new Pregunta(
+                                                "¿Qué es la huella ecológica?",
+                                                "Consumo de agua diario",
+                                                "Impacto ambiental total de una persona o país",
+                                                "Uso de energía renovable",
+                                                "Cantidad de basura generada",
+                                                2),
+
+                                new Pregunta(
+                                                "¿Qué material tarda más en degradarse?",
+                                                "Papel",
+                                                "Cartón",
+                                                "Madera",
+                                                "Plástico",
+                                                4),
+
+                                new Pregunta(
+                                                "¿Qué acción ayuda a ahorrar agua?",
+                                                "Cerrar el grifo al cepillarse",
+                                                "Duchas largas",
+                                                "Lavar el coche con manguera",
+                                                "Dejar el grifo abierto",
+                                                1),
+
+                                new Pregunta(
+                                                "¿Qué es el reciclaje?",
+                                                "Tirar desechos al contenedor gris",
+                                                "Enterrar basura",
+                                                "Quemar residuos",
+                                                "Transformar residuos en nuevos productos",
+                                                4)));
         }
 }
