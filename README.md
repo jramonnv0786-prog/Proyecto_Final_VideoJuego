@@ -1,6 +1,6 @@
 # Proyecto_Final_VideoJuego
 
-## 🏗️ Arquitectura del Proyecto (Patrón MVC)
+## Arquitectura del Proyecto (Patrón MVC)
 
 El juego está estructurado siguiendo estrictamente el patrón **Modelo-Vista-Controlador (MVC)** para garantizar un código limpio y escalable, separando la lógica del juego de la interfaz gráfica.
 
