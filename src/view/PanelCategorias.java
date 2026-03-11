@@ -68,6 +68,13 @@ public class PanelCategorias extends JPanel {
 
 		Digitalizacion.addActionListener((ActionEvent e) -> {
 			System.out.println("Categoria Digitalización");
+            javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (ventana != null) {
+                ventana.getContentPane().removeAll();
+                ventana.add(new PanelDigitalizacion());
+                ventana.revalidate();
+                ventana.repaint();
+            }
 		});
 
 		// BOTON SISTEMA
