@@ -1,15 +1,12 @@
 package view;
 
+import controller.MotorDigitalizacion;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.Collections;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import controller.MotorDigitalizacion;
 import model.Pregunta;
 
 public class PanelDigitalizacion extends JPanel {

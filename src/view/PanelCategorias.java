@@ -90,6 +90,13 @@ public class PanelCategorias extends JPanel {
 
 		SistemaInformatico.addActionListener((ActionEvent e) -> {
 			System.out.println("Categoria Sistema Informatico");
+			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (ventana != null) {
+				ventana.getContentPane().removeAll();
+				ventana.add(new PanelSistemas());
+				ventana.revalidate();
+				ventana.repaint();
+			}
 		});
 
 		// BOTON Sostenibilidad

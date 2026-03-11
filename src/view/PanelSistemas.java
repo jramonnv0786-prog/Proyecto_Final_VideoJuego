@@ -1,6 +1,6 @@
 package view;
 
-import controller.MotorLenguajeDeMarca;
+import controller.MotorSistemas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Pregunta;
 
-public class PanelLenguajeMarca extends JPanel {
+public class PanelSistemas extends JPanel {
 
     private JLabel tituloLabel;
     private JLabel preguntaLabel;
@@ -21,18 +21,18 @@ public class PanelLenguajeMarca extends JPanel {
     private JButton boton4;
     private JButton botonVolver;
 
-    private MotorLenguajeDeMarca motor;
+    private MotorSistemas motor;
 
-    public PanelLenguajeMarca() {
+    public PanelSistemas() {
         // 1. Configuración básica del panel
         setLayout(null);
         setBounds(0, 0, 1000, 800);
         setBackground(new Color(240, 248, 255)); // Color de fondo distinto
 
-        motor = new MotorLenguajeDeMarca();
+        motor = new MotorSistemas();
 
         // 2. Título de la Categoría
-        tituloLabel = new JLabel("Categoría: Lenguaje y Marca");
+        tituloLabel = new JLabel("Categoría: Sistemas");
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 28));
         tituloLabel.setBounds(350, 40, 400, 50);
         add(tituloLabel);
