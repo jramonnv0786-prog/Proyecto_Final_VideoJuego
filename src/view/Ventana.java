@@ -21,7 +21,13 @@ public class Ventana extends JFrame {
 
 		setResizable(false);
 
-		PanelMenu panel = new PanelMenu();
+		String name = javax.swing.JOptionPane.showInputDialog(this, "Introduce tu nombre:", "Nuevo Jugador", javax.swing.JOptionPane.QUESTION_MESSAGE);
+		if (name == null || name.trim().isEmpty()) {
+			name = "Jugador 1";
+		}
+		model.Partida partida = new model.Partida(name);
+
+		PanelMenu panel = new PanelMenu(partida);
 		add(panel);
 
 		setVisible(true);
