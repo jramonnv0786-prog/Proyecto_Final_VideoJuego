@@ -5,9 +5,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import controlador.MotorJuego;
-import controlador.Pregunta;
+import controller.Pregunta;
+import controller.MotorJuego;
 
 public class PanelJuego extends JPanel {
 
