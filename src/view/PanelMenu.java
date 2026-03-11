@@ -23,15 +23,13 @@ public class PanelMenu extends JPanel {
 	private Image fondo;
 	private Clip clip; // clip de música
 
-
 	public PanelMenu() {
 
 		setLayout(null); // permite posiciones absolutas
 
 		// Cargar la imagen original
-		ImageIcon icon = new ImageIcon(getClass().getResource("/resource/fondo.jpg"));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondo.jpg"));
 		fondo = icon.getImage();
-
 
 		// Botón encima de la imagen
 		boton = new JButton();
@@ -41,15 +39,15 @@ public class PanelMenu extends JPanel {
 
 		add(boton);
 
-		boton.addActionListener((ActionEvent e) -> { 
-		    System.out.println("Cargando panel");
+		boton.addActionListener((ActionEvent e) -> {
+			System.out.println("Cargando panel");
 
-		    PanelJuego preguntados = new PanelJuego();
-		    preguntados.setBounds(0, 0, getWidth(), getHeight());
+			PanelJuego preguntados = new PanelJuego();
+			preguntados.setBounds(0, 0, getWidth(), getHeight());
 
-		    add(preguntados);
-		    revalidate();
-		    repaint();
+			add(preguntados);
+			revalidate();
+			repaint();
 		});
 
 		boton2 = new JButton();
@@ -61,13 +59,12 @@ public class PanelMenu extends JPanel {
 		boton2.addActionListener((ActionEvent e) -> {
 			System.out.println("Cargando panel 2");
 			PanelCategorias categorias = new PanelCategorias();
-		    categorias.setBounds(0, 0, getWidth(), getHeight());
+			categorias.setBounds(0, 0, getWidth(), getHeight());
 
-		    add(categorias);
-		    revalidate();
-		    repaint();
-		});	
-
+			add(categorias);
+			revalidate();
+			repaint();
+		});
 
 		// Botón encima de la imagen
 		boton3 = new JButton();
@@ -86,7 +83,6 @@ public class PanelMenu extends JPanel {
 			repaint();
 		});
 
-
 		setBounds(0, 0, 1000, 800);
 	}
 
@@ -101,13 +97,9 @@ public class PanelMenu extends JPanel {
 		// Pintar los botones encima
 		super.paintChildren(g);
 
-
-
 		// Iniciar música de fondo
 		iniciarMusica("/resource/CancionFondo.wav");
 	}
-
-
 
 	// Método para iniciar música de fondo en bucle
 	public void iniciarMusica(String ruta) {
@@ -130,5 +122,5 @@ public class PanelMenu extends JPanel {
 		if (clip != null && clip.isRunning()) {
 			clip.stop();
 		}
-	}        
+	}
 }
