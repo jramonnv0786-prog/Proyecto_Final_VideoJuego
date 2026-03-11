@@ -1,7 +1,7 @@
 package view;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class PanelCreditos extends JPanel {
 
@@ -23,8 +23,9 @@ public class PanelCreditos extends JPanel {
         // Texto de créditos
         creditos.setText(
                 "CREDITOS DEL JUEGO\n\n" +
-                        "Desarrollador: Juan Manuel Francisco Mendoza\n José Ramón Neira Vega\n José\n " +
-                        "Diseño Gráfico: Juan Manuel Francisco Mendoza\\n José Ramón Neira Vega\\n José Fernández Díaz   \""
+                        "Desarrollador: Juan Manuel Francisco Mendoza\n José Ramón Neira Vega\n José Fernández Díaz\n "
+                        +
+                        "Diseño Gráfico: Juan Manuel Francisco Mendoza\n José Ramón Neira Vega\n José Fernández Díaz\n"
                         +
                         "Música de fondo: CancionFondo.wav\n" +
                         "Idea original: Proyecto Educativo\n" +

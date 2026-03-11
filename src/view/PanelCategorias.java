@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.event.ActionEvent;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -26,14 +25,14 @@ public class PanelCategorias extends JPanel {
 
 		Programacion.addActionListener((ActionEvent e) -> {
 			System.out.println("Categoria Programación");
-            // Cambiar la vista al panel de programación
-            javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-            if (ventana != null) {
-                ventana.getContentPane().removeAll();
-                ventana.add(new PanelProgramacion());
-                ventana.revalidate();
-                ventana.repaint();
-            }
+			// Cambiar la vista al panel de programación
+			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (ventana != null) {
+				ventana.getContentPane().removeAll();
+				ventana.add(new PanelProgramacion());
+				ventana.revalidate();
+				ventana.repaint();
+			}
 		});
 
 		// BOTON ENTORNOS
@@ -43,6 +42,13 @@ public class PanelCategorias extends JPanel {
 
 		EntornosDesarrollo.addActionListener((ActionEvent e) -> {
 			System.out.println("Categoria Entornos de Desarrollo");
+			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (ventana != null) {
+				ventana.getContentPane().removeAll();
+				ventana.add(new PanelEntornos());
+				ventana.revalidate();
+				ventana.repaint();
+			}
 		});
 
 		// BOTON LENGUAJE
@@ -52,13 +58,13 @@ public class PanelCategorias extends JPanel {
 
 		LenguajeMarca.addActionListener((ActionEvent e) -> {
 			System.out.println("Categoria Lenguaje de Marcas");
-            javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-            if (ventana != null) {
-                ventana.getContentPane().removeAll();
-                ventana.add(new PanelLenguajeMarca());
-                ventana.revalidate();
-                ventana.repaint();
-            }
+			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (ventana != null) {
+				ventana.getContentPane().removeAll();
+				ventana.add(new PanelLenguajeMarca());
+				ventana.revalidate();
+				ventana.repaint();
+			}
 		});
 
 		// BOTON DIGITALIZACION
@@ -68,13 +74,13 @@ public class PanelCategorias extends JPanel {
 
 		Digitalizacion.addActionListener((ActionEvent e) -> {
 			System.out.println("Categoria Digitalización");
-            javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-            if (ventana != null) {
-                ventana.getContentPane().removeAll();
-                ventana.add(new PanelDigitalizacion());
-                ventana.revalidate();
-                ventana.repaint();
-            }
+			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (ventana != null) {
+				ventana.getContentPane().removeAll();
+				ventana.add(new PanelDigitalizacion());
+				ventana.revalidate();
+				ventana.repaint();
+			}
 		});
 
 		// BOTON SISTEMA

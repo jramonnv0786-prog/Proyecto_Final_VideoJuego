@@ -1,49 +1,44 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
 package model;
 
 public class Pregunta {
-
     private String pregunta;
-
     private String opcion1;
     private String opcion2;
     private String opcion3;
     private String opcion4;
-
     private int correcta;
 
-    public Pregunta(String pregunta, String opcion1, String opcion2, String opcion3, String opcion4, int correcta) {
-
-        this.pregunta = pregunta;
-
-        this.opcion1 = opcion1;
-        this.opcion2 = opcion2;
-        this.opcion3 = opcion3;
-        this.opcion4 = opcion4;
-
-        this.correcta = correcta;
+    public Pregunta(String var1, String var2, String var3, String var4, String var5, int var6) {
+        this.pregunta = var1;
+        this.opcion1 = var2;
+        this.opcion2 = var3;
+        this.opcion3 = var4;
+        this.opcion4 = var5;
+        this.correcta = var6;
     }
 
     public String getPregunta() {
-        return pregunta;
+        return this.pregunta;
     }
 
     public String getOpcion1() {
-        return opcion1;
+        return this.opcion1;
     }
 
     public String getOpcion2() {
-        return opcion2;
+        return this.opcion2;
     }
 
     public String getOpcion3() {
-        return opcion3;
+        return this.opcion3;
     }
 
     public String getOpcion4() {
-        return opcion4;
+        return this.opcion4;
     }
 
     public int getCorrecta() {
-        return correcta;
+        return this.correcta;
     }
 }
