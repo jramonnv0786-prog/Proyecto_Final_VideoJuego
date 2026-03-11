@@ -18,134 +18,136 @@ public class MotorEntornos {
                 // -------------------------------
 
                 preguntas.add(new Pregunta(
-                                "¿Qué es la transformación digital?",
-                                "Pasar todos los archivos a PDF",
-                                "Integrar tecnología en todas las áreas de una empresa",
-                                "Comprar ordenadores nuevos",
-                                "Usar redes sociales para publicidad",
-                                2));
-
-                preguntas.add(new Pregunta(
-                                "¿A qué hace referencia el término 'Cloud Computing' (Computación en la nube)?",
-                                "Almacenamiento y servicios a través de internet",
-                                "Predicción del clima mediante software",
-                                "Redes sociales en la estratosfera",
-                                "Ordenadores que funcionan con energía solar",
+                                "¿Qué significa IDE?",
+                                "Entorno de Desarrollo Integrado",
+                                "Interfaz de Datos Electrónicos",
+                                "Motor de Base de Datos Interna",
+                                "Editor de Diseño Interactivo",
                                 1));
 
                 preguntas.add(new Pregunta(
-                                "¿Qué significa 'IoT' (Internet de las Cosas)?",
-                                "Internet Of Technology",
-                                "Internal Organization Tools",
-                                "Interconexión digital de objetos cotidianos con internet",
-                                "Un tipo de cable de fibra óptica",
-                                3));
-
-                preguntas.add(new Pregunta(
-                                "¿Qué es el 'Big Data'?",
-                                "Un disco duro de gran tamaño",
-                                "Conjuntos de datos demasiado grandes y complejos para procesar tradicionalmente",
-                                "Una empresa de telecomunicaciones",
-                                "El servidor principal de internet",
+                                "¿Cuál es un ejemplo de IDE popular?",
+                                "Microsoft Word",
+                                "Eclipse",
+                                "Photoshop",
+                                "Excel",
                                 2));
 
                 preguntas.add(new Pregunta(
-                                "¿Qué tecnología utiliza bloques criptográficos inmutables, comúnmente asociada a criptomonedas?",
-                                "Inteligencia Artificial",
-                                "Machine Learning",
-                                "Blockchain",
-                                "5G",
-                                3));
+                                "¿Qué es Git?",
+                                "Un lenguaje de programación",
+                                "Un sistema de control de versiones",
+                                "Un IDE",
+                                "Un compilador",
+                                2));
 
                 preguntas.add(new Pregunta(
-                                "¿Cuál de las siguientes protege los sistemas y redes de ataques digitales?",
-                                "Ciberseguridad",
-                                "Cybermarketing",
-                                "SEO",
-                                "Software Open Source",
+                                "¿Qué comando de Git se usa para subir cambios al repositorio remoto?",
+                                "git pull",
+                                "git push",
+                                "git commit",
+                                "git add",
+                                2));
+
+                preguntas.add(new Pregunta(
+                                "¿Qué es un framework?",
+                                "Un tipo de hardware",
+                                "Un conjunto de herramientas y bibliotecas para desarrollar software",
+                                "Un sistema operativo",
+                                "Un navegador web",
+                                2));
+
+                preguntas.add(new Pregunta(
+                                "¿Cuál es un ejemplo de framework para Java?",
+                                "React",
+                                "Spring",
+                                "Django",
+                                "Laravel",
+                                2));
+
+                preguntas.add(new Pregunta(
+                                "¿Qué es el testing unitario?",
+                                "Probar el software completo",
+                                "Probar componentes individuales del código",
+                                "Probar la interfaz de usuario",
+                                "Probar la base de datos",
+                                2));
+
+                preguntas.add(new Pregunta(
+                                "¿Qué herramienta se usa comúnmente para testing en Java?",
+                                "JUnit",
+                                "Selenium",
+                                "Postman",
+                                "Jenkins",
                                 1));
 
                 preguntas.add(new Pregunta(
-                                "¿Qué concepto describe una identidad virtual que recopila nuestros datos, acciones y rastros en internet?",
-                                "IP estática",
-                                "Huella digital",
-                                "Avatar",
-                                "Cookies",
+                                "¿Qué es Maven?",
+                                "Un IDE",
+                                "Una herramienta de gestión de proyectos y dependencias",
+                                "Un lenguaje de programación",
+                                "Un servidor web",
                                 2));
 
                 preguntas.add(new Pregunta(
-                                "¿Qué es el comercio electrónico (E-commerce)?",
-                                "Enviar correos electrónicos comerciales",
-                                "Aprender economía por internet",
-                                "Compra y venta de productos o servicios a través de internet",
-                                "Bancos que solo tienen cajeros",
-                                3));
-
-                preguntas.add(new Pregunta(
-                                "¿Qué significa SEO en marketing digital?",
-                                "Search Engine Optimization",
-                                "System Electronic Output",
-                                "Secure Enterprise Operations",
-                                "Software Execution Order",
+                                "¿Qué archivo configura las dependencias en Maven?",
+                                "pom.xml",
+                                "build.gradle",
+                                "package.json",
+                                "requirements.txt",
                                 1));
 
                 preguntas.add(new Pregunta(
-                                "¿A qué se refiere el término 'Brecha Digital'?",
-                                "Un virus que rompe el sistema operativo",
-                                "Desigualdad en el acceso y uso de las TIC",
-                                "Espacio entre dos monitores",
-                                "Avería física en un cable de red",
+                                "¿Qué es Scrum?",
+                                "Un lenguaje de programación",
+                                "Una metodología ágil",
+                                "Un IDE",
+                                "Un framework",
                                 2));
 
                 preguntas.add(new Pregunta(
-                                "¿Qué tecnología permite a una máquina simular inteligencia humana?",
-                                "Realidad Virtual (VR)",
-                                "Inteligencia Artificial (IA)",
-                                "Internet de las Cosas (IoT)",
-                                "Realidad Aumentada (AR)",
+                                "¿Cuál es el rol del Scrum Master?",
+                                "Desarrollar el código",
+                                "Facilitar el proceso Scrum",
+                                "Diseñar la interfaz",
+                                "Gestionar la base de datos",
                                 2));
 
                 preguntas.add(new Pregunta(
-                                "¿Qué es el phishing?",
-                                "Un juego de pesca en línea",
-                                "Técnica para mejorar la velocidad de internet",
-                                "Suplantación de identidad para robar datos confidenciales",
-                                "Un tipo de filtro para fotografías",
-                                3));
-
-                preguntas.add(new Pregunta(
-                                "La Cuarta Revolución Industrial (Industria 4.0) se caracteriza principalmente por...",
-                                "Uso de energía de vapor",
-                                "Producción en cadena automatizada clásica",
-                                "Sistemas ciberfísicos, IoT e IA en la industria",
-                                "Invención de la bombilla",
-                                3));
-
-                preguntas.add(new Pregunta(
-                                "¿Cuál es una ventaja clave del teletrabajo (trabajo remoto)?",
-                                "Exige comprar equipo más caro",
-                                "Flexibilidad geográfica y de horarios",
-                                "Reduce los sueldos a la mitad",
-                                "Elimina la necesidad de usar internet",
+                                "¿Qué es la integración continua?",
+                                "Un tipo de base de datos",
+                                "La práctica de integrar cambios de código frecuentemente",
+                                "Un lenguaje de scripting",
+                                "Un servidor de aplicaciones",
                                 2));
 
                 preguntas.add(new Pregunta(
-                                "¿Qué tecnología mezcla entornos reales con objetos virtuales superpuestos en tiempo real?",
-                                "Realidad Virtual (VR)",
-                                "Realidad Aumentada (AR)",
-                                "Metaverso",
-                                "Cloud Computing",
+                                "¿Qué herramienta se usa para integración continua?",
+                                "Git",
+                                "Jenkins",
+                                "Eclipse",
+                                "Maven",
+                                2));
+
+                preguntas.add(new Pregunta(
+                                "¿Qué es Docker?",
+                                "Un IDE",
+                                "Una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores",
+                                "Un sistema de control de versiones",
+                                "Un framework web",
                                 2));
 
                 // -------------------------------
                 // BARAJAR LAS PREGUNTAS ALEATORIAMENTE
-                // -------------------------------
+                // ------------------------------
                 Collections.shuffle(preguntas);
+
         }
 
         // -------------------------------
         // DEVOLVER LA PREGUNTA ACTUAL
         // -------------------------------
+
         public Pregunta getPreguntaActual() {
                 if (indice < preguntas.size()) {
                         return preguntas.get(indice);
