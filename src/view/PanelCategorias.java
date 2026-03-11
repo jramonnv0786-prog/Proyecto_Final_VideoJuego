@@ -7,70 +7,70 @@ import javax.swing.JPanel;
 
 public class PanelCategorias extends JPanel {
 
-	private JButton historia;
-	private JButton arte;
-	private JButton programacion;
-	private JButton ciencia;
-	private JButton geografia;
-	private JButton deportes;
+	private JButton Programacion;
+	private JButton EntornosDesarrollo;
+	private JButton LenguajeMarca;
+	private JButton Digitalizacion;
+	private JButton SistemaInformatico;
+	private JButton Sostenibilidad;
 
 	public PanelCategorias() {
 
 		setLayout(null);
 		setBounds(0, 0, 1000, 800);
 
-		// BOTON HISTORIA
-		historia = new JButton("Historia");
-		historia.setBounds(200, 150, 200, 80);
-		add(historia);
-
-		historia.addActionListener((ActionEvent e) -> {
-			System.out.println("Categoria Historia");
-		});
-
-		// BOTON ARTE
-		arte = new JButton("Arte");
-		arte.setBounds(600, 150, 200, 80);
-		add(arte);
-
-		arte.addActionListener((ActionEvent e) -> {
-			System.out.println("Categoria Arte");
-		});
-
 		// BOTON PROGRAMACION
-		programacion = new JButton("Programacion");
-		programacion.setBounds(200, 300, 200, 80);
-		add(programacion);
+		Programacion = new JButton("Programación");
+		Programacion.setBounds(200, 150, 200, 80);
+		add(Programacion);
 
-		programacion.addActionListener((ActionEvent e) -> {
-			System.out.println("Categoria Programacion");
+		Programacion.addActionListener((ActionEvent e) -> {
+			System.out.println("Categoria Programación");
 		});
 
-		// BOTON CIENCIA
-		ciencia = new JButton("Ciencia");
-		ciencia.setBounds(600, 300, 200, 80);
-		add(ciencia);
+		// BOTON ENTORNOS
+		EntornosDesarrollo = new JButton("Entornos de Desarrollo");
+		EntornosDesarrollo.setBounds(600, 150, 200, 80);
+		add(EntornosDesarrollo);
 
-		ciencia.addActionListener((ActionEvent e) -> {
-			System.out.println("Categoria Ciencia");
+		EntornosDesarrollo.addActionListener((ActionEvent e) -> {
+			System.out.println("Categoria Entornos de Desarrollo");
 		});
 
-		// BOTON GEOGRAFIA
-		geografia = new JButton("Geografia");
-		geografia.setBounds(200, 450, 200, 80);
-		add(geografia);
+		// BOTON LENGUAJE
+		LenguajeMarca = new JButton("Lenguaje de Marcas");
+		LenguajeMarca.setBounds(200, 300, 200, 80);
+		add(LenguajeMarca);
 
-		geografia.addActionListener((ActionEvent e) -> {
-			System.out.println("Categoria Geografia");
+		LenguajeMarca.addActionListener((ActionEvent e) -> {
+			System.out.println("Categoria Lenguaje de Marcas");
 		});
 
-		// BOTON DEPORTES
-		deportes = new JButton("Deportes");
-		deportes.setBounds(600, 450, 200, 80);
-		add(deportes);
+		// BOTON DIGITALIZACION
+		Digitalizacion = new JButton("Digitalización");
+		Digitalizacion.setBounds(600, 300, 200, 80);
+		add(Digitalizacion);
 
-		deportes.addActionListener((ActionEvent e) -> {
-			System.out.println("Categoria Deportes");
+		Digitalizacion.addActionListener((ActionEvent e) -> {
+			System.out.println("Categoria Digitalización");
+		});
+
+		// BOTON SISTEMA
+		SistemaInformatico = new JButton("Sistema Informatico");
+		SistemaInformatico.setBounds(200, 450, 200, 80);
+		add(SistemaInformatico);
+
+		SistemaInformatico.addActionListener((ActionEvent e) -> {
+			System.out.println("Categoria Sistema Informatico");
+		});
+
+		// BOTON Sostenibilidad
+		Sostenibilidad = new JButton("Sostenibilidad");
+		Sostenibilidad.setBounds(600, 450, 200, 80);
+		add(Sostenibilidad);
+
+		Sostenibilidad.addActionListener((ActionEvent e) -> {
+			System.out.println("Categoria Sostenibilidad");
 		});
 
 	}
