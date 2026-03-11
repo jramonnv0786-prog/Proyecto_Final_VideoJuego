@@ -20,8 +20,7 @@ public class MotorJuego {
                 "Barcelona",
                 "Sevilla",
                 "Valencia",
-                1
-        ));
+                1));
 
         preguntas.add(new Pregunta(
                 "¿Lenguaje usado en Android?",
@@ -29,8 +28,7 @@ public class MotorJuego {
                 "Python",
                 "C++",
                 "PHP",
-                1
-        ));
+                1));
 
         preguntas.add(new Pregunta(
                 "¿Planeta rojo?",
@@ -38,8 +36,7 @@ public class MotorJuego {
                 "Venus",
                 "Júpiter",
                 "Saturno",
-                1
-        ));
+                1));
     }
 
     // -------------------------------
@@ -59,7 +56,8 @@ public class MotorJuego {
     public boolean comprobarRespuesta(int respuestaJugador) {
         Pregunta p = getPreguntaActual();
 
-        if (p == null) return false;
+        if (p == null)
+            return false;
 
         boolean acierto = (respuestaJugador == p.getCorrecta());
 
@@ -71,7 +69,6 @@ public class MotorJuego {
         return acierto;
     }
 
-    
     public int getPuntuacion() {
         return puntuacion;
     }
