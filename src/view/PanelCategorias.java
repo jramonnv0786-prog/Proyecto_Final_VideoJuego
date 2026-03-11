@@ -52,6 +52,13 @@ public class PanelCategorias extends JPanel {
 
 		LenguajeMarca.addActionListener((ActionEvent e) -> {
 			System.out.println("Categoria Lenguaje de Marcas");
+            javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (ventana != null) {
+                ventana.getContentPane().removeAll();
+                ventana.add(new PanelLenguajeMarca());
+                ventana.revalidate();
+                ventana.repaint();
+            }
 		});
 
 		// BOTON DIGITALIZACION
