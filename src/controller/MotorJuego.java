@@ -1,5 +1,7 @@
 package controller;
 
+import model.Pregunta;
+
 import java.util.ArrayList;
 
 public class MotorJuego {

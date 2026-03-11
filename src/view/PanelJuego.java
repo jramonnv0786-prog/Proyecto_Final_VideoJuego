@@ -1,11 +1,10 @@
 package view;
 
 import java.awt.event.ActionEvent;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import controller.Pregunta;
+import model.Pregunta;
 import controller.MotorJuego;
 
 public class PanelJuego extends JPanel {
