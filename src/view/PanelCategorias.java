@@ -26,6 +26,14 @@ public class PanelCategorias extends JPanel {
 
 		Programacion.addActionListener((ActionEvent e) -> {
 			System.out.println("Categoria Programación");
+            // Cambiar la vista al panel de programación
+            javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (ventana != null) {
+                ventana.getContentPane().removeAll();
+                ventana.add(new PanelProgramacion());
+                ventana.revalidate();
+                ventana.repaint();
+            }
 		});
 
 		// BOTON ENTORNOS

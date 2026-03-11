@@ -3,6 +3,7 @@ package controller;
 import model.Pregunta;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MotorJuego {
 
@@ -14,7 +15,7 @@ public class MotorJuego {
         preguntas = new ArrayList<>();
 
         // -------------------------------
-        // EJEMPLO DE PREGUNTAS
+        // AÑADIR LAS PREGUNTAS A LA COLECCIÓN
         // -------------------------------
         preguntas.add(new Pregunta(
                 "¿Capital de España?",
@@ -39,6 +40,27 @@ public class MotorJuego {
                 "Júpiter",
                 "Saturno",
                 1));
+                
+        preguntas.add(new Pregunta(
+                "¿Cuál es el océano más grande del mundo?",
+                "Océano Atlántico",
+                "Océano Índice",
+                "Océano Pacífico",
+                "Océano Ártico",
+                3));
+                
+        preguntas.add(new Pregunta(
+                "¿Qué etiqueta de HTML se usa para los párrafos?",
+                "<p>",
+                "<h1>",
+                "<div>",
+                "<text>",
+                1));
+                
+        // -------------------------------
+        // BARAJAR LAS PREGUNTAS ALEATORIAMENTE
+        // -------------------------------
+        Collections.shuffle(preguntas);
     }
 
     // -------------------------------
