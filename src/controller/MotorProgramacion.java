@@ -97,6 +97,46 @@ public class MotorProgramacion {
                 "Ruby",
                 2));
 
+        preguntas.add(new Pregunta(
+                "¿Qué significa el acrónimo POO (o OOP en inglés)?",
+                "Programación Orientada a Objetos",
+                "Programación Oficial de Ordenadores",
+                "Programa Organizado en Operaciones",
+                "Posicionamiento Original de Objetos",
+                1));
+
+        preguntas.add(new Pregunta(
+                "¿Qué mecanismo permite a una clase adquirir las propiedades y métodos de otra clase?",
+                "Polimorfismo",
+                "Encapsulamiento",
+                "Herencia",
+                "Abstracción",
+                3));
+
+        preguntas.add(new Pregunta(
+                "¿Qué es un 'bug' en el contexto de la programación?",
+                "Una nueva característica del programa",
+                "Un error o fallo en el código",
+                "Un tipo de algoritmo de ordenación",
+                "Una herramienta de diseño de interfaces",
+                2));
+
+        preguntas.add(new Pregunta(
+                "¿Cómo se llama la acción de traducir código fuente en código máquina para que lo entienda el ordenador?",
+                "Interpretación",
+                "Traducción",
+                "Compilación",
+                "Depuración",
+                3));
+
+        preguntas.add(new Pregunta(
+                "¿Qué lenguaje está diseñado principalmente para realizar consultas, crear y gestionar bases de datos relacionales?",
+                "Python",
+                "SQL",
+                "C++",
+                "HTML",
+                2));
+
         // -------------------------------
         // BARAJAR LAS PREGUNTAS ALEATORIAMENTE
         // -------------------------------
