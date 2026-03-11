@@ -98,7 +98,7 @@ public class PanelMenu extends JPanel {
 		super.paintChildren(g);
 
 		// Iniciar música de fondo
-		iniciarMusica("/resource/CancionFondo.wav");
+		iniciarMusica("/resources/CancionFondo.wav");
 	}
 
 	// Método para iniciar música de fondo en bucle
