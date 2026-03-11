@@ -1,10 +1,10 @@
 package main;
 
-import vista.Ventana;
-import vista.PanelCategorias;
-import vista.PanelJuego;
-import vista.PanelCreditos;
-import vista.PanelMenu;
+import view.Ventana;
+import view.PanelCategorias;
+import view.PanelJuego;
+import view.PanelCreditos;
+import view.PanelMenu;
 
 public class Principal {
 
