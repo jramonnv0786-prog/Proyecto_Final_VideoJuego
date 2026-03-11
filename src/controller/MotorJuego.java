@@ -12,54 +12,6 @@ public class MotorJuego {
     private int puntuacion = 0;
 
     public MotorJuego() {
-        preguntas = new ArrayList<>();
-
-        // -------------------------------
-        // AÑADIR LAS PREGUNTAS A LA COLECCIÓN
-        // -------------------------------
-        preguntas.add(new Pregunta(
-                "¿Capital de España?",
-                "Madrid",
-                "Barcelona",
-                "Sevilla",
-                "Valencia",
-                1));
-
-        preguntas.add(new Pregunta(
-                "¿Lenguaje usado en Android?",
-                "Java",
-                "Python",
-                "C++",
-                "PHP",
-                1));
-
-        preguntas.add(new Pregunta(
-                "¿Planeta rojo?",
-                "Marte",
-                "Venus",
-                "Júpiter",
-                "Saturno",
-                1));
-                
-        preguntas.add(new Pregunta(
-                "¿Cuál es el océano más grande del mundo?",
-                "Océano Atlántico",
-                "Océano Índice",
-                "Océano Pacífico",
-                "Océano Ártico",
-                3));
-                
-        preguntas.add(new Pregunta(
-                "¿Qué etiqueta de HTML se usa para los párrafos?",
-                "<p>",
-                "<h1>",
-                "<div>",
-                "<text>",
-                1));
-                
-        // -------------------------------
-        // BARAJAR LAS PREGUNTAS ALEATORIAMENTE
-        // -------------------------------
         Collections.shuffle(preguntas);
     }
 

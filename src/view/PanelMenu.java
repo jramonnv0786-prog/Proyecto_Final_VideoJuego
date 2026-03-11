@@ -23,7 +23,10 @@ public class PanelMenu extends JPanel {
 	private Image fondo;
 	private Clip clip; // clip de música
 
-	public PanelMenu() {
+	private model.Partida partida;
+
+	public PanelMenu(model.Partida partida) {
+		this.partida = partida;
 
 		setLayout(null); // permite posiciones absolutas
 
@@ -42,7 +45,7 @@ public class PanelMenu extends JPanel {
 		boton.addActionListener((ActionEvent e) -> {
 			System.out.println("Cargando panel");
 
-			PanelJuego preguntados = new PanelJuego();
+			PanelJuego preguntados = new PanelJuego(partida);
 			preguntados.setBounds(0, 0, getWidth(), getHeight());
 
 			add(preguntados);
@@ -58,7 +61,7 @@ public class PanelMenu extends JPanel {
 
 		boton2.addActionListener((ActionEvent e) -> {
 			System.out.println("Cargando panel 2");
-			PanelCategorias categorias = new PanelCategorias();
+			PanelCategorias categorias = new PanelCategorias(partida);
 			categorias.setBounds(0, 0, getWidth(), getHeight());
 
 			add(categorias);

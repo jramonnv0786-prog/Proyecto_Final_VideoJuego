@@ -26,7 +26,10 @@ public class PanelDigitalizacion extends JPanel {
 
     private MotorDigitalizacion motor;
 
-    public PanelDigitalizacion() {
+    private model.Partida partida;
+
+    public PanelDigitalizacion(model.Partida partida) {
+        this.partida = partida;
         // 1. Configuración básica del panel
         setLayout(null);
         setBounds(0, 0, 1000, 800);
@@ -41,9 +44,9 @@ public class PanelDigitalizacion extends JPanel {
         add(tituloLabel);
 
         // 3. Etiqueta de la Puntuación
-        puntuacionLabel = new JLabel("Puntuación: 0");
+        puntuacionLabel = new JLabel("Puntuación Global: " + partida.getPuntuacionTotal());
         puntuacionLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        puntuacionLabel.setBounds(30, 30, 200, 40);
+        puntuacionLabel.setBounds(30, 30, 250, 40);
         add(puntuacionLabel);
 
         // 4. Etiqueta de la Pregunta
@@ -82,7 +85,7 @@ public class PanelDigitalizacion extends JPanel {
             javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
             if (ventana != null) {
                 ventana.getContentPane().removeAll();
-                ventana.add(new PanelCategorias());
+                ventana.add(new PanelCategorias(partida));
                 ventana.revalidate();
                 ventana.repaint();
             }
@@ -95,9 +98,10 @@ public class PanelDigitalizacion extends JPanel {
     private void responder(int opcion) {
         boolean acierto = motor.comprobarRespuesta(opcion);
         if (acierto) {
-            System.out.println("¡Acierto en programación! Puntos: " + motor.getPuntuacion());
+            partida.sumarPuntos(1);
+            System.out.println("¡Acierto en Digitalización! Puntos globales: " + partida.getPuntuacionTotal());
         }
-        puntuacionLabel.setText("Puntuación: " + motor.getPuntuacion());
+        puntuacionLabel.setText("Puntuación Global: " + partida.getPuntuacionTotal());
         actualizarPregunta();
     }
 
@@ -111,7 +115,7 @@ public class PanelDigitalizacion extends JPanel {
             boton3.setText(p.getOpcion3());
             boton4.setText(p.getOpcion4());
         } else {
-            preguntaLabel.setText("¡Categoría completada! Puntos finales: " + motor.getPuntuacion());
+            preguntaLabel.setText("¡Categoría completada! Puntuación Global: " + partida.getPuntuacionTotal());
             boton1.setEnabled(false);
             boton2.setEnabled(false);
             boton3.setEnabled(false);

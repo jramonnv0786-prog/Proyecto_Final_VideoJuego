@@ -13,7 +13,10 @@ public class PanelCategorias extends JPanel {
 	private JButton SistemaInformatico;
 	private JButton Sostenibilidad;
 
-	public PanelCategorias() {
+	private model.Partida partida;
+
+	public PanelCategorias(model.Partida partida) {
+		this.partida = partida;
 
 		setLayout(null);
 		setBounds(0, 0, 1000, 800);
@@ -29,7 +32,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-				ventana.add(new PanelProgramacion());
+				ventana.add(new PanelProgramacion(partida));
 				ventana.revalidate();
 				ventana.repaint();
 			}
@@ -45,7 +48,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-				ventana.add(new PanelEntornos());
+				ventana.add(new PanelEntornos(partida));
 				ventana.revalidate();
 				ventana.repaint();
 			}
@@ -61,7 +64,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-				ventana.add(new PanelLenguajeMarca());
+				ventana.add(new PanelLenguajeMarca(partida));
 				ventana.revalidate();
 				ventana.repaint();
 			}
@@ -77,7 +80,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-				ventana.add(new PanelDigitalizacion());
+				ventana.add(new PanelDigitalizacion(partida));
 				ventana.revalidate();
 				ventana.repaint();
 			}

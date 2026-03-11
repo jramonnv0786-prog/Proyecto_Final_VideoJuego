@@ -19,7 +19,10 @@ public class PanelJuego extends JPanel {
 
     private MotorJuego motor;
 
-    public PanelJuego() {
+    private model.Partida partida;
+
+    public PanelJuego(model.Partida partida) {
+        this.partida = partida;
 
         setLayout(null);
         setBounds(0, 0, 1000, 800);
@@ -36,7 +39,7 @@ public class PanelJuego extends JPanel {
         // -----------------
         // LABEL DE PUNTUACION
         // -----------------
-        puntuacionLabel = new JLabel("Puntuación: 0");
+        puntuacionLabel = new JLabel("Puntuación Global: " + partida.getPuntuacionTotal());
         puntuacionLabel.setBounds(20, 20, 200, 40);
         add(puntuacionLabel);
 
@@ -91,12 +94,13 @@ public class PanelJuego extends JPanel {
         boolean acierto = motor.comprobarRespuesta(opcion);
 
         if (acierto) {
-            System.out.println("Respuesta correcta! Puntos: " + motor.getPuntuacion());
+            partida.sumarPuntos(1);
+            System.out.println("Respuesta correcta! Puntos globales: " + partida.getPuntuacionTotal());
         } else {
-            System.out.println("Respuesta incorrecta! Puntos: " + motor.getPuntuacion());
+            System.out.println("Respuesta incorrecta! Puntos globales: " + partida.getPuntuacionTotal());
         }
 
-        puntuacionLabel.setText("Puntuación: " + motor.getPuntuacion());
+        puntuacionLabel.setText("Puntuación Global: " + partida.getPuntuacionTotal());
         actualizarPregunta();
     }
 
@@ -119,7 +123,7 @@ public class PanelJuego extends JPanel {
             boton4.setVisible(true);
 
         } else {
-            preguntaLabel.setText("Juego terminado. Puntuación final: " + motor.getPuntuacion());
+            preguntaLabel.setText("Juego terminado. Puntuación Global: " + partida.getPuntuacionTotal());
 
             boton1.setVisible(false);
             boton2.setVisible(false);
