@@ -28,7 +28,7 @@ public class PanelMenu extends JPanel {
 	public PanelMenu(model.Partida partida) {
 		this.partida = partida;
 
-		setLayout(null); // permite posiciones absolutas
+		setLayout(null); // Permite posiciones absolutas
 
 		// Cargar la imagen original
 		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondo.png.png"));
