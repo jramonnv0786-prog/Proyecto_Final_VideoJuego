@@ -5,13 +5,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.io.InputStream;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class PanelMenu extends JPanel {
@@ -36,10 +34,10 @@ public class PanelMenu extends JPanel {
 
 		// Botón encima de la imagen
 		boton = new JButton();
-		boton.setBounds(170, 130, 150, 80);
-		boton.setBorderPainted(false);
+		boton.setBounds(277, 215, 440, 138);
+		boton.setBorderPainted(true);
 		boton.setContentAreaFilled(false);
-
+		boton.setOpaque(false);
 		add(boton);
 
 		boton.addActionListener((ActionEvent e) -> {
@@ -54,9 +52,9 @@ public class PanelMenu extends JPanel {
 		});
 
 		boton2 = new JButton();
-		boton2.setBounds(420, 70, 150, 80);
-		boton2.setBorderPainted(false);
+		boton2.setBounds(277, 380, 440, 138);
 		boton2.setContentAreaFilled(false);
+		boton2.setBorderPainted(false);
 		add(boton2);
 
 		boton2.addActionListener((ActionEvent e) -> {
@@ -71,7 +69,7 @@ public class PanelMenu extends JPanel {
 
 		// Botón encima de la imagen
 		boton3 = new JButton();
-		boton3.setBounds(680, 130, 150, 80);
+		boton3.setBounds(277, 500, 440, 138);
 		boton3.setBorderPainted(false);
 		boton3.setContentAreaFilled(false);
 		add(boton3);
@@ -86,7 +84,8 @@ public class PanelMenu extends JPanel {
 			repaint();
 		});
 
-		setBounds(0, 0, 1000, 800);
+		iniciarMusica("/resources/CancionFondo.wav");
+
 	}
 
 	@Override
@@ -100,8 +99,6 @@ public class PanelMenu extends JPanel {
 		// Pintar los botones encima
 		super.paintChildren(g);
 
-		// Iniciar música de fondo
-		iniciarMusica("/resources/CancionFondo.wav");
 	}
 
 	// Método para iniciar música de fondo en bucle
