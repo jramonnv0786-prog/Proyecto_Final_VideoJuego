@@ -46,7 +46,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-				ventana.add(new PanelProgramacion(this.partida));
+				ventana.add(new PanelProgramacion(partida));
 				ventana.revalidate();
 				ventana.repaint();
 			}
@@ -67,7 +67,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-				ventana.add(new PanelEntornos(this.partida));
+				ventana.add(new PanelEntornos(partida));
 				ventana.revalidate();
 				ventana.repaint();
 			}
@@ -88,7 +88,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-				ventana.add(new PanelLenguajeMarca(this.partida));
+				ventana.add(new PanelLenguajeMarca(partida));
 				ventana.revalidate();
 				ventana.repaint();
 			}
@@ -109,7 +109,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-				ventana.add(new PanelDigitalizacion(this.partida));
+				ventana.add(new PanelDigitalizacion(partida));
 				ventana.revalidate();
 				ventana.repaint();
 			}
@@ -130,7 +130,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-				ventana.add(new PanelSistemas(this.partida));
+				ventana.add(new PanelSistemas(partida));
 				ventana.revalidate();
 				ventana.repaint();
 			}
@@ -151,21 +151,7 @@ public class PanelCategorias extends JPanel {
 			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
 			if (ventana != null) {
 				ventana.getContentPane().removeAll();
-                ventana.add(new PanelSostenibilidad(this.partida)); // Agregando el Panel Sostenibilidad
-				ventana.revalidate();
-				ventana.repaint();
-			}
-		});
-
-		// BOTON VOLVER
-		JButton botonVolver = new JButton("Volver al Menú");
-		botonVolver.setBounds(30, 700, 200, 50);
-		add(botonVolver);
-		botonVolver.addActionListener((ActionEvent e) -> {
-			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-			if (ventana != null) {
-				ventana.getContentPane().removeAll();
-				ventana.add(new PanelMenu(this.partida));
+                ventana.add(new PanelSostenibilidad(partida)); // Agregando el Panel Sostenibilidad
 				ventana.revalidate();
 				ventana.repaint();
 			}
