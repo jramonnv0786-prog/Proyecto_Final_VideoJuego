@@ -1,9 +1,15 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import model.Pregunta;
 import controller.MotorJuego;
 
@@ -20,97 +26,98 @@ public class PanelJuego extends JPanel {
     private MotorJuego motor;
 
     private model.Partida partida;
+    private Image fondo;
 
-    public PanelJuego(model.Partida partida) {
+    public PanelJuego(model.Partida partida, int dificultad) {
         this.partida = partida;
 
         setLayout(null);
         setBounds(0, 0, 1000, 800);
 
-        motor = new MotorJuego();
+        // Cargar la imagen de fondo
+        java.net.URL urlFondo = getClass().getResource("/resources/fondoPreguntas.png");
+        if (urlFondo != null) {
+            ImageIcon icon = new ImageIcon(urlFondo);
+            fondo = icon.getImage();
+        }
+
+        motor = new MotorJuego(dificultad);
 
         // -----------------
         // LABEL DE PREGUNTA
         // -----------------
         preguntaLabel = new JLabel();
-        preguntaLabel.setBounds(200, 100, 600, 50);
+        preguntaLabel.setBounds(100, 150, 800, 100);
+        preguntaLabel.setFont(new Font("Arial", Font.BOLD, 22));
+        preguntaLabel.setForeground(Color.WHITE);
+        preguntaLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(preguntaLabel);
 
         // -----------------
         // LABEL DE PUNTUACION
         // -----------------
         puntuacionLabel = new JLabel("Puntuación Global: " + partida.getPuntuacionTotal());
-        puntuacionLabel.setBounds(20, 20, 200, 40);
+        puntuacionLabel.setBounds(30, 30, 250, 40);
+        puntuacionLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        puntuacionLabel.setForeground(Color.WHITE);
         add(puntuacionLabel);
 
         // -----------------
-        // BOTON 1
+        // BOTONES
         // -----------------
         boton1 = new JButton();
-        boton1.setBounds(200, 400, 200, 60);
+        boton1.setBounds(200, 300, 250, 60);
         add(boton1);
-        boton1.addActionListener((ActionEvent e) -> {
-            responder(1);
-        });
+        boton1.addActionListener((ActionEvent e) -> responder(1));
 
-        // -----------------
-        // BOTON 2
-        // -----------------
         boton2 = new JButton();
-        boton2.setBounds(600, 400, 200, 60);
+        boton2.setBounds(550, 300, 250, 60);
         add(boton2);
-        boton2.addActionListener((ActionEvent e) -> {
-            responder(2);
-        });
+        boton2.addActionListener((ActionEvent e) -> responder(2));
 
-        // -----------------
-        // BOTON 3
-        // -----------------
         boton3 = new JButton();
-        boton3.setBounds(200, 500, 200, 60);
+        boton3.setBounds(200, 400, 250, 60);
         add(boton3);
-        boton3.addActionListener((ActionEvent e) -> {
-            responder(3);
-        });
+        boton3.addActionListener((ActionEvent e) -> responder(3));
 
-        // -----------------
-        // BOTON 4
-        // -----------------
         boton4 = new JButton();
-        boton4.setBounds(600, 500, 200, 60);
+        boton4.setBounds(550, 400, 250, 60);
         add(boton4);
-        boton4.addActionListener((ActionEvent e) -> {
-            responder(4);
+        boton4.addActionListener((ActionEvent e) -> responder(4));
+
+        // BOTÓN VOLVER
+        JButton botonVolver = new JButton("Volver al Menú");
+        botonVolver.setBounds(30, 700, 200, 50);
+        add(botonVolver);
+        botonVolver.addActionListener((ActionEvent e) -> {
+            javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (frame != null) {
+                frame.getContentPane().removeAll();
+                frame.getContentPane().add(new PanelMenu(partida));
+                frame.revalidate();
+                frame.repaint();
+            }
         });
 
         // CARGAR PRIMERA PREGUNTA
         actualizarPregunta();
     }
 
-    // -----------------
-    // METODO PARA RESPONDER
-    // -----------------
     private void responder(int opcion) {
         boolean acierto = motor.comprobarRespuesta(opcion);
 
         if (acierto) {
             partida.sumarPuntos(1);
-            System.out.println("Respuesta correcta! Puntos globales: " + partida.getPuntuacionTotal());
-        } else {
-            System.out.println("Respuesta incorrecta! Puntos globales: " + partida.getPuntuacionTotal());
         }
 
         puntuacionLabel.setText("Puntuación Global: " + partida.getPuntuacionTotal());
         actualizarPregunta();
     }
 
-    // -----------------
-    // METODO PARA CARGAR PREGUNTA ACTUAL
-    // -----------------
     private void actualizarPregunta() {
         if (motor.hayPreguntas()) {
             Pregunta p = motor.getPreguntaActual();
-            preguntaLabel.setText(p.getPregunta());
+            preguntaLabel.setText("<html><center>" + p.getPregunta() + "</center></html>");
 
             boton1.setText(p.getOpcion1());
             boton2.setText(p.getOpcion2());
@@ -129,6 +136,14 @@ public class PanelJuego extends JPanel {
             boton2.setVisible(false);
             boton3.setVisible(false);
             boton4.setVisible(false);
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (fondo != null) {
+            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
         }
     }
 }

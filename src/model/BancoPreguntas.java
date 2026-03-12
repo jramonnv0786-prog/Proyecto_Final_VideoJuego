@@ -467,4 +467,15 @@ public class BancoPreguntas {
                                                 "Actualizaciones de malware",
                                                 2)));
         }
+
+	public static List<Pregunta> getAllPreguntas() {
+		List<Pregunta> todas = new ArrayList<>();
+		todas.addAll(getPreguntasEntornos());
+		todas.addAll(getPreguntasDigitalizacion());
+		todas.addAll(getPreguntasLenguajeDeMarca());
+		todas.addAll(getPreguntasProgramacion());
+		todas.addAll(getPreguntasSistemas());
+		todas.addAll(getPreguntasSostenibilidad());
+		return todas;
+	}
 }

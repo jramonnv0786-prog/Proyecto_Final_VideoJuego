@@ -51,13 +51,27 @@ public class PanelMenu extends JPanel {
 		add(boton);
 
 		boton.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel Juego");
-			javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-			if (frame != null) {
-				frame.getContentPane().removeAll();
-				frame.getContentPane().add(new PanelJuego(partida));
-				frame.revalidate();
-				frame.repaint();
+			System.out.println("Cargando panel Juego con selección de dificultad");
+
+			String[] opciones = { "Fácil (10 preg.)", "Medio (20 preg.)", "Difícil (Todas)" };
+			int seleccion = javax.swing.JOptionPane.showOptionDialog(
+					this,
+					"Elige la dificultad del juego:",
+					"Selección de Dificultad",
+					javax.swing.JOptionPane.DEFAULT_OPTION,
+					javax.swing.JOptionPane.QUESTION_MESSAGE,
+					null,
+					opciones,
+					opciones[0]);
+
+			if (seleccion != -1) { // Si no cerró la ventana
+				javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+				if (frame != null) {
+					frame.getContentPane().removeAll();
+					frame.getContentPane().add(new PanelJuego(partida, seleccion));
+					frame.revalidate();
+					frame.repaint();
+				}
 			}
 		});
 
