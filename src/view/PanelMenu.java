@@ -31,7 +31,7 @@ public class PanelMenu extends JPanel {
 		setLayout(null); // permite posiciones absolutas
 
 		// Cargar la imagen original
-		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondonew.jpg"));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondo.png.png"));
 		fondo = icon.getImage();
 
 		// Botón encima de la imagen
