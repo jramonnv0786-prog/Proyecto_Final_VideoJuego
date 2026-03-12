@@ -1,11 +1,15 @@
 package view;
 
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class PanelCategorias extends JPanel {
 
@@ -35,6 +39,7 @@ public class PanelCategorias extends JPanel {
 		// BOTON PROGRAMACION
 		Programacion = crearBotonImagen("/resources/Programacion.png", 200, 150);
 		add(Programacion);
+		add(crearEtiqueta("Programación", 200, 235));
 		Programacion.addActionListener((ActionEvent e) -> {
 			cambiarPanel(new PanelProgramacion(partida));
 		});
@@ -42,6 +47,7 @@ public class PanelCategorias extends JPanel {
 		// BOTON ENTORNOS
 		EntornosDesarrollo = crearBotonImagen("/resources/Entornos.png", 600, 150);
 		add(EntornosDesarrollo);
+		add(crearEtiqueta("Entornos de Desarrollo", 600, 235));
 		EntornosDesarrollo.addActionListener((ActionEvent e) -> {
 			cambiarPanel(new PanelEntornos(partida));
 		});
@@ -49,6 +55,7 @@ public class PanelCategorias extends JPanel {
 		// BOTON LENGUAJE
 		LenguajeMarca = crearBotonImagen("/resources/Lenguajedemarca.png", 200, 300);
 		add(LenguajeMarca);
+		add(crearEtiqueta("Lenguaje de Marcas", 200, 385));
 		LenguajeMarca.addActionListener((ActionEvent e) -> {
 			cambiarPanel(new PanelLenguajeMarca(partida));
 		});
@@ -56,6 +63,7 @@ public class PanelCategorias extends JPanel {
 		// BOTON DIGITALIZACION
 		Digitalizacion = crearBotonImagen("/resources/Digitalizacion.png", 600, 300);
 		add(Digitalizacion);
+		add(crearEtiqueta("Digitalización", 600, 385));
 		Digitalizacion.addActionListener((ActionEvent e) -> {
 			cambiarPanel(new PanelDigitalizacion(partida));
 		});
@@ -63,6 +71,7 @@ public class PanelCategorias extends JPanel {
 		// BOTON SISTEMA
 		SistemaInformatico = crearBotonImagen("/resources/Sistemas.png", 200, 450);
 		add(SistemaInformatico);
+		add(crearEtiqueta("Sistemas Informáticos", 200, 535));
 		SistemaInformatico.addActionListener((ActionEvent e) -> {
 			cambiarPanel(new PanelSistemas(partida));
 		});
@@ -70,6 +79,7 @@ public class PanelCategorias extends JPanel {
 		// BOTON Sostenibilidad
 		Sostenibilidad = crearBotonImagen("/resources/Sostenibilidad.png", 600, 450);
 		add(Sostenibilidad);
+		add(crearEtiqueta("Sostenibilidad", 600, 535));
 		Sostenibilidad.addActionListener((ActionEvent e) -> {
 			cambiarPanel(new PanelSostenibilidad(partida));
 		});
@@ -98,6 +108,14 @@ public class PanelCategorias extends JPanel {
 		JButton botonFallback = new JButton(ruta);
 		botonFallback.setBounds(x, y, 200, 80);
 		return botonFallback;
+	}
+
+	private JLabel crearEtiqueta(String texto, int x, int y) {
+		JLabel etiqueta = new JLabel(texto, SwingConstants.CENTER);
+		etiqueta.setBounds(x, y, 200, 30);
+		etiqueta.setForeground(Color.WHITE); // Color blanco
+		etiqueta.setFont(new Font("Arial", Font.BOLD, 16));
+		return etiqueta;
 	}
 
 	private void cambiarPanel(JPanel panel) {

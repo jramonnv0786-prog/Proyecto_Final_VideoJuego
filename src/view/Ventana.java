@@ -21,12 +21,27 @@ public class Ventana extends JFrame {
 
 		setResizable(false);
 
-		String name = javax.swing.JOptionPane.showInputDialog(this, "Introduce tu nombre:", "Nuevo Jugador",
-				javax.swing.JOptionPane.QUESTION_MESSAGE);
-		if (name == null || name.trim().isEmpty()) {
-			name = "Jugador 1";
+		String name = "";
+		boolean nombreValido = false;
+
+		while (!nombreValido) {
+			name = javax.swing.JOptionPane.showInputDialog(this, "Introduce tu nombre:", "Nuevo Jugador",
+					javax.swing.JOptionPane.QUESTION_MESSAGE);
+
+			if (name == null) {
+				// El usuario pulsó cancelar
+				System.exit(0);
+			}
+
+			if (name.trim().isEmpty()) {
+				javax.swing.JOptionPane.showMessageDialog(this, "El nombre de usuario es obligatorio.", "Error",
+						javax.swing.JOptionPane.WARNING_MESSAGE);
+			} else {
+				nombreValido = true;
+			}
 		}
-		model.Partida partida = new model.Partida(name);
+
+		model.Partida partida = new model.Partida(name.trim());
 
 		PanelMenu panel = new PanelMenu(partida);
 		add(panel);

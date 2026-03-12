@@ -1,6 +1,7 @@
 package model;
 
 public class Pregunta {
+
     private String pregunta;
     private String opcion1;
     private String opcion2;

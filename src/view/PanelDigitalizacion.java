@@ -14,15 +14,15 @@ import model.Pregunta;
 
 public class PanelDigitalizacion extends JPanel {
 
-    private JLabel tituloLabel;
-    private JLabel preguntaLabel;
-    private JLabel puntuacionLabel;
+    private JLabel tituloLabel; // Etiqueta del título de la categoría
+    private JLabel preguntaLabel; // Etiqueta de la pregunta
+    private JLabel puntuacionLabel; // Etiqueta de la puntuación
 
-    private JButton boton1;
-    private JButton boton2;
-    private JButton boton3;
-    private JButton boton4;
-    private JButton botonVolver;
+    private JButton boton1; // Botón de respuesta 1
+    private JButton boton2; // Botón de respuesta 2
+    private JButton boton3; // Botón de respuesta 3
+    private JButton boton4; // Botón de respuesta 4
+    private JButton botonVolver; // Botón para volver a la categoría
 
     private MotorDigitalizacion motor;
 
@@ -134,6 +134,7 @@ public class PanelDigitalizacion extends JPanel {
             boton4.setEnabled(false);
         }
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

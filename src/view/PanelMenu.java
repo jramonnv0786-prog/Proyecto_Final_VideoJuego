@@ -10,7 +10,10 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
 
 public class PanelMenu extends JPanel {
 
@@ -27,6 +30,13 @@ public class PanelMenu extends JPanel {
 		this.partida = partida;
 
 		setLayout(null); // Permite posiciones absolutas
+
+		// Etiqueta para mostrar el nombre del jugador
+		JLabel labelNombre = new JLabel("Jugador: " + partida.getNombreJugador());
+		labelNombre.setBounds(20, 20, 300, 30);
+		labelNombre.setForeground(Color.WHITE);
+		labelNombre.setFont(new Font("Arial", Font.BOLD, 20));
+		add(labelNombre);
 
 		// Cargar la imagen original
 		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondo.png"));
