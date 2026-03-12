@@ -1,9 +1,11 @@
 package view;
 
 import controller.MotorSistemas;
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,13 +26,20 @@ public class PanelSistemas extends JPanel {
     private MotorSistemas motor;
 
     private model.Partida partida;
+    private Image fondo;
 
     public PanelSistemas(model.Partida partida) {
         this.partida = partida;
         // 1. Configuración básica del panel
         setLayout(null);
         setBounds(0, 0, 1000, 800);
-        setBackground(new Color(240, 248, 255)); // Color de fondo distinto
+
+        // Cargar la imagen de fondo
+        java.net.URL urlFondo = getClass().getResource("/resources/fondoPreguntas.png");
+        if (urlFondo != null) {
+            ImageIcon icon = new ImageIcon(urlFondo);
+            fondo = icon.getImage();
+        }
 
         motor = new MotorSistemas();
 
@@ -118,6 +127,14 @@ public class PanelSistemas extends JPanel {
             boton2.setEnabled(false);
             boton3.setEnabled(false);
             boton4.setEnabled(false);
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (fondo != null) {
+            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
         }
     }
 }
