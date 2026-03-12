@@ -13,15 +13,11 @@ public class MotorDigitalizacion {
     public MotorDigitalizacion() {
         preguntas = (ArrayList<Pregunta>) model.BancoPreguntas.getPreguntasDigitalizacion();
 
-        // -------------------------------
         // BARAJAR LAS PREGUNTAS ALEATORIAMENTE
-        // -------------------------------
         Collections.shuffle(preguntas);
     }
 
-    // -------------------------------
     // DEVOLVER LA PREGUNTA ACTUAL
-    // -------------------------------
     public Pregunta getPreguntaActual() {
         if (indice < preguntas.size()) {
             return preguntas.get(indice);
@@ -29,9 +25,7 @@ public class MotorDigitalizacion {
         return null;
     }
 
-    // -------------------------------
     // COMPROBAR RESPUESTA
-    // -------------------------------
     public boolean comprobarRespuesta(int respuestaJugador) {
         Pregunta p = getPreguntaActual();
         if (p == null)

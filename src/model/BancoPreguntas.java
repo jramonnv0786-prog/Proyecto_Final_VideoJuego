@@ -8,32 +8,32 @@ public class BancoPreguntas {
         public static List<Pregunta> getPreguntasEntornos() {
                 return new ArrayList<>(List.of(
                                 new Pregunta("¿Qué significa IDE?", "Entorno de Desarrollo Integrado",
-                                                "Interfaz de Datos Electrónicos",
-                                                "Motor de Base de Datos Interna", "Editor de Diseño Interactivo", 1),
+                                                "Interfaz de Datos",
+                                                "Base de Datos Interna", "Editor de Diseño", 1),
                                 new Pregunta("¿Cuál es un ejemplo de IDE popular?", "Microsoft Word", "Eclipse",
                                                 "Photoshop", "Excel",
                                                 2),
                                 new Pregunta("¿Qué es Git?", "Un lenguaje de programación",
-                                                "Un sistema de control de versiones",
+                                                "Un control de versiones",
                                                 "Un IDE", "Un compilador", 2),
                                 new Pregunta("¿Qué comando de Git se usa para subir cambios al repositorio remoto?",
                                                 "git pull",
                                                 "git push", "git commit", "git add", 2),
                                 new Pregunta("¿Qué es un framework?", "Un tipo de hardware",
-                                                "Un conjunto de herramientas y bibliotecas para desarrollar software",
+                                                "Herramientas para desarrollar software",
                                                 "Un sistema operativo",
                                                 "Un navegador web", 2),
                                 new Pregunta("¿Cuál es un ejemplo de framework para Java?", "React", "Spring", "Django",
                                                 "Laravel", 2),
-                                new Pregunta("¿Qué es el testing unitario?", "Probar el software completo",
-                                                "Probar componentes individuales del código",
-                                                "Probar la interfaz de usuario",
+                                new Pregunta("¿Qué es el testing unitario?", "Probar todo el software",
+                                                "Probar componentes individuales",
+                                                "Probar la interfaz",
                                                 "Probar la base de datos", 2),
                                 new Pregunta("¿Qué herramienta se usa comúnmente para testing en Java?", "JUnit",
                                                 "Selenium", "Postman",
                                                 "Jenkins", 1),
                                 new Pregunta("¿Qué es Maven?", "Un IDE",
-                                                "Una herramienta de gestión de proyectos y dependencias",
+                                                "Gestor de proyectos y dependencias",
                                                 "Un lenguaje de programación", "Un servidor web", 2),
                                 new Pregunta("¿Qué archivo configura las dependencias en Maven?", "pom.xml",
                                                 "build.gradle",
@@ -41,19 +41,19 @@ public class BancoPreguntas {
                                 new Pregunta("¿Qué es Scrum?", "Un lenguaje de programación", "Una metodología ágil",
                                                 "Un IDE",
                                                 "Un framework", 2),
-                                new Pregunta("¿Cuál es el rol del Scrum Master?", "Desarrollar el código",
+                                new Pregunta("¿Cuál es el rol del Scrum Master?", "Programar código",
                                                 "Facilitar el proceso Scrum",
                                                 "Diseñar la interfaz", "Gestionar la base de datos", 2),
-                                new Pregunta("¿Qué es la integración continua?", "Un tipo de base de datos",
-                                                "La práctica de integrar cambios de código frecuentemente",
+                                new Pregunta("¿Qué es la integración continua?", "Una base de datos",
+                                                "Integrar cambios frecuentemente",
                                                 "Un lenguaje de scripting",
                                                 "Un servidor de aplicaciones", 2),
                                 new Pregunta("¿Qué herramienta se usa para integración continua?", "Git", "Jenkins",
                                                 "Eclipse", "Maven",
                                                 2),
                                 new Pregunta("¿Qué es Docker?", "Un IDE",
-                                                "Una plataforma para desarrollar, enviar y ejecutar aplicaciones en contenedores",
-                                                "Un sistema de control de versiones", "Un framework web", 2)));
+                                                "Plataforma basada en contenedores",
+                                                "Un control de versiones", "Un framework web", 2)));
         }
 
         public static List<Pregunta> getPreguntasDigitalizacion() {
@@ -62,12 +62,12 @@ public class BancoPreguntas {
                                                 "Integrar tecnología en todas las áreas de una empresa",
                                                 "Comprar ordenadores nuevos",
                                                 "Usar redes sociales para publicidad", 2),
-                                new Pregunta("¿A qué hace referencia el término 'Cloud Computing' (Computación en la nube)?",
+                                new Pregunta("¿Qué es la 'Computación en la nube'?",
                                                 "Almacenamiento y servicios a través de internet",
                                                 "Predicción del clima mediante software",
                                                 "Redes sociales en la estratosfera",
                                                 "Ordenadores que funcionan con energía solar", 1),
-                                new Pregunta("¿Qué significa 'IoT' (Internet de las Cosas)?", "Internet Of Technology",
+                                new Pregunta("¿Qué significa 'IoT'?", "Internet Of Technology",
                                                 "Internal Organization Tools",
                                                 "Interconexión digital de objetos cotidianos con internet",
                                                 "Un tipo de cable de fibra óptica", 3),
@@ -76,26 +76,26 @@ public class BancoPreguntas {
                                                 "Una empresa de telecomunicaciones",
                                                 "El servidor principal de internet", 2),
                                 new Pregunta(
-                                                "¿Qué tecnología utiliza bloques criptográficos inmutables, comúnmente asociada a criptomonedas?",
+                                                "¿Qué tecnología de bloques inmutables usan las criptomonedas?",
                                                 "Inteligencia Artificial", "Machine Learning", "Blockchain", "5G", 3),
-                                new Pregunta("¿Cuál de las siguientes protege los sistemas y redes de ataques digitales?",
+                                new Pregunta("¿Qué protege redes y sistemas de ciberataques?",
                                                 "Ciberseguridad", "Cybermarketing", "SEO", "Software Open Source", 1),
                                 new Pregunta(
-                                                "¿Qué concepto describe una identidad virtual que recopila nuestros datos, acciones y rastros en internet?",
+                                                "¿Qué identidad virtual recopila nuestros rastros online?",
                                                 "IP estática", "Huella digital", "Avatar", "Cookies", 2),
-                                new Pregunta("¿Qué es el comercio electrónico (E-commerce)?",
+                                new Pregunta("¿Qué es el E-commerce?",
                                                 "Enviar correos electrónicos comerciales",
                                                 "Aprender economía por internet",
                                                 "Compra y venta de productos o servicios a través de internet",
                                                 "Bancos que solo tienen cajeros", 3),
-                                new Pregunta("¿Qué significa SEO en marketing digital?", "Search Engine Optimization",
+                                new Pregunta("¿Qué significa SEO?", "Search Engine Optimization",
                                                 "System Electronic Output", "Secure Enterprise Operations",
                                                 "Software Execution Order", 1),
-                                new Pregunta("¿A qué se refiere el término 'Brecha Digital'?",
+                                new Pregunta("¿Qué es la 'Brecha Digital'?",
                                                 "Un virus que rompe el sistema operativo",
                                                 "Desigualdad en el acceso y uso de las TIC",
                                                 "Espacio entre dos monitores", "Avería física en un cable de red", 2),
-                                new Pregunta("¿Qué tecnología permite a una máquina simular inteligencia humana?",
+                                new Pregunta("¿Qué tecnología simula la inteligencia humana?",
                                                 "Realidad Virtual (VR)", "Inteligencia Artificial (IA)",
                                                 "Internet de las Cosas (IoT)",
                                                 "Realidad Aumentada (AR)", 2),
@@ -103,17 +103,17 @@ public class BancoPreguntas {
                                                 "Técnica para mejorar la velocidad de internet",
                                                 "Suplantación de identidad para robar datos confidenciales",
                                                 "Un tipo de filtro para fotografías", 3),
-                                new Pregunta("La Cuarta Revolución Industrial (Industria 4.0) se caracteriza principalmente por...",
+                                new Pregunta("¿Por qué destaca la Industria 4.0?",
                                                 "Uso de energía de vapor", "Producción en cadena automatizada clásica",
                                                 "Sistemas ciberfísicos, IoT e IA en la industria",
                                                 "Invención de la bombilla", 3),
-                                new Pregunta("¿Cuál es una ventaja clave del teletrabajo (trabajo remoto)?",
+                                new Pregunta("¿Cuál es la mayor ventaja del teletrabajo?",
                                                 "Exige comprar equipo más caro",
                                                 "Flexibilidad geográfica y de horarios",
                                                 "Reduce los sueldos a la mitad",
                                                 "Elimina la necesidad de usar internet", 2),
                                 new Pregunta(
-                                                "¿Qué tecnología mezcla entornos reales con objetos virtuales superpuestos en tiempo real?",
+                                                "¿Qué tecnología superpone objetos virtuales al mundo real?",
                                                 "Realidad Virtual (VR)", "Realidad Aumentada (AR)", "Metaverso",
                                                 "Cloud Computing", 2)));
         }
@@ -228,7 +228,7 @@ public class BancoPreguntas {
                                                 "CPU",
                                                 "RAM",
                                                 "Disco duro",
-                                                "Fuente de alimentación",
+                                                "Fuente de poder",
                                                 1),
 
                                 new Pregunta(
@@ -236,7 +236,7 @@ public class BancoPreguntas {
                                                 "ROM",
                                                 "SSD",
                                                 "RAM",
-                                                "Memoria Flash",
+                                                "USB",
                                                 3),
 
                                 new Pregunta(
@@ -281,26 +281,26 @@ public class BancoPreguntas {
 
                                 new Pregunta(
                                                 "¿Qué significa el acrónimo BIOS?",
-                                                "Binary Integrated Operating System",
+                                                "Binary Input System",
                                                 "Basic Input Output System",
-                                                "Boot Instruction Operating Setup",
-                                                "Basic Internal Operation System",
+                                                "Boot Instruction System",
+                                                "Basic Internal System",
                                                 2),
 
                                 new Pregunta(
                                                 "¿Cuál es la función principal de un firewall?",
                                                 "Almacenar datos",
-                                                "Aumentar la velocidad de Internet",
-                                                "Proteger la red controlando el tráfico",
-                                                "Reparar errores del sistema",
+                                                "Aumentar velocidad",
+                                                "Filtrar tráfico de red",
+                                                "Reparar errores",
                                                 3),
 
                                 new Pregunta(
                                                 "¿Qué tipo de software gestiona los recursos del hardware?",
-                                                "Sistema operativo",
+                                                "Sistema Operativo",
                                                 "Firmware",
-                                                "Controladores",
-                                                "Software de aplicación",
+                                                "Drivers",
+                                                "Apps",
                                                 1),
 
                                 new Pregunta(
@@ -314,9 +314,9 @@ public class BancoPreguntas {
                                 new Pregunta(
                                                 "¿Qué componente almacena de forma permanente el sistema operativo?",
                                                 "RAM",
-                                                "Tarjeta gráfica",
+                                                "Gráfica",
                                                 "CPU",
-                                                "Disco duro / SSD",
+                                                "Disco Duro",
                                                 4),
 
                                 new Pregunta(
@@ -337,135 +337,134 @@ public class BancoPreguntas {
 
                                 new Pregunta(
                                                 "¿Qué tipo de copia de seguridad solo guarda los archivos modificados desde la última copia completa?",
-                                                "Copia completa",
-                                                "Copia espejo",
-                                                "Copia incremental",
-                                                "Copia diferencial",
+                                                "Completa",
+                                                "Espejo",
+                                                "Incremental",
+                                                "Diferencial",
                                                 3)));
 
         }
 
         public static List<Pregunta> getPreguntasSostenibilidad() {
                 return new ArrayList<>(List.of(
-
                                 new Pregunta(
-                                                "¿Qué es el desarrollo sostenible?",
-                                                "Satisfacer necesidades actuales sin comprometer las futuras",
-                                                "Evitar el uso de recursos naturales",
-                                                "Producir más energía sin límites",
-                                                "Reducir el consumo sin importar el impacto",
-                                                1),
-
-                                new Pregunta(
-                                                "¿Cuál de los siguientes es un gas de efecto invernadero?",
-                                                "Oxígeno",
-                                                "Dióxido de carbono (CO₂)",
-                                                "Helio",
-                                                "Nitrógeno",
+                                                "¿Qué impacto ambiental grave tiene la Inteligencia Artificial?",
+                                                "Destrucción del ozono",
+                                                "Alto consumo energético",
+                                                "Residuos nucleares",
+                                                "Agotamiento del silicio",
                                                 2),
 
                                 new Pregunta(
-                                                "¿Qué tipo de energía es renovable?",
-                                                "Carbón",
-                                                "Gas natural",
-                                                "Energía solar",
-                                                "Petróleo",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué significa la regla de las 3R?",
-                                                "Reparar, Reusar, Reemplazar",
-                                                "Reducir, Reutilizar, Reciclar",
-                                                "Repetir, Reusar, Reciclar",
-                                                "Reducir, Rehacer, Reusar",
+                                                "¿Cómo reducir la contaminación generada por una web?",
+                                                "Añadiendo más videos",
+                                                "Optimizando imágenes y código",
+                                                "Usando fondos negros",
+                                                "Evitando usar HTML",
                                                 2),
 
                                 new Pregunta(
-                                                "¿Cuál es una consecuencia del cambio climático?",
-                                                "Mayor estabilidad climática",
-                                                "Disminución del nivel del mar",
-                                                "Aumento de fenómenos meteorológicos extremos",
-                                                "Reducción de temperaturas globales",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué recurso natural es no renovable?",
-                                                "Energía eólica",
-                                                "Energía solar",
-                                                "Energía hidráulica",
-                                                "Petróleo",
-                                                4),
-
-                                new Pregunta(
-                                                "¿Qué contenedor se usa para el vidrio?",
-                                                "Amarillo",
-                                                "Azul",
-                                                "Verde",
-                                                "Gris",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Cuál es una práctica sostenible en el hogar?",
-                                                "Usar bombillas LED",
-                                                "Dejar luces encendidas",
-                                                "Tirar aceite por el fregadero",
-                                                "Comprar productos desechables",
+                                                "¿Cómo se denomina a la basura electrónica desechada?",
+                                                "E-waste o RAEE",
+                                                "Data smog",
+                                                "Spam físico",
+                                                "Green-tech",
                                                 1),
 
                                 new Pregunta(
-                                                "¿Qué organismo promueve los Objetivos de Desarrollo Sostenible (ODS)?",
-                                                "OTAN",
-                                                "OMS",
-                                                "ONU",
-                                                "Unión Europea",
+                                                "¿Por qué un email con un archivo enorme contamina?",
+                                                "Ralentiza los ordenadores",
+                                                "Consume papel indirectamente",
+                                                "Gasta energía en los servidores",
+                                                "Desgasta la pantalla",
                                                 3),
 
                                 new Pregunta(
-                                                "¿Cuál es un ejemplo de economía circular?",
-                                                "Usar productos y tirarlos",
-                                                "Fabricar sin reciclar",
-                                                "Consumir más recursos",
-                                                "Reparar y reutilizar productos",
-                                                4),
-
-                                new Pregunta(
-                                                "¿Qué sector genera más emisiones de CO₂?",
-                                                "Educación",
-                                                "Tecnología",
-                                                "Transporte",
-                                                "Agricultura",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué es la huella ecológica?",
-                                                "Consumo de agua diario",
-                                                "Impacto ambiental total de una persona o país",
-                                                "Uso de energía renovable",
-                                                "Cantidad de basura generada",
+                                                "¿Qué es el 'Green Hosting' o alojamiento verde?",
+                                                "Servidores pintados de verde",
+                                                "Servidores que usan energía renovable",
+                                                "Hosting para webs de botánica",
+                                                "Servicios sin JavaScript",
                                                 2),
 
                                 new Pregunta(
-                                                "¿Qué material tarda más en degradarse?",
-                                                "Papel",
-                                                "Cartón",
-                                                "Madera",
-                                                "Plástico",
-                                                4),
-
-                                new Pregunta(
-                                                "¿Qué acción ayuda a ahorrar agua?",
-                                                "Cerrar el grifo al cepillarse",
-                                                "Duchas largas",
-                                                "Lavar el coche con manguera",
-                                                "Dejar el grifo abierto",
+                                                "¿Qué son los 'Datos Oscuros' o 'Dark Data'?",
+                                                "Datos almacenados sin uso",
+                                                "Páginas de la Dark Web",
+                                                "Virus ocultos",
+                                                "Código encriptado",
                                                 1),
 
                                 new Pregunta(
-                                                "¿Qué es el reciclaje?",
-                                                "Tirar desechos al contenedor gris",
-                                                "Enterrar basura",
-                                                "Quemar residuos",
-                                                "Transformar residuos en nuevos productos",
-                                                4)));
+                                                "¿Qué mineral para baterías es polémico por su impacto ambiental?",
+                                                "Cuarzo",
+                                                "Cobalto",
+                                                "Cobre",
+                                                "Plomo",
+                                                2),
+
+                                new Pregunta(
+                                                "¿Qué actividad digital consume más energía?",
+                                                "Leer PDFs en la nube",
+                                                "El streaming de video en 4K",
+                                                "Enviar mensajes de texto",
+                                                "Descargar canciones",
+                                                2),
+
+                                new Pregunta(
+                                                "¿Qué busca principalmente el 'Green Web Design'?",
+                                                "Reducir la carga de diseño",
+                                                "Añadir imágenes de plantas",
+                                                "Usar formatos BMP",
+                                                "Que la web solo funcione de día",
+                                                1),
+
+                                new Pregunta(
+                                                "¿Cuál es el gran problema ecológico del Bitcoin?",
+                                                "Ruido en los servidores",
+                                                "Uso de papel para recibos",
+                                                "Su descomunal gasto eléctrico",
+                                                "Toxicidad de las monedas",
+                                                3),
+
+                                new Pregunta(
+                                                "¿Qué movimiento ecológico alarga la vida del hardware?",
+                                                "El Overclocking",
+                                                "La Obsolescencia Programada",
+                                                "El Derecho a Reparar",
+                                                "El reciclaje azul",
+                                                3),
+
+                                new Pregunta(
+                                                "¿Cómo ahorrar energía en nuestra nube personal?",
+                                                "Borrando correos y archivos inútiles",
+                                                "Comprimiendo la memoria RAM",
+                                                "Imprimiendo los emails",
+                                                "Dejando el PC encendido",
+                                                1),
+
+                                new Pregunta(
+                                                "¿Qué recursos físicos masivos requiere un Data Center?",
+                                                "Solo espacio en metros cuadrados",
+                                                "Electricidad y agua",
+                                                "Oxígeno a presión",
+                                                "Luz solar directa",
+                                                2),
+
+                                new Pregunta(
+                                                "Si internet fuera un país, ¿dónde estaría en consumo eléctrico?",
+                                                "En el Top 10 mundial",
+                                                "Sería el último país",
+                                                "No tendría impacto medible",
+                                                "Fuera del Top 100",
+                                                1),
+
+                                new Pregunta(
+                                                "¿Qué es la 'Obsolescencia programada' en la tecnología?",
+                                                "Un software de calendario",
+                                                "Aparatos para que dejen de funcionar",
+                                                "Un bug en Windows",
+                                                "Actualizaciones de malware",
+                                                2)));
         }
 }

@@ -13,15 +13,11 @@ public class MotorProgramacion {
     public MotorProgramacion() {
         preguntas = (ArrayList<Pregunta>) model.BancoPreguntas.getPreguntasProgramacion();
 
-        // -------------------------------
         // BARAJAR LAS PREGUNTAS ALEATORIAMENTE
-        // -------------------------------
         Collections.shuffle(preguntas);
     }
 
-    // -------------------------------
     // DEVOLVER LA PREGUNTA ACTUAL
-    // -------------------------------
     public Pregunta getPreguntaActual() {
         if (indice < preguntas.size()) {
             return preguntas.get(indice);
@@ -29,9 +25,7 @@ public class MotorProgramacion {
         return null;
     }
 
-    // -------------------------------
     // COMPROBAR RESPUESTA
-    // -------------------------------
     public boolean comprobarRespuesta(int respuestaJugador) {
         Pregunta p = getPreguntaActual();
         if (p == null)

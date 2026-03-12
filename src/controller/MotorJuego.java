@@ -15,9 +15,7 @@ public class MotorJuego {
         Collections.shuffle(preguntas);
     }
 
-    // -------------------------------
     // DEVOLVER LA PREGUNTA ACTUAL
-    // -------------------------------
     public Pregunta getPreguntaActual() {
         if (indice < preguntas.size()) {
             return preguntas.get(indice);
@@ -26,9 +24,7 @@ public class MotorJuego {
         }
     }
 
-    // -------------------------------
     // COMPROBAR RESPUESTA
-    // -------------------------------
     public boolean comprobarRespuesta(int respuestaJugador) {
         Pregunta p = getPreguntaActual();
 
