@@ -13,16 +13,11 @@ public class MotorSistemas {
         public MotorSistemas() {
                 preguntas = (ArrayList<Pregunta>) model.BancoPreguntas.getPreguntasSistemas();
 
-                // -------------------------------
                 // BARAJAR LAS PREGUNTAS ALEATORIAMENTE
-                // -------------------------------
-
                 Collections.shuffle(preguntas);
         }
 
-        // -------------------------------
         // DEVOLVER LA PREGUNTA ACTUAL
-        // -------------------------------
         public Pregunta getPreguntaActual() {
                 if (indice < preguntas.size()) {
                         return preguntas.get(indice);
@@ -30,9 +25,7 @@ public class MotorSistemas {
                 return null;
         }
 
-        // -------------------------------
         // COMPROBAR RESPUESTA
-        // -------------------------------
         public boolean comprobarRespuesta(int respuestaJugador) {
                 Pregunta p = getPreguntaActual();
                 if (p == null)

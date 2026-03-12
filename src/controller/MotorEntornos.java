@@ -13,16 +13,12 @@ public class MotorEntornos {
         public MotorEntornos() {
                 preguntas = (ArrayList<Pregunta>) model.BancoPreguntas.getPreguntasEntornos();
 
-                // -------------------------------
                 // BARAJAR LAS PREGUNTAS ALEATORIAMENTE
-                // ------------------------------
                 Collections.shuffle(preguntas);
 
         }
 
-        // -------------------------------
         // DEVOLVER LA PREGUNTA ACTUAL
-        // -------------------------------
 
         public Pregunta getPreguntaActual() {
                 if (indice < preguntas.size()) {
@@ -31,9 +27,7 @@ public class MotorEntornos {
                 return null;
         }
 
-        // -------------------------------
         // COMPROBAR RESPUESTA
-        // -------------------------------
         public boolean comprobarRespuesta(int respuestaJugador) {
                 Pregunta p = getPreguntaActual();
                 if (p == null)

@@ -8,7 +8,7 @@ public class Ventana extends JFrame {
 
 	public Ventana() {
 
-		setTitle("MINIJUEGOS");
+		setTitle("TRIVIALDAW");
 
 		// Ajustar el tamaño de la ventana
 		setSize(1000, 800);
@@ -21,7 +21,8 @@ public class Ventana extends JFrame {
 
 		setResizable(false);
 
-		String name = javax.swing.JOptionPane.showInputDialog(this, "Introduce tu nombre:", "Nuevo Jugador", javax.swing.JOptionPane.QUESTION_MESSAGE);
+		String name = javax.swing.JOptionPane.showInputDialog(this, "Introduce tu nombre:", "Nuevo Jugador",
+				javax.swing.JOptionPane.QUESTION_MESSAGE);
 		if (name == null || name.trim().isEmpty()) {
 			name = "Jugador 1";
 		}
