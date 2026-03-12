@@ -52,9 +52,10 @@ public class PanelMenu extends JPanel {
 		});
 
 		boton2 = new JButton();
-		boton2.setBounds(277, 380, 440, 138);
+		boton2.setBounds(277, 398, 440, 138);
 		boton2.setContentAreaFilled(false);
-		boton2.setBorderPainted(false);
+		boton2.setBorderPainted(true);
+		boton2.setOpaque(false);
 		add(boton2);
 
 		boton2.addActionListener((ActionEvent e) -> {
@@ -69,9 +70,10 @@ public class PanelMenu extends JPanel {
 
 		// Botón encima de la imagen
 		boton3 = new JButton();
-		boton3.setBounds(277, 500, 440, 138);
-		boton3.setBorderPainted(false);
+		boton3.setBounds(277, 580, 440, 138);
 		boton3.setContentAreaFilled(false);
+		boton3.setBorderPainted(true);
+		boton3.setOpaque(false);
 		add(boton3);
 
 		boton3.addActionListener((ActionEvent e) -> {
