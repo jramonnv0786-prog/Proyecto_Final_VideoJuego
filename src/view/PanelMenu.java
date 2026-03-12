@@ -29,7 +29,7 @@ public class PanelMenu extends JPanel {
 		setLayout(null); // Permite posiciones absolutas
 
 		// Cargar la imagen original
-		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondo.png.png"));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondo.png"));
 		fondo = icon.getImage();
 
 		// Botón encima de la imagen
@@ -41,14 +41,14 @@ public class PanelMenu extends JPanel {
 		add(boton);
 
 		boton.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel");
-
-			PanelJuego preguntados = new PanelJuego(partida);
-			preguntados.setBounds(0, 0, getWidth(), getHeight());
-
-			add(preguntados);
-			revalidate();
-			repaint();
+			System.out.println("Cargando panel Juego");
+			javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (frame != null) {
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(new PanelJuego(partida));
+				frame.revalidate();
+				frame.repaint();
+			}
 		});
 
 		boton2 = new JButton();
@@ -59,13 +59,14 @@ public class PanelMenu extends JPanel {
 		add(boton2);
 
 		boton2.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel 2");
-			PanelCategorias categorias = new PanelCategorias(partida);
-			categorias.setBounds(0, 0, getWidth(), getHeight());
-
-			add(categorias);
-			revalidate();
-			repaint();
+			System.out.println("Cargando panel Categorías");
+			javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (frame != null) {
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(new PanelCategorias(partida));
+				frame.revalidate();
+				frame.repaint();
+			}
 		});
 
 		// Botón encima de la imagen
@@ -77,13 +78,14 @@ public class PanelMenu extends JPanel {
 		add(boton3);
 
 		boton3.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel 3");
-			PanelCreditos creditos = new PanelCreditos();
-			creditos.setBounds(0, 0, 1000, 800); // tamaño de tu ventana
-			add(creditos);
-
-			revalidate();
-			repaint();
+			System.out.println("Cargando panel Créditos");
+			javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (frame != null) {
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(new PanelCreditos());
+				frame.revalidate();
+				frame.repaint();
+			}
 		});
 
 		iniciarMusica("/resources/CancionFondo.wav");
@@ -91,22 +93,16 @@ public class PanelMenu extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		super.paint(g); // pinta primero el panel
-		Dimension dimension = this.getSize();
-
-		// Dibujar la imagen escalada suavemente
-		g.drawImage(fondo, 0, 0, dimension.width, dimension.height, this);
-
-		// Pintar los botones encima
-		super.paintChildren(g);
-
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (fondo != null) {
+			g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+		}
 	}
 
-	// Método para iniciar música de fondo en bucle
 	public void iniciarMusica(String ruta) {
 		try {
-			InputStream audioSrc = getClass().getResourceAsStream("/resource/CancionFondo.wav");
+			InputStream audioSrc = getClass().getResourceAsStream(ruta);
 			InputStream bufferedIn = new java.io.BufferedInputStream(audioSrc);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
 
