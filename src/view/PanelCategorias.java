@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.event.ActionEvent;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -14,9 +17,14 @@ public class PanelCategorias extends JPanel {
 	private JButton Sostenibilidad;
 
 	private model.Partida partida;
+	private Image fondo;
 
 	public PanelCategorias(model.Partida partida) {
 		this.partida = partida;
+
+		// Cargar la imagen de fondo
+		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoMenu.png.png"));
+		fondo = icon.getImage();
 
 		setLayout(null);
 		setBounds(0, 0, 1000, 800);
@@ -118,5 +126,14 @@ public class PanelCategorias extends JPanel {
 			}
 		});
 
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		// Dibujamos la imagen asegurando que ocupe todo el panel
+		if (fondo != null) {
+			g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+		}
 	}
 }
