@@ -1,6 +1,7 @@
 package view;
 
 import controller.MotorSistemas;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -44,22 +45,26 @@ public class PanelSistemas extends JPanel {
         motor = new MotorSistemas();
 
         // 2. Título de la Categoría
-        tituloLabel = new JLabel("Categoría: Sistemas");
-
-        tituloLabel.setFont(new Font("Arial", Font.BOLD, 28));
-        tituloLabel.setBounds(350, 40, 400, 50);
+        tituloLabel = new JLabel("SISTEMAS INFORMÁTICOS");
+        tituloLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        tituloLabel.setForeground(Color.WHITE);
+        tituloLabel.setHorizontalAlignment(JLabel.CENTER);
+        tituloLabel.setBounds(200, 40, 600, 50);
         add(tituloLabel);
 
         // 3. Etiqueta de la Puntuación
         puntuacionLabel = new JLabel("Puntuación Global: " + partida.getPuntuacionTotal());
         puntuacionLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        puntuacionLabel.setForeground(Color.WHITE);
         puntuacionLabel.setBounds(30, 30, 250, 40);
         add(puntuacionLabel);
 
         // 4. Etiqueta de la Pregunta
         preguntaLabel = new JLabel("Cargando pregunta...");
-        preguntaLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-        preguntaLabel.setBounds(200, 150, 600, 80);
+        preguntaLabel.setFont(new Font("Arial", Font.PLAIN, 22));
+        preguntaLabel.setForeground(Color.WHITE);
+        preguntaLabel.setHorizontalAlignment(JLabel.CENTER);
+        preguntaLabel.setBounds(100, 150, 800, 100);
         add(preguntaLabel);
 
         // 5. Botones de Respuestas
