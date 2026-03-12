@@ -41,14 +41,14 @@ public class PanelMenu extends JPanel {
 		add(boton);
 
 		boton.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel");
-
-			PanelJuego preguntados = new PanelJuego(partida);
-			preguntados.setBounds(0, 0, getWidth(), getHeight());
-
-			add(preguntados);
-			revalidate();
-			repaint();
+			System.out.println("Cargando panel Juego");
+			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (ventana != null) {
+				ventana.getContentPane().removeAll();
+				ventana.add(new PanelJuego(this.partida));
+				ventana.revalidate();
+				ventana.repaint();
+			}
 		});
 
 		boton2 = new JButton();
@@ -59,13 +59,14 @@ public class PanelMenu extends JPanel {
 		add(boton2);
 
 		boton2.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel 2");
-			PanelCategorias categorias = new PanelCategorias(partida);
-			categorias.setBounds(0, 0, getWidth(), getHeight());
-
-			add(categorias);
-			revalidate();
-			repaint();
+			System.out.println("Cargando panel Categorías");
+			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (ventana != null) {
+				ventana.getContentPane().removeAll();
+				ventana.add(new PanelCategorias(this.partida));
+				ventana.revalidate();
+				ventana.repaint();
+			}
 		});
 
 		// Botón encima de la imagen
@@ -77,13 +78,14 @@ public class PanelMenu extends JPanel {
 		add(boton3);
 
 		boton3.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel 3");
-			PanelCreditos creditos = new PanelCreditos();
-			creditos.setBounds(0, 0, 1000, 800); // tamaño de tu ventana
-			add(creditos);
-
-			revalidate();
-			repaint();
+			System.out.println("Cargando panel Créditos");
+			javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+			if (ventana != null) {
+				ventana.getContentPane().removeAll();
+				ventana.add(new PanelCreditos());
+				ventana.revalidate();
+				ventana.repaint();
+			}
 		});
 
 		iniciarMusica("/resources/CancionFondo.wav");
@@ -91,38 +93,33 @@ public class PanelMenu extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		super.paint(g); // pinta primero el panel
-		Dimension dimension = this.getSize();
-
-		// Dibujar la imagen escalada suavemente
-		g.drawImage(fondo, 0, 0, dimension.width, dimension.height, this);
-
-		// Pintar los botones encima
-		super.paintChildren(g);
-
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (fondo != null) {
+			g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+		}
 	}
 
 	// Método para iniciar música de fondo en bucle
 	public void iniciarMusica(String ruta) {
 		try {
-			InputStream audioSrc = getClass().getResourceAsStream("/resource/CancionFondo.wav");
-			InputStream bufferedIn = new java.io.BufferedInputStream(audioSrc);
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
-
-			clip = AudioSystem.getClip();
-			clip.open(audioStream);
-			clip.loop(Clip.LOOP_CONTINUOUSLY); // bucle infinito
-			clip.start();
+			// Nota: la ruta en el getResourceAsStream debe coincidir con la ubicación real
+			InputStream audioSrc = getClass().getResourceAsStream(ruta);
+            if (audioSrc == null) {
+                // Intento fallback si la ruta tiene un error de tipografía (visto /resource vs /resources)
+                audioSrc = getClass().getResourceAsStream("/resources/CancionFondo.wav");
+            }
+            
+            if (audioSrc != null) {
+                InputStream bufferedIn = new java.io.BufferedInputStream(audioSrc);
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
+                clip = AudioSystem.getClip();
+                clip.open(audioStream);
+                clip.loop(Clip.LOOP_CONTINUOUSLY); // bucle infinito
+                clip.start();
+            }
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-	}
-
-	// Método para detener la música
-	private void detenerMusica() {
-		if (clip != null && clip.isRunning()) {
-			clip.stop();
 		}
 	}
 }

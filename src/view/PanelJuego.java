@@ -85,6 +85,22 @@ public class PanelJuego extends JPanel {
 
         // CARGAR PRIMERA PREGUNTA
         actualizarPregunta();
+
+        // -----------------
+        // BOTON VOLVER
+        // -----------------
+        JButton botonVolver = new JButton("Volver al Menú");
+        botonVolver.setBounds(20, 700, 200, 50);
+        add(botonVolver);
+        botonVolver.addActionListener((ActionEvent e) -> {
+            javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (ventana != null) {
+                ventana.getContentPane().removeAll();
+                ventana.add(new PanelMenu(partida));
+                ventana.revalidate();
+                ventana.repaint();
+            }
+        });
     }
 
     // -----------------
