@@ -10,13 +10,12 @@ import view.PanelSistemas;
 import view.PanelSostenibilidad;
 import view.PanelJuego;
 import view.PanelCreditos;
-import model.Partida;
 
 public class Principal {
 
         public static void main(String[] args) {
 
-                Partida partida = new Partida("Jugador 1");
+                model.Partida partida = new model.Partida("Jugador 1");
 
                 new Ventana();
                 new PanelMenu(partida);

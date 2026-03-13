@@ -10,41 +10,38 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import model.Pregunta;
 
 public class PanelDigitalizacion extends JPanel {
 
-    private JLabel tituloLabel;
-    private JLabel preguntaLabel;
-    private JLabel puntuacionLabel;
+    private JLabel tituloLabel; // Etiqueta del título de la categoría
+    private JLabel preguntaLabel; // Etiqueta de la pregunta
+    private JLabel puntuacionLabel; // Etiqueta de la puntuación
 
-    private JButton boton1;
-    private JButton boton2;
-    private JButton boton3;
-    private JButton boton4;
-    private JButton botonVolver;
+    private JButton boton1; // Botón de respuesta 1
+    private JButton boton2; // Botón de respuesta 2
+    private JButton boton3; // Botón de respuesta 3
+    private JButton boton4; // Botón de respuesta 4
+    private JButton botonVolver; // Botón para volver a la categoría
 
     private MotorDigitalizacion motor;
-    private model.Partida partida;
 
+    private model.Partida partida;
     private Image fondo;
 
     public PanelDigitalizacion(model.Partida partida) {
-
         this.partida = partida;
-
+        // 1. Configuración básica del panel
         setLayout(null);
         setBounds(0, 0, 1000, 800);
 
-        // Imagen de fondo
+        // Cargar la imagen de fondo
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoPreguntas.png"));
         fondo = icon.getImage();
 
         motor = new MotorDigitalizacion();
 
-        // TÍTULO
+        // 2. Título de la Categoría
         tituloLabel = new JLabel("DIGITALIZACIÓN");
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 32));
         tituloLabel.setForeground(Color.WHITE);
@@ -52,14 +49,14 @@ public class PanelDigitalizacion extends JPanel {
         tituloLabel.setBounds(200, 40, 600, 50);
         add(tituloLabel);
 
-        // PUNTUACIÓN
+        // 3. Etiqueta de la Puntuación
         puntuacionLabel = new JLabel("Puntuación Global: " + partida.getPuntuacionTotal());
         puntuacionLabel.setFont(new Font("Arial", Font.BOLD, 18));
         puntuacionLabel.setForeground(Color.WHITE);
-        puntuacionLabel.setBounds(30, 30, 300, 40);
+        puntuacionLabel.setBounds(30, 30, 250, 40);
         add(puntuacionLabel);
 
-        // PREGUNTA
+        // 4. Etiqueta de la Pregunta
         preguntaLabel = new JLabel("Cargando pregunta...");
         preguntaLabel.setFont(new Font("Arial", Font.PLAIN, 22));
         preguntaLabel.setForeground(Color.WHITE);
@@ -67,92 +64,79 @@ public class PanelDigitalizacion extends JPanel {
         preguntaLabel.setBounds(100, 150, 800, 100);
         add(preguntaLabel);
 
-        // BOTONES RESPUESTA
-
+        // 5. Botones de Respuestas
         boton1 = new JButton();
         boton1.setBounds(200, 300, 250, 60);
-        boton1.addActionListener((ActionEvent e) -> responder(1));
         add(boton1);
+        boton1.addActionListener((ActionEvent e) -> responder(1));
 
         boton2 = new JButton();
         boton2.setBounds(550, 300, 250, 60);
-        boton2.addActionListener((ActionEvent e) -> responder(2));
         add(boton2);
+        boton2.addActionListener((ActionEvent e) -> responder(2));
 
         boton3 = new JButton();
         boton3.setBounds(200, 400, 250, 60);
-        boton3.addActionListener((ActionEvent e) -> responder(3));
         add(boton3);
+        boton3.addActionListener((ActionEvent e) -> responder(3));
 
         boton4 = new JButton();
         boton4.setBounds(550, 400, 250, 60);
-        boton4.addActionListener((ActionEvent e) -> responder(4));
         add(boton4);
+        boton4.addActionListener((ActionEvent e) -> responder(4));
 
-        // BOTÓN VOLVER
-
+        // 6. Botón para Volver
         botonVolver = new JButton("Volver a Categorías");
         botonVolver.setBounds(30, 700, 200, 50);
         add(botonVolver);
 
         botonVolver.addActionListener((ActionEvent e) -> {
-
-            JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
-            ventana.setContentPane(new PanelCategorias(partida));
-            ventana.revalidate();
-            ventana.repaint();
-
+            javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (ventana != null) {
+                ventana.getContentPane().removeAll();
+                ventana.add(new PanelCategorias(partida));
+                ventana.revalidate();
+                ventana.repaint();
+            }
         });
 
-        // PRIMERA PREGUNTA
+        // 7. Cargar la primera pregunta
         actualizarPregunta();
     }
 
     private void responder(int opcion) {
-
         boolean acierto = motor.comprobarRespuesta(opcion);
-
         if (acierto) {
             partida.sumarPuntos(1);
             System.out.println("¡Acierto en Digitalización! Puntos globales: " + partida.getPuntuacionTotal());
         }
-
         puntuacionLabel.setText("Puntuación Global: " + partida.getPuntuacionTotal());
-
         actualizarPregunta();
     }
 
     private void actualizarPregunta() {
-
         if (motor.hayPreguntas()) {
-
             Pregunta p = motor.getPreguntaActual();
-
-            preguntaLabel.setText("<html>" + p.getPregunta() + "</html>");
+            preguntaLabel.setText("<html>" + p.getPregunta() + "</html>"); // Así hace salto de línea si es larga
 
             boton1.setText(p.getOpcion1());
             boton2.setText(p.getOpcion2());
             boton3.setText(p.getOpcion3());
             boton4.setText(p.getOpcion4());
-
         } else {
-
             preguntaLabel.setText("¡Categoría completada! Puntuación Global: " + partida.getPuntuacionTotal());
-
             boton1.setEnabled(false);
             boton2.setEnabled(false);
             boton3.setEnabled(false);
             boton4.setEnabled(false);
-
         }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-
         super.paintComponent(g);
-
-        g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
-
+        if (fondo != null) {
+            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 }
