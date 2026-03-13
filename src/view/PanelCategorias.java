@@ -122,7 +122,7 @@ public class PanelCategorias extends JPanel {
 		}
 	}
 
-	@Override
+	@Override // Pintar el fondo
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (fondo != null) {
