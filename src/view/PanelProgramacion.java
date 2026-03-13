@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,6 +12,8 @@ import javax.swing.JPanel;
 
 import controller.MotorProgramacion;
 import model.Pregunta;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class PanelProgramacion extends JPanel {
 
@@ -27,26 +28,21 @@ public class PanelProgramacion extends JPanel {
     private JButton botonVolver;
 
     private MotorProgramacion motor;
-
     private model.Partida partida;
     private Image fondo;
 
     public PanelProgramacion(model.Partida partida) {
         this.partida = partida;
-        // 1. Configuración básica del panel
+
         setLayout(null);
         setBounds(0, 0, 1000, 800);
 
-        // Cargar la imagen de fondo
-        java.net.URL urlFondo = getClass().getResource("/resources/fondoPreguntas.png");
-        if (urlFondo != null) {
-            ImageIcon icon = new ImageIcon(urlFondo);
-            fondo = icon.getImage();
-        }
+        // Cargar la imagen de fondo directamente
+        fondo = new ImageIcon(getClass().getResource("/resources/fondoPreguntas.png")).getImage();
 
         motor = new MotorProgramacion();
 
-        // 2. Título de la Categoría
+        // Título de la categoría
         tituloLabel = new JLabel("PROGRAMACIÓN");
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 32));
         tituloLabel.setForeground(Color.WHITE);
@@ -54,14 +50,14 @@ public class PanelProgramacion extends JPanel {
         tituloLabel.setBounds(200, 40, 600, 50);
         add(tituloLabel);
 
-        // 3. Etiqueta de la Puntuación
+        // Etiqueta de puntuación
         puntuacionLabel = new JLabel("Puntuación Global: " + partida.getPuntuacionTotal());
         puntuacionLabel.setFont(new Font("Arial", Font.BOLD, 18));
         puntuacionLabel.setForeground(Color.WHITE);
         puntuacionLabel.setBounds(30, 30, 250, 40);
         add(puntuacionLabel);
 
-        // 4. Etiqueta de la Pregunta
+        // Etiqueta de pregunta
         preguntaLabel = new JLabel("Cargando pregunta...");
         preguntaLabel.setFont(new Font("Arial", Font.PLAIN, 22));
         preguntaLabel.setForeground(Color.WHITE);
@@ -69,34 +65,18 @@ public class PanelProgramacion extends JPanel {
         preguntaLabel.setBounds(100, 150, 800, 100);
         add(preguntaLabel);
 
-        // 5. Botones de Respuestas
-        boton1 = new JButton();
-        boton1.setBounds(200, 300, 250, 60);
-        add(boton1);
-        boton1.addActionListener((ActionEvent e) -> responder(1));
+        // Botones de respuestas
+        boton1 = crearBoton(200, 300, 250, 60, 1);
+        boton2 = crearBoton(550, 300, 250, 60, 2);
+        boton3 = crearBoton(200, 400, 250, 60, 3);
+        boton4 = crearBoton(550, 400, 250, 60, 4);
 
-        boton2 = new JButton();
-        boton2.setBounds(550, 300, 250, 60);
-        add(boton2);
-        boton2.addActionListener((ActionEvent e) -> responder(2));
-
-        boton3 = new JButton();
-        boton3.setBounds(200, 400, 250, 60);
-        add(boton3);
-        boton3.addActionListener((ActionEvent e) -> responder(3));
-
-        boton4 = new JButton();
-        boton4.setBounds(550, 400, 250, 60);
-        add(boton4);
-        boton4.addActionListener((ActionEvent e) -> responder(4));
-
-        // 6. Botón para Volver
+        // Botón para volver
         botonVolver = new JButton("Volver a Categorías");
         botonVolver.setBounds(30, 700, 200, 50);
         add(botonVolver);
-
         botonVolver.addActionListener((ActionEvent e) -> {
-            javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
             if (ventana != null) {
                 ventana.getContentPane().removeAll();
                 ventana.add(new PanelCategorias(partida));
@@ -105,8 +85,16 @@ public class PanelProgramacion extends JPanel {
             }
         });
 
-        // 7. Cargar la primera pregunta
+        // Cargar la primera pregunta
         actualizarPregunta();
+    }
+
+    private JButton crearBoton(int x, int y, int width, int height, int opcion) {
+        JButton boton = new JButton();
+        boton.setBounds(x, y, width, height);
+        add(boton);
+        boton.addActionListener((ActionEvent e) -> responder(opcion));
+        return boton;
     }
 
     private void responder(int opcion) {
@@ -122,8 +110,7 @@ public class PanelProgramacion extends JPanel {
     private void actualizarPregunta() {
         if (motor.hayPreguntas()) {
             Pregunta p = motor.getPreguntaActual();
-            preguntaLabel.setText("<html>" + p.getPregunta() + "</html>"); // Así hace salto de línea si es larga
-
+            preguntaLabel.setText("<html>" + p.getPregunta() + "</html>");
             boton1.setText(p.getOpcion1());
             boton2.setText(p.getOpcion2());
             boton3.setText(p.getOpcion3());
@@ -140,8 +127,6 @@ public class PanelProgramacion extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (fondo != null) {
-            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
-        }
+        g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
     }
 }

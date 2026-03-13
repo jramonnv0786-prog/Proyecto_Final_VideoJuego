@@ -29,22 +29,20 @@ public class PanelJuego extends JPanel {
     private Image fondo;
 
     public PanelJuego(model.Partida partida, int dificultad) {
+
         this.partida = partida;
 
         setLayout(null);
         setBounds(0, 0, 1000, 800);
 
-        // Cargar la imagen de fondo
-        java.net.URL urlFondo = getClass().getResource("/resources/fondoPreguntas.png");
-        if (urlFondo != null) {
-            ImageIcon icon = new ImageIcon(urlFondo);
-            fondo = icon.getImage();
-        }
+        // Cargar imagen de fondo
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoPreguntas.png"));
+        fondo = icon.getImage();
 
         motor = new MotorJuego(dificultad);
 
         // -----------------
-        // LABEL DE PREGUNTA
+        // LABEL PREGUNTA
         // -----------------
         preguntaLabel = new JLabel();
         preguntaLabel.setBounds(100, 150, 800, 100);
@@ -54,10 +52,10 @@ public class PanelJuego extends JPanel {
         add(preguntaLabel);
 
         // -----------------
-        // LABEL DE PUNTUACION
+        // LABEL PUNTUACION
         // -----------------
         puntuacionLabel = new JLabel("Puntuación Global: " + partida.getPuntuacionTotal());
-        puntuacionLabel.setBounds(30, 30, 250, 40);
+        puntuacionLabel.setBounds(30, 30, 300, 40);
         puntuacionLabel.setFont(new Font("Arial", Font.BOLD, 18));
         puntuacionLabel.setForeground(Color.WHITE);
         add(puntuacionLabel);
@@ -65,45 +63,53 @@ public class PanelJuego extends JPanel {
         // -----------------
         // BOTONES
         // -----------------
+
         boton1 = new JButton();
         boton1.setBounds(200, 300, 250, 60);
-        add(boton1);
         boton1.addActionListener((ActionEvent e) -> responder(1));
+        add(boton1);
 
         boton2 = new JButton();
         boton2.setBounds(550, 300, 250, 60);
-        add(boton2);
         boton2.addActionListener((ActionEvent e) -> responder(2));
+        add(boton2);
 
         boton3 = new JButton();
         boton3.setBounds(200, 400, 250, 60);
-        add(boton3);
         boton3.addActionListener((ActionEvent e) -> responder(3));
+        add(boton3);
 
         boton4 = new JButton();
         boton4.setBounds(550, 400, 250, 60);
-        add(boton4);
         boton4.addActionListener((ActionEvent e) -> responder(4));
+        add(boton4);
 
-        // BOTÓN VOLVER
+        // BOTON VOLVER
         JButton botonVolver = new JButton("Volver al Menú");
         botonVolver.setBounds(30, 700, 200, 50);
         add(botonVolver);
+
         botonVolver.addActionListener((ActionEvent e) -> {
-            javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+
+            javax.swing.JFrame frame =
+                    (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+
             if (frame != null) {
+
                 frame.getContentPane().removeAll();
-                frame.getContentPane().add(new PanelMenu(partida));
+                frame.add(new PanelMenu(partida));
+
                 frame.revalidate();
                 frame.repaint();
             }
         });
 
-        // CARGAR PRIMERA PREGUNTA
+        // PRIMERA PREGUNTA
         actualizarPregunta();
     }
 
     private void responder(int opcion) {
+
         boolean acierto = motor.comprobarRespuesta(opcion);
 
         if (acierto) {
@@ -111,12 +117,16 @@ public class PanelJuego extends JPanel {
         }
 
         puntuacionLabel.setText("Puntuación Global: " + partida.getPuntuacionTotal());
+
         actualizarPregunta();
     }
 
     private void actualizarPregunta() {
+
         if (motor.hayPreguntas()) {
+
             Pregunta p = motor.getPreguntaActual();
+
             preguntaLabel.setText("<html><center>" + p.getPregunta() + "</center></html>");
 
             boton1.setText(p.getOpcion1());
@@ -130,7 +140,10 @@ public class PanelJuego extends JPanel {
             boton4.setVisible(true);
 
         } else {
-            preguntaLabel.setText("Juego terminado. Puntuación Global: " + partida.getPuntuacionTotal());
+
+            preguntaLabel.setText(
+                    "Juego terminado. Puntuación Global: "
+                            + partida.getPuntuacionTotal());
 
             boton1.setVisible(false);
             boton2.setVisible(false);
@@ -141,7 +154,9 @@ public class PanelJuego extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+
         super.paintComponent(g);
+
         if (fondo != null) {
             g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
         }

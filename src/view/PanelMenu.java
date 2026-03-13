@@ -1,148 +1,140 @@
 package view;
 
-import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Font;
 
 public class PanelMenu extends JPanel {
 
-	private JButton boton;
-	private JButton boton2;
-	private JButton boton3;
+    private final model.Partida partida;
+    private final Image fondo;
+    private Clip clip;
 
-	private Image fondo;
-	private Clip clip; // clip de música
+    public PanelMenu(model.Partida partida) {
+        this.partida = partida;
 
-	private model.Partida partida;
+        setLayout(null);
+        fondo = new ImageIcon(getClass().getResource("/resources/fondo.png")).getImage();
 
-	public PanelMenu(model.Partida partida) {
-		this.partida = partida;
+        crearEtiquetaJugador();
+        crearBotones();
+        iniciarMusica("/resources/CancionFondo.wav");
+    }
 
-		setLayout(null); // Permite posiciones absolutas
+    private void crearEtiquetaJugador() {
+        JLabel labelNombre = new JLabel("Jugador: " + partida.getNombreJugador());
+        labelNombre.setBounds(20, 20, 300, 30);
+        labelNombre.setForeground(Color.WHITE);
+        labelNombre.setFont(new Font("Arial", Font.BOLD, 20));
+        add(labelNombre);
+    }
 
-		// Etiqueta para mostrar el nombre del jugador
-		JLabel labelNombre = new JLabel("Jugador: " + partida.getNombreJugador());
-		labelNombre.setBounds(20, 20, 300, 30);
-		labelNombre.setForeground(Color.WHITE);
-		labelNombre.setFont(new Font("Arial", Font.BOLD, 20));
-		add(labelNombre);
+    private void crearBotones() {
+        // Botón Jugar
+        addBoton(277, 215, 440, 138, e -> mostrarPanelJuego());
 
-		// Cargar la imagen original
-		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondo.png"));
-		fondo = icon.getImage();
+        // Botón Categorías
+        addBoton(277, 398, 440, 138, e -> mostrarPanelCategorias());
 
-		// Botón encima de la imagen
-		boton = new JButton();
-		boton.setBounds(277, 215, 440, 138);
-		boton.setBorderPainted(true);
-		boton.setContentAreaFilled(false);
-		boton.setOpaque(false);
-		add(boton);
+        // Botón Créditos
+        addBoton(277, 580, 440, 138, e -> mostrarPanelCreditos());
+    }
 
-		boton.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel Juego con selección de dificultad");
+    private void addBoton(int x, int y, int width, int height, ActionListener accion) {
+        JButton boton = new JButton();
+        boton.setBounds(x, y, width, height);
+        boton.setContentAreaFilled(false);
+        boton.setBorderPainted(true);
+        boton.setOpaque(false);
+        boton.addActionListener(accion);
+        add(boton);
+    }
 
-			String[] opciones = { "Fácil (10 preg.)", "Medio (20 preg.)", "Difícil (Todas)" };
-			int seleccion = javax.swing.JOptionPane.showOptionDialog(
-					this,
-					"Elige la dificultad del juego:",
-					"Selección de Dificultad",
-					javax.swing.JOptionPane.DEFAULT_OPTION,
-					javax.swing.JOptionPane.QUESTION_MESSAGE,
-					null,
-					opciones,
-					opciones[0]);
+    private void mostrarPanelJuego() {
+        String[] opciones = { "Fácil (10 preg.)", "Medio (20 preg.)", "Difícil (Todas)" };
+        int seleccion = JOptionPane.showOptionDialog(
+                this,
+                "Elige la dificultad del juego:",
+                "Selección de Dificultad",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]);
 
-			if (seleccion != -1) { // Si no cerró la ventana
-				javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-				if (frame != null) {
-					frame.getContentPane().removeAll();
-					frame.getContentPane().add(new PanelJuego(partida, seleccion));
-					frame.revalidate();
-					frame.repaint();
-				}
-			}
-		});
+        if (seleccion != -1) {
+            JFrame ventanaJuego = new JFrame("Juego");
+            ventanaJuego.setSize(1000, 800);
+            ventanaJuego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            ventanaJuego.setLocationRelativeTo(null);
+            ventanaJuego.add(new PanelJuego(partida, seleccion));
+            ventanaJuego.setVisible(true);
 
-		boton2 = new JButton();
-		boton2.setBounds(277, 398, 440, 138);
-		boton2.setContentAreaFilled(false);
-		boton2.setBorderPainted(true);
-		boton2.setOpaque(false);
-		add(boton2);
+            // Cerrar menú actual
+            JFrame menu = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (menu != null) menu.dispose();
+        }
+    }
 
-		boton2.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel Categorías");
-			javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-			if (frame != null) {
-				frame.getContentPane().removeAll();
-				frame.getContentPane().add(new PanelCategorias(partida));
-				frame.revalidate();
-				frame.repaint();
-			}
-		});
+    private void mostrarPanelCategorias() {
+        JFrame ventana = new JFrame("Categorías");
+        ventana.setSize(1000, 800);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setLocationRelativeTo(null);
+        ventana.add(new PanelCategorias(partida));
+        ventana.setVisible(true);
 
-		// Botón encima de la imagen
-		boton3 = new JButton();
-		boton3.setBounds(277, 580, 440, 138);
-		boton3.setContentAreaFilled(false);
-		boton3.setBorderPainted(true);
-		boton3.setOpaque(false);
-		add(boton3);
+        JFrame menu = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (menu != null) menu.dispose();
+    }
 
-		boton3.addActionListener((ActionEvent e) -> {
-			System.out.println("Cargando panel Créditos");
-			javax.swing.JFrame frame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-			if (frame != null) {
-				frame.getContentPane().removeAll();
-				frame.getContentPane().add(new PanelCreditos());
-				frame.revalidate();
-				frame.repaint();
-			}
-		});
+    private void mostrarPanelCreditos() {
+        JFrame ventana = new JFrame("Créditos");
+        ventana.setSize(1000, 800);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setLocationRelativeTo(null);
+        ventana.add(new PanelCreditos());
+        ventana.setVisible(true);
 
-		iniciarMusica("/resources/CancionFondo.wav");
+        JFrame menu = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (menu != null) menu.dispose();
+    }
 
-	}
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+    }
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		if (fondo != null) {
-			g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
-		}
-	}
+    public void iniciarMusica(String ruta) {
+        try {
+            InputStream audioSrc = getClass().getResourceAsStream(ruta);
+            InputStream bufferedIn = new BufferedInputStream(audioSrc);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
 
-	public void iniciarMusica(String ruta) {
-		try {
-			InputStream audioSrc = getClass().getResourceAsStream(ruta);
-			InputStream bufferedIn = new java.io.BufferedInputStream(audioSrc);
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-			clip = AudioSystem.getClip();
-			clip.open(audioStream);
-			clip.loop(Clip.LOOP_CONTINUOUSLY); // bucle infinito
-			clip.start();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	// Método para detener la música
-	private void detenerMusica() {
-		if (clip != null && clip.isRunning()) {
-			clip.stop();
-		}
-	}
+    public void detenerMusica() {
+        if (clip != null && clip.isRunning()) clip.stop();
+    }
 }
