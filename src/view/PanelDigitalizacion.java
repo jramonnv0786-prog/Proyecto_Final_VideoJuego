@@ -36,11 +36,8 @@ public class PanelDigitalizacion extends JPanel {
         setBounds(0, 0, 1000, 800);
 
         // Cargar la imagen de fondo
-        java.net.URL urlFondo = getClass().getResource("/resources/fondoPreguntas.png");
-        if (urlFondo != null) {
-            ImageIcon icon = new ImageIcon(urlFondo);
-            fondo = icon.getImage();
-        }
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoPreguntas.png"));
+        fondo = icon.getImage();
 
         motor = new MotorDigitalizacion();
 
