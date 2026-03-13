@@ -9,6 +9,16 @@ public class Pregunta {
     private String opcion4;
     private int correcta;
 
+    /**
+     * Constructor de la clase Pregunta
+     * 
+     * @param var1 Pregunta
+     * @param var2 Opcion 1
+     * @param var3 Opcion 2
+     * @param var4 Opcion 3
+     * @param var5 Opcion 4
+     * @param var6 Respuesta correcta
+     */
     public Pregunta(String var1, String var2, String var3, String var4, String var5, int var6) {
         this.pregunta = var1;
         this.opcion1 = var2;
@@ -18,10 +28,20 @@ public class Pregunta {
         this.correcta = var6;
     }
 
+    /**
+     * Devuelve la pregunta
+     * 
+     * @return Pregunta
+     */
     public String getPregunta() {
         return this.pregunta;
     }
 
+    /**
+     * Devuelve la opcion 1
+     * 
+     * @return Opcion 1
+     */
     public String getOpcion1() {
         return this.opcion1;
     }
