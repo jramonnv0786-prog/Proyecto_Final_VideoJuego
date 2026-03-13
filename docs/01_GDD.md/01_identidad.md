@@ -6,20 +6,20 @@
 * **Plataforma Objetivo:** PC (Aplicación de Escritorio)
 * **Motor/Tecnología:** Java 21 (Custom Engine con patrón MVC, interfaz gráfica con Swing)
 * **Público Objetivo (Target):** Estudiantes del ciclo de DAW, profesores de informática y desarrolladores junior.
-* **Estilo Visual:** Diseño moderno y limpio (Flat Design), preferiblemente con un tema oscuro ("Dark Mode") típico de los editores de código, y colores vibrantes para diferenciar cada categoría.
+* **Estilo Visual:** Diseño moderno y limpio, con fondos temáticos de código y tecnología. Orientado a la legibilidad y feedback visual inmediato.
 
 ## 2. La Premisa (Elevator Pitch)
-"Un juego de trivia dinámico y competitivo al estilo 'Preguntados', donde los estudiantes de informática ponen a prueba sus conocimientos en programación, bases de datos y sistemas para coronarse como el desarrollador 'Full Stack' definitivo de la clase."
+"Un juego de trivia dinámico y competitivo donde los estudiantes de informática ponen a prueba sus conocimientos en las materias clave del ciclo DAW (Programación, Sistemas, Lenguajes de Marcas...) para coronarse como el desarrollador 'Full Stack' definitivo."
 
 ## 3. Pilares de Diseño (Core Pillars)
-1. **Educativo pero divertido:** El juego sirve para repasar temario real de DAW, pero las respuestas y el ritmo evitan que se sienta como un examen aburrido (puede incluir guiños o bromas de programadores).
-2. **Claridad en las Categorías:** Las preguntas deben estar rígidamente separadas por áreas (Ej: Frontend, Backend, Bases de Datos, Entornos de Desarrollo).
-3. **Agilidad y Feedback Inmediato:** Las partidas deben ser rápidas. Si el jugador acierta, se celebra; si falla, el juego le muestra rápidamente cuál era la respuesta correcta para que aprenda.
+1. **Educativo y Específico:** El juego cubre materias reales de DAW (Sistemas, Entornos, Programación, Lenguaje de Marcas, Digitalización y Sostenibilidad), permitiendo un repaso focalizado.
+2. **Claridad en las Categorías:** Las preguntas están organizadas por materias, permitiendo al jugador elegir dónde quiere mejorar o someterse a un test general.
+3. **Adaptabilidad del Reto:** Sistema de selección de dificultad (Fácil, Medio, Difícil) para ajustar la duración de la sesión según la disponibilidad del estudiante.
 
 ## 4. Experiencia del Jugador
-* **Emociones principales:** Satisfacción al demostrar conocimientos, tensión por el límite de tiempo (si lo hay) y "pique" sano o competitividad para superar el récord propio o de los compañeros.
-* **Curva de aprendizaje:** Totalmente plana en mecánicas (cualquiera sabe jugar a un trivial en 5 segundos), pero la dificultad recae en la profundidad técnica de las preguntas.
+* **Emociones principales:** Satisfacción al demostrar conocimientos, superación personal al mejorar la puntuación global.
+* **Curva de aprendizaje:** Instantánea. La complejidad reside únicamente en el contenido técnico de las preguntas.
 
 ## 5. Referencias (Juegos Similares)
-* **Preguntados (Trivia Crack):** Tomamos su estructura de categorías identificadas por colores/iconos y la recolección de "personajes" o medallas al dominar una materia.
-* **Kahoot!:** Nos inspiramos en su ritmo rápido, el uso de temporizadores para generar tensión y su enfoque ideal para entornos de clase.
+* **Preguntados (Trivia Crack):** Tomamos su estructura de categorías identificadas por iconos y el enfoque multiplataforma (aunque nuestra versión es Desktop).
+* **Kahoot!:** Nos inspiramos en su utilidad pedagógica y su enfoque ideal para entornos de clase.

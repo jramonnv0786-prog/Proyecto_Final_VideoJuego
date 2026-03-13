@@ -1,28 +1,35 @@
 # 02. Mecánicas de Juego (Gameplay) - MVP (Producto Mínimo Viable)
 
 ## 1. Bucle Principal de Juego (Core Loop)
-*El juego elimina la ruleta para ser una experiencia directa y rápida tipo "Supervivencia".*
+*El juego permite elegir entre una partida general con selección de dificultad o practicar por categorías específicas.*
 
-1. **Aparición de Pregunta:** El juego selecciona aleatoriamente una pregunta de la base de datos (mostrando el color de su categoría).
-2. **Fase de Respuesta:** El jugador lee la pregunta y las 4 opciones. Tiene un temporizador en pantalla.
-3. **Resolución:** * **Acierto:** La pantalla brilla en verde, suma puntos, y pasa automáticamente a la siguiente pregunta aleatoria.
-   * **Fallo (o Fin de tiempo):** La pantalla brilla en rojo, pierde una vida (corazón), se muestra cuál era la correcta durante 2 segundos, y pasa a la siguiente.
-4. **Game Over:** Cuando se acaban las vidas, se muestra la puntuación final y un botón de "Volver a jugar".
+1. **Selección de Modo:**
+    * **Juego General:** El jugador elige dificultad (Fácil, Medio, Difícil).
+    * **Categorías:** El jugador elige una materia específica para practicar.
+2. **Aparición de Pregunta:** El juego selecciona preguntas de la base de datos (aleatorizadas).
+3. **Fase de Respuesta:** El jugador lee la pregunta y las 4 opciones.
+4. **Resolución:**
+   * **Acierto:** Suma puntos a la puntuación global.
+   * **Fallo:** No suma puntos. Se pasa a la siguiente pregunta.
+5. **Fin de Partida:** Al terminar el bloque de preguntas (según dificultad o categoría), se muestra la puntuación final y se permite volver al menú.
 
 ## 2. Las Categorías (Materias de DAW)
-*El juego cuenta con 4 categorías principales. Cada una cambia el color de fondo de la interfaz para dar variedad visual al jugador de forma sencilla.*
-1. **Frontend (HTML/CSS):** Color Naranja.
-2. **Backend (Java/Python):** Color Azul.
-3. **Bases de Datos (MySQL):** Color Amarillo.
-4. **Entornos de Desarrollo (GitHub/IDEs):** Color Morado.
+*El juego cuenta con 6 categorías principales, cada una con su propio banco de preguntas y paneles personalizados.*
+1. **Programación:** Temas de Java y lógica.
+2. **Entornos de Desarrollo:** Git, IDEs y metodologías.
+3. **Lenguaje de Marcas:** HTML, CSS y XML.
+4. **Sistemas Informáticos:** Hardware y Sistemas Operativos.
+5. **Digitalización:** Conceptos de transformación digital.
+6. **Sostenibilidad:** Conceptos de sostenibilidad en IT.
 
 ## 3. Reglas de la Partida y Condiciones
-* **Sistema de Vidas:** El jugador empieza con **3 Vidas (Corazones)**. Fallar una respuesta resta 1 vida.
-* **Puntuación:** +100 puntos por cada respuesta correcta. (Opcional si da tiempo: +10 puntos extra por cada segundo sobrante en el temporizador).
-* **Temporizador:** **20 segundos** por pregunta. Llegar a 0 equivale a fallar.
-* **Condición de Victoria:** Es un juego infinito de superar tu propia puntuación (High Score). No hay un "final", terminas cuando mueres.
-* **Condición de Derrota:** Perder los 3 corazones.
+* **Selección de Dificultad (Modo General):**
+    * **Fácil:** Bloque de 10 preguntas aleatorias.
+    * **Medio:** Bloque de 20 preguntas aleatorias.
+    * **Difícil:** Todas las preguntas disponibles en el banco.
+* **Puntuación:** +1 punto por cada respuesta correcta. La puntuación es acumulativa en la sesión actual.
+* **Condición de Finalización:** Terminar el set de preguntas asignado por la dificultad o la categoría.
 
 ## 4. Controles e Interacción (Inputs)
 * **Ratón:** Hacer clic en el botón de la respuesta (A, B, C o D).
-* **Teclado:** Las teclas `1`, `2`, `3` y `4` para responder rápido sin usar el ratón.
+* **Navegación:** Botones para volver al menú o cambiar de categoría.

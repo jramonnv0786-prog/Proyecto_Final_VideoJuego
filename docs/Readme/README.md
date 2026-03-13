@@ -1,67 +1,75 @@
-# Proyecto_Final_VideoJuego
+# DevQuiz: Edición DAW
 
 ## 🏗️ Arquitectura del Proyecto (Patrón MVC)
 
-El juego está estructurado siguiendo estrictamente el patrón **Modelo-Vista-Controlador (MVC)** para garantizar un código limpio y escalable, separando la lógica del juego de la interfaz gráfica.
+El juego está estructurado siguiendo el patrón **Modelo-Vista-Controlador (MVC)**, separando la lógica del juego de la interfaz gráfica para facilitar el mantenimiento y la expansión a nuevas asignaturas.
 
 ```mermaid
 classDiagram
     %% Definición de Paquetes y Clases
     
-    class Main {
+    class Principal {
         +main(String[] args)
     }
 
-    namespace Controlador {
-        class ControladorJuego {
-            -VentanaPrincipal vista
-            -Partida partida
-            +iniciar()
-            +verificarRespuesta(int indiceBoton)
+    namespace controller {
+        class MotorJuego {
+            -List~Pregunta~ preguntas
+            -int puntuacion
+            +comprobarRespuesta(int r) boolean
+            +getPreguntaActual() Pregunta
+        }
+        class MotorProgramacion {
+            -List~Pregunta~ preguntas
+            +comprobarRespuesta(int r) boolean
         }
     }
 
-    namespace Modelo {
+    namespace model {
         class Partida {
-            -int puntos
-            -int vidas
-            -Pregunta preguntaActual
-            -List~Pregunta~ listaPreguntas
-            +comprobarRespuesta(int indice) boolean
-            +siguientePregunta()
+            -String nombreJugador
+            -int puntuacionTotal
+            +sumarPuntos(int p)
         }
         class Pregunta {
-            -String textoPregunta
+            -String pregunta
             -String[] opciones
-            -int indiceCorrecto
-            -String categoria
+            -int correcta
             +getters()
         }
         class BancoPreguntas {
-            +obtenerPreguntas() List~Pregunta~
+            +getAllPreguntas() List~Pregunta~
+            +getPreguntasProgramacion() List~Pregunta~
         }
     }
 
-    namespace Vista {
-        class VentanaPrincipal {
-            -PanelJuego panelJuego
-            +mostrar()
+    namespace view {
+        class Ventana {
+            +getContentPane()
+        }
+        class PanelMenu {
+            -Partida partida
+            +iniciarMusica()
         }
         class PanelJuego {
-            +actualizarTextos(Pregunta p)
-            +actualizarMarcadores(int puntos, int vidas)
-            +cambiarColorFondo(Color c)
+            -MotorJuego motor
+            +actualizarPregunta()
+        }
+        class PanelCategorias {
+            -Partida partida
         }
     }
 
     %% Relaciones
-    Main ..> VentanaPrincipal : Instancia
-    Main ..> ControladorJuego : Instancia
+    Principal ..> Ventana : Instancia
+    Principal ..> Partida : Instancia
     
-    ControladorJuego --> VentanaPrincipal : Modifica (UI)
-    ControladorJuego --> Partida : Consulta / Modifica (Lógica)
+    PanelMenu --> PanelJuego : Navega (Dificultad)
+    PanelMenu --> PanelCategorias : Navega
     
-    Partida *-- "*" Pregunta : Contiene
-    Partida ..> BancoPreguntas : Carga de
+    PanelJuego --> MotorJuego : Usa
+    MotorJuego --> BancoPreguntas : Carga de
+    MotorJuego *-- "*" Pregunta : Contiene
     
-    VentanaPrincipal *-- "1" PanelJuego : Contiene
+    Ventana *-- "1" JPanel : Contiene (Dynamic)
+```

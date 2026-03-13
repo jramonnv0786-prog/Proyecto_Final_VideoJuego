@@ -1,31 +1,38 @@
 # Arquitectura del Proyecto (Patrón MVC)
 
-Estructura interna de "DevQuiz: Edición DAW" usando el patrón Modelo-Vista-Controlador (MVC) adaptado para nuestro MVP de 4 días.
+Estructura interna de "DevQuiz: Edición DAW" usando el patrón Modelo-Vista-Controlador (MVC).
 
 ## 1. El Patrón MVC (Resumen)
-* **Modelo (Datos):** Reglas del juego. Lleva la cuenta de puntos, vidas y almacena la lista de preguntas. No sabe nada de botones ni colores.
-* **Vista (Interfaz Gráfica):** Es "tonta". Solo dibuja la pantalla usando **Java Swing estándar** y avisa cuando el usuario hace clic.
-* **Controlador (Cerebro):** Escucha a la Vista, aplica la lógica en el Modelo, y le dice a la Vista cómo actualizarse.
+* **Modelo (Datos):** Contiene la lógica de negocio, el banco de preguntas y el estado de la partida.
+* **Vista (Interfaz Gráfica):** Paneles de Java Swing que gestionan la representación visual y capturan eventos.
+* **Controlador (Motores):** Gestionan la lógica de cada tipo de juego, filtrando preguntas y validando respuestas.
 
 ## 2. Clases Principales
 
-### Paquete: `modelo`
-* `Pregunta.java`: Guarda los datos básicos (texto, las 4 opciones, la categoría y cuál es la respuesta correcta).
-* `Partida.java`: Controla el estado actual de la partida (puntuación, las 3 vidas y qué pregunta toca).
-* `BancoPreguntas.java`: Clase que contiene la lista de preguntas escritas directamente en el código (en un `ArrayList`) para enviárselas a la Partida al empezar a jugar.
+### Paquete: `model`
+* `Pregunta.java`: POJO que representa una pregunta con sus opciones y respuesta correcta.
+* `Partida.java`: Almacena el estado global de la sesión (nombre del jugador, puntuación acumulada).
+* `BancoPreguntas.java`: Repositorio estático con todos los bancos de preguntas para cada materia.
 
-### Paquete: `vista` (Java Swing)
-* `VentanaPrincipal.java`: Hereda de `JFrame`. Es el marco principal de la ventana del juego.
-* `PanelJuego.java`: Hereda de `JPanel`. Donde se dibuja todo: textos (`JLabel`), los 4 botones de respuesta (`JButton`) y el color de fondo según la categoría.
+### Paquete: `view` (Java Swing)
+* `Ventana.java`: JFrame principal que actúa como contenedor.
+* `PanelMenu.java`: Menú principal con opciones de Iniciar (General), Categorías y Créditos.
+* `PanelCategorias.java`: Selector de materias específicas.
+* `PanelJuego.java`: Panel para la partida general con dificultad.
+* `Paneles Especializados` (`PanelProgramacion.java`, `PanelSistemas.java`, etc.): Paneles adaptados a cada materia (aunque comparten una lógica visual similar).
 
-### Paquete: `controlador`
-* `ControladorJuego.java`: Conecta el `PanelJuego` con la `Partida`. Contiene el temporizador (`javax.swing.Timer`) y los eventos de clic (`ActionListener`).
+### Paquete: `controller`
+* `MotorJuego.java`: Controlador para el modo general. Gestiona el límite de preguntas según dificultad.
+* `Motores Especializados` (`MotorProgramacion.java`, `MotorEntornos.java`, etc.): Controladores dedicados a filtrar preguntas de una sola categoría.
 
-## 3. Flujo Rápido (Al responder)
-*(Ver diagrama en: `flujo_respuesta.png`)*
+## 3. Flujo de Navegación
 
-1. El jugador hace clic en un botón del `PanelJuego`.
-2. El `ControladorJuego` recibe el aviso del clic.
-3. El `ControladorJuego` comprueba en la `Partida` si la respuesta es correcta.
-4. La `Partida` actualiza sus datos (suma 100 puntos o resta 1 vida).
-5. El `ControladorJuego` manda al `PanelJuego` actualizar los textos y poner la pantalla verde o roja.
+1. **Entrada:** `Principal.java` instancia `Ventana` y `Partida`.
+2. **Menú:** `PanelMenu` permite navegar a `PanelJuego` (con diálogo de dificultad) o a `PanelCategorias`.
+3. **Selección:** Desde `PanelCategorias`, se instancia el Panel específico de la materia.
+4. **Ciclo de Juego:** 
+    * El Panel solicita la pregunta actual al Motor.
+    * El usuario responde.
+    * El Panel llama al Motor para validar.
+    * Si acierta, el Panel actualiza la `Partida` (Modelo).
+    * Se carga la siguiente pregunta hasta agotar el banco.

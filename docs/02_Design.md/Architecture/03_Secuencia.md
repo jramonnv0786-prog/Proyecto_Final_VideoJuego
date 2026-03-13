@@ -3,30 +3,25 @@
 ```mermaid
 sequenceDiagram
     actor Jugador
-    participant V as Vista
-    participant C as Controlador
-    participant M as Modelo
+    participant V as Vista/Panel
+    participant M as Motor/Controlador
+    participant P as Partida (Modelo)
 
-    Jugador->>V: Clic en Botón (Ej: A)
-    V->>C: notificarClic(indiceBoton)
+    Jugador->>V: Clic en Botón Respuesta
+    V->>M: comprobarRespuesta(opcion)
     
-    activate C
-    C->>M: comprobarRespuesta(indiceBoton)
     activate M
+    M->>M: Validar acierto
     
-    alt Respuesta Correcta
-        M-->>C: devuelve TRUE
-        C->>V: cambiarColorFondo(Verde)
-        C->>M: sumarPuntos()
-    else Respuesta Incorrecta
-        M-->>C: devuelve FALSE
-        C->>V: cambiarColorFondo(Rojo)
-        C->>M: restarVida()
+    alt Acierto
+        M-->>V: devuelve TRUE
+        V->>P: sumarPuntos(1)
+    else Fallo
+        M-->>V: devuelve FALSE
     end
     
     deactivate M
     
-    C->>V: actualizarTextos(Puntos, Vidas)
-    deactivate C
-
- ```
+    V->>V: actualizarMarcadores(GlobalScore)
+    V->>V: cargarSiguientePregunta()
+ ```
