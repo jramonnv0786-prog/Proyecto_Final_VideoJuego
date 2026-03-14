@@ -20,36 +20,48 @@ public class PanelMenu extends JPanel {
 		this.partida = partida;
 		setLayout(null);
 
+		// -----------------
 		// Nombre del jugador
+		// -----------------
 		JLabel labelNombre = new JLabel("Jugador: " + partida.getNombreJugador());
 		labelNombre.setBounds(20, 20, 300, 30);
 		labelNombre.setForeground(Color.WHITE);
 		labelNombre.setFont(new Font("Arial", Font.BOLD, 20));
 		add(labelNombre);
 
+		// -----------------
 		// Fondo
+		// -----------------
 		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoMenu.jpg"));
 		fondo = icon.getImage();
 
+		// -----------------
 		// Botón Jugar
+		// -----------------
 		botonJugar = crearBoton(277, 215, 440, 138);
 		botonJugar.setBorderPainted(false);
-		botonJugar.addActionListener(e -> {
-			String[] opciones = { "Fácil (10 preg.)", "Medio (20 preg.)", "Difícil (Todas)" };
-			int seleccion = JOptionPane.showOptionDialog(this,
-					"Elige la dificultad del juego:",
-					"Selección de Dificultad",
-					JOptionPane.DEFAULT_OPTION,
-					JOptionPane.QUESTION_MESSAGE,
-					null,
-					opciones,
-					opciones[0]);
-			if (seleccion != -1) {
-				MotorJuego motor = new MotorJuego(seleccion);
-				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-				if (frame != null) {
+		botonJugar.addActionListener((ActionEvent e) -> {
+			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+			if (frame != null) {
+				// Mostrar tutorial antes de elegir dificultad
+				TutorialDialog tutorial = new TutorialDialog(frame);
+				tutorial.setVisible(true); // Bloquea hasta cerrar tutorial
+
+				// Selección de dificultad
+				String[] opciones = { "Fácil (10 preg.)", "Medio (20 preg.)", "Difícil (Todas)" };
+				int seleccion = JOptionPane.showOptionDialog(this,
+						"Elige la dificultad del juego:",
+						"Selección de Dificultad",
+						JOptionPane.DEFAULT_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,
+						opciones,
+						opciones[0]);
+
+				if (seleccion != -1) {
+					MotorJuego motor = new MotorJuego(seleccion);
 					frame.getContentPane().removeAll();
-					partida.reiniciarPuntuacion();
+					partida.reiniciarPuntuacion(); // Reinicia puntos
 					frame.getContentPane().add(new PanelJuego(partida, motor));
 					frame.revalidate();
 					frame.repaint();
@@ -57,10 +69,12 @@ public class PanelMenu extends JPanel {
 			}
 		});
 
+		// -----------------
 		// Botón Categorías
+		// -----------------
 		botonCategorias = crearBoton(277, 398, 440, 138);
 		botonCategorias.setBorderPainted(false);
-		botonCategorias.addActionListener(e -> {
+		botonCategorias.addActionListener((ActionEvent e) -> {
 			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 			if (frame != null) {
 				frame.getContentPane().removeAll();
@@ -71,10 +85,12 @@ public class PanelMenu extends JPanel {
 			}
 		});
 
+		// -----------------
 		// Botón Ajustes
+		// -----------------
 		botonAjustes = crearBoton(277, 580, 440, 138);
 		botonAjustes.setBorderPainted(false);
-		botonAjustes.addActionListener(e -> {
+		botonAjustes.addActionListener((ActionEvent e) -> {
 			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 			if (frame != null) {
 				frame.getContentPane().removeAll();
@@ -84,32 +100,43 @@ public class PanelMenu extends JPanel {
 			}
 		});
 
+		// -----------------
 		// Música de fondo
+		// -----------------
 		iniciarMusica("/resources/CancionFondo.wav");
 
-		// Bloquear X y asignar ESC
-		addEscCerrar();
+		// -----------------
+		// Configurar Key Bindings para ESC
+		// -----------------
+		setupKeyBindings();
+
+		// -----------------
+		// Deshabilitar la X del JFrame
+		// -----------------
+		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+		if (frame != null) {
+			frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		}
 	}
 
-	private void addEscCerrar() {
-		// Bloquear la X
-		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-		addHierarchyListener(e -> {
-			if ((e.getChangeFlags() & HierarchyEvent.PARENT_CHANGED) != 0) {
-				JFrame f = (JFrame) SwingUtilities.getWindowAncestor(this);
-				if (f != null) {
-					f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-				}
-			}
-		});
+	private void setupKeyBindings() {
+		// Se usa WHEN_IN_FOCUSED_WINDOW para que funcione aunque no tengas foco
+		JRootPane rootPane = SwingUtilities.getRootPane(this);
+		if (rootPane == null)
+			return;
 
-		// Key Binding para ESC
-		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-				.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cerrarApp");
-		getActionMap().put("cerrarApp", new AbstractAction() {
+		// Mapeo de tecla ESC
+		InputMap im = rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		ActionMap am = rootPane.getActionMap();
+
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cerrar");
+		am.put("cerrar", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(PanelMenu.this);
+				if (frame != null) {
+					frame.dispose(); // cerrar ventana
+				}
 			}
 		});
 	}
