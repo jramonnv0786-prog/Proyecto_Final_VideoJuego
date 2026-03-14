@@ -97,8 +97,7 @@ public class PanelCategorias extends JPanel {
         add(etiqueta);
 
         boton.addActionListener((ActionEvent e) -> {
-            // Música de preguntas (opcional: puedes usar otra canción)
-            // SoundManager.getInstancia().reproducirMusica("/resources/MusicaPreguntas.wav");
+
             MotorJuego motor = new MotorJuego(claveCategoria);
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
             if (frame != null) {
