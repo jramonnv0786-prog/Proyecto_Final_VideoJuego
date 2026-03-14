@@ -1,11 +1,13 @@
 package view;
 
 import controller.MotorJuego;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import javax.swing.*;
 import model.Partida;
 import model.Pregunta;
+import util.SoundManager;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class PanelJuego extends JPanel {
 
@@ -17,7 +19,6 @@ public class PanelJuego extends JPanel {
     private Partida partida;
     private Image fondo;
 
-    // PanelJuego recibe MotorJuego ya creado
     public PanelJuego(Partida partida, MotorJuego motor) {
         this.partida = partida;
         this.motor = motor;
@@ -30,14 +31,13 @@ public class PanelJuego extends JPanel {
         if (icon != null)
             fondo = icon.getImage();
 
-        // Label de pregunta
+        // Labels
         preguntaLabel = new JLabel("", SwingConstants.CENTER);
         preguntaLabel.setBounds(100, 150, 800, 100);
         preguntaLabel.setForeground(Color.WHITE);
         preguntaLabel.setFont(new Font("Arial", Font.BOLD, 22));
         add(preguntaLabel);
 
-        // Label puntuación
         puntuacionLabel = new JLabel("Puntuación Global: " + partida.getPuntuacionTotal());
         puntuacionLabel.setBounds(30, 30, 300, 40);
         puntuacionLabel.setForeground(Color.WHITE);
@@ -50,7 +50,7 @@ public class PanelJuego extends JPanel {
         boton3 = crearBoton(200, 470, 600, 60, 3);
         boton4 = crearBoton(200, 570, 600, 60, 4);
 
-        // Botón volver
+        // Botón Volver
         JButton botonVolver = new JButton("Volver al Menú");
         botonVolver.setBounds(30, 700, 200, 50);
         botonVolver.setBorderPainted(false);
@@ -60,12 +60,20 @@ public class PanelJuego extends JPanel {
             if (frame != null) {
                 frame.getContentPane().removeAll();
                 frame.getContentPane().add(new PanelMenu(partida));
+
+                // Volver a música del menú si está activada
+                if (partida.isMusicaActiva()) {
+                    SoundManager.getInstancia().pararMusicaPrincipal();
+                    SoundManager.getInstancia().reproducirMusicaSecundaria("/resources/AudioPrincipal.wav");
+                }
+
                 frame.revalidate();
                 frame.repaint();
             }
         });
 
         actualizarPregunta();
+
     }
 
     private JButton crearBoton(int x, int y, int ancho, int alto, int opcion) {
