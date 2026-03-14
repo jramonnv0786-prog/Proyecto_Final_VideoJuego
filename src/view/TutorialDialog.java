@@ -1,8 +1,7 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class TutorialDialog extends JDialog {
 
@@ -28,18 +27,11 @@ public class TutorialDialog extends JDialog {
         texto.setFocusable(false);
         add(texto);
 
-        // Botón Siguiente
-        JButton siguiente = new JButton("Siguiente");
-        siguiente.setBounds(180, 300, 120, 40);
-        add(siguiente);
-
         // Cierre con ESC
         getRootPane().registerKeyboardAction(
                 e -> dispose(),
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
                 JComponent.WHEN_IN_FOCUSED_WINDOW);
 
-        // Acción del botón siguiente
-        siguiente.addActionListener(e -> dispose());
     }
 }
