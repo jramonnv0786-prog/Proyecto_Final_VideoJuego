@@ -1,4 +1,4 @@
-# DevQuiz: Edición DAW
+# TRIVIALDAW
 
 ## 🏗️ Arquitectura del Proyecto (Patrón MVC)
 
