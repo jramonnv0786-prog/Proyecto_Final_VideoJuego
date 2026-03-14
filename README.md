@@ -237,5 +237,4 @@ classDiagram
     PanelMenu --> SoundManager : usa
     PanelCategorias --> SoundManager : usa
     PanelAjustes --> SoundManager : usa
-
 ```
