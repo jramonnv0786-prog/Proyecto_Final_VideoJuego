@@ -1,132 +1,137 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 public class PanelCategorias extends JPanel {
 
-	private JButton Programacion;
-	private JButton EntornosDesarrollo;
-	private JButton LenguajeMarca;
-	private JButton Digitalizacion;
-	private JButton SistemaInformatico;
-	private JButton Sostenibilidad;
+    private model.Partida partida;
+    private Image fondo;
 
-	private model.Partida partida;
-	private Image fondo;
+    private static final int BOTON_ANCHO = 150;
+private static final int BOTON_ALTO = 100;
 
-	public PanelCategorias(model.Partida partida) {
-		this.partida = partida;
+    public PanelCategorias(model.Partida partida) {
+        this.partida = partida;
 
-		// Cargar la imagen de fondo
-		java.net.URL urlFondo = getClass().getResource("/resources/fondoMenu.png");
-		if (urlFondo != null) {
-			ImageIcon icon = new ImageIcon(urlFondo);
-			fondo = icon.getImage();
-		}
+        // Cargar imagen de fondo
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoMenu.png"));
+        fondo = icon.getImage();
 
-		setLayout(null);
-		setBounds(0, 0, 1000, 800);
+        setLayout(new BorderLayout());
 
-		// BOTON PROGRAMACION
-		Programacion = crearBotonImagen("/resources/Programacion.png", 200, 175);
-		add(Programacion);
-		Programacion.addActionListener((ActionEvent e) -> {
-			cambiarPanel(new PanelProgramacion(partida));
-		});
+        // Panel contenedor centrado
+        JPanel panelCentral = new JPanel();
+        panelCentral.setOpaque(false); // Para que se vea el fondo
+        panelCentral.setLayout(new GridBagLayout());
+        add(panelCentral, BorderLayout.CENTER);
 
-		// BOTON ENTORNOS
-		EntornosDesarrollo = crearBotonImagen("/resources/Entornos.png", 600, 175);
-		add(EntornosDesarrollo);
-		EntornosDesarrollo.addActionListener((ActionEvent e) -> {
-			cambiarPanel(new PanelEntornos(partida));
-		});
+        GridBagConstraints gbc = new GridBagConstraints();
+        // Incrementamos el margen superior a 80
+        gbc.insets = new Insets(50, 30, 20, 30); // top, left, bottom, right
+        gbc.gridx = 0;
+        gbc.gridy = 0;
 
-		// BOTON LENGUAJE
-		LenguajeMarca = crearBotonImagen("/resources/Lenguajedemarca.png", 200, 350);
-		add(LenguajeMarca);
-		LenguajeMarca.addActionListener((ActionEvent e) -> {
-			cambiarPanel(new PanelLenguajeMarca(partida));
-		});
+        // Array con nombres de categorías y rutas de imagen
+        String[][] categorias = {
+                { "Programación", "/resources/Programacion.png" },
+                { "Entornos", "/resources/Entornos.png" },
+                { "Lenguaje de Marca", "/resources/Lenguajedemarca.png" },
+                { "Digitalización", "/resources/Digitalizacion.png" },
+                { "Sistemas", "/resources/Sistemas.png" },
+                { "Sostenibilidad", "/resources/Sostenibilidad.png" }
+        };
 
-		// BOTON DIGITALIZACION
-		Digitalizacion = crearBotonImagen("/resources/Digitalizacion.png", 600, 350);
-		add(Digitalizacion);
-		Digitalizacion.addActionListener((ActionEvent e) -> {
-			cambiarPanel(new PanelDigitalizacion(partida));
-		});
+        for (int i = 0; i < categorias.length; i++) {
+            String nombre = categorias[i][0];
+            String ruta = categorias[i][1];
 
-		// BOTON SISTEMA
-		SistemaInformatico = crearBotonImagen("/resources/Sistemas.png", 200, 525);
-		add(SistemaInformatico);
-		SistemaInformatico.addActionListener((ActionEvent e) -> {
-			cambiarPanel(new PanelSistemas(partida));
-		});
+            // Crear botón con imagen
+            JButton boton = crearBotonImagen(ruta);
+            // Pie de foto
+            JLabel label = new JLabel(nombre, SwingConstants.CENTER);
+            label.setForeground(Color.WHITE);
+            label.setFont(new Font("Arial", Font.BOLD, 16));
 
-		// BOTON Sostenibilidad
-		Sostenibilidad = crearBotonImagen("/resources/Sostenibilidad.png", 600, 525);
-		add(Sostenibilidad);
-		Sostenibilidad.addActionListener((ActionEvent e) -> {
-			cambiarPanel(new PanelSostenibilidad(partida));
-		});
+            // Panel que contiene botón + label
+            JPanel panelBoton = new JPanel();
+            panelBoton.setOpaque(false);
+            panelBoton.setLayout(new BorderLayout());
+            panelBoton.add(boton, BorderLayout.CENTER);
+            panelBoton.add(label, BorderLayout.SOUTH);
 
-		// BOTON VOLVER
-		JButton botonVolver = new JButton("Volver al Menú");
-		botonVolver.setBounds(30, 700, 200, 50);
-		add(botonVolver);
-		botonVolver.addActionListener((ActionEvent e) -> {
-			cambiarPanel(new PanelMenu(partida));
-		});
-	}
+            // Añadir al panel central
+            panelCentral.add(panelBoton, gbc);
 
-	private JButton crearBotonImagen(String ruta, int x, int y) {
-		java.net.URL url = getClass().getResource(ruta);
-		if (url != null) {
-			ImageIcon icon = new ImageIcon(url);
-			Image img = icon.getImage().getScaledInstance(200, 125, Image.SCALE_SMOOTH);
-			JButton boton = new JButton(new ImageIcon(img));
-			boton.setBounds(x, y, 200, 125);
-			boton.setContentAreaFilled(false);
-			boton.setBorderPainted(true);
-			boton.setFocusPainted(false);
-			return boton;
-		}
-		JButton botonFallback = new JButton(ruta);
-		botonFallback.setBounds(x, y, 200, 125);
-		return botonFallback;
-	}
+            // Manejo de columnas
+            if (gbc.gridx == 0) {
+                gbc.gridx = 1; // siguiente columna
+            } else {
+                gbc.gridx = 0;
+                gbc.gridy++; // nueva fila
+            }
 
-	private JLabel crearEtiqueta(String texto, int x, int y) {
-		JLabel etiqueta = new JLabel(texto, SwingConstants.CENTER);
-		etiqueta.setBounds(x, y, 200, 30);
-		etiqueta.setForeground(Color.WHITE); // Color blanco
-		etiqueta.setFont(new Font("Arial", Font.BOLD, 16));
-		return etiqueta;
-	}
+            // ActionListener para cada botón
+            final int index = i; // para usar dentro de lambda
+            boton.addActionListener((ActionEvent e) -> {
+                cambiarPanelPorIndice(index);
+            });
+        }
 
-	private void cambiarPanel(JPanel panel) {
-		javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-		if (ventana != null) {
-			ventana.getContentPane().removeAll();
-			ventana.getContentPane().add(panel);
-			ventana.revalidate();
-			ventana.repaint();
-		}
-	}
+        // BOTON VOLVER
+        JButton botonVolver = new JButton("Volver al Menú");
+        botonVolver.setPreferredSize(new Dimension(200, 50));
+        botonVolver.addActionListener((ActionEvent e) -> cambiarPanel(new PanelMenu(partida)));
+        JPanel panelVolver = new JPanel();
+        panelVolver.setOpaque(false);
+        panelVolver.add(botonVolver);
+        add(panelVolver, BorderLayout.SOUTH);
+    }
 
-	@Override // Pintar el fondo
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		if (fondo != null) {
-			g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
-		}
-	}
+    private JButton crearBotonImagen(String rutaImagen) {
+        ImageIcon icon = new ImageIcon(getClass().getResource(rutaImagen));
+        if (icon.getImage() == null) {
+            System.err.println("No se encontró la imagen: " + rutaImagen);
+            return new JButton();
+        }
+
+        Image imgEscalada = icon.getImage().getScaledInstance(BOTON_ANCHO, BOTON_ALTO, Image.SCALE_SMOOTH);
+        JButton boton = new JButton(new ImageIcon(imgEscalada));
+        boton.setContentAreaFilled(false);
+        boton.setBorderPainted(true);
+        boton.setFocusPainted(false);
+        return boton;
+    }
+
+    private void cambiarPanelPorIndice(int index) {
+        switch (index) {
+            case 0 -> cambiarPanel(new PanelProgramacion(partida));
+            case 1 -> cambiarPanel(new PanelEntornos(partida));
+            case 2 -> cambiarPanel(new PanelLenguajeMarca(partida));
+            case 3 -> cambiarPanel(new PanelDigitalizacion(partida));
+            case 4 -> cambiarPanel(new PanelSistemas(partida));
+            case 5 -> cambiarPanel(new PanelSostenibilidad(partida));
+        }
+    }
+
+    private void cambiarPanel(JPanel nuevoPanel) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        if (frame == null)
+            return;
+
+        Container content = frame.getContentPane();
+        content.removeAll();
+        content.add(nuevoPanel);
+        content.revalidate();
+        content.repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (fondo != null) {
+            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
 }
