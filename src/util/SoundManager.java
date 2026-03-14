@@ -7,10 +7,10 @@ public class SoundManager {
 
     private static SoundManager instancia;
 
-    private Clip clipSecundario; // Música del menú
-    private Clip clipPrincipal; // Música de preguntas
-
+    private Clip clipMusica; // música de fondo
     private boolean musicaActiva = true;
+
+    private Clip clipEfecto; // efectos de sonido
     private boolean efectosActivos = true;
 
     private SoundManager() {
@@ -22,93 +22,81 @@ public class SoundManager {
         return instancia;
     }
 
-    // -----------------------
-    // Música del menú
-    // -----------------------
-    public void reproducirMusicaSecundaria(String ruta) {
+    // ----------------- Música -----------------
+    public void reproducirMusica(String ruta) {
         if (!musicaActiva)
             return;
-        pararMusicaSecundaria();
-        clipSecundario = crearClip(ruta);
-        if (clipSecundario != null) {
-            clipSecundario.loop(Clip.LOOP_CONTINUOUSLY);
-            clipSecundario.start();
-        }
-    }
 
-    public void pararMusicaSecundaria() {
-        if (clipSecundario != null && clipSecundario.isRunning())
-            clipSecundario.stop();
-    }
-
-    public boolean isMusicaSecundariaActiva() {
-        return clipSecundario != null && clipSecundario.isRunning();
-    }
-
-    // -----------------------
-    // Música de preguntas
-    // -----------------------
-    public void reproducirMusicaPrincipal(String ruta) {
-        if (!musicaActiva)
+        // si ya está sonando, no hacer nada
+        if (clipMusica != null && clipMusica.isRunning())
             return;
-        pararMusicaPrincipal();
-        clipPrincipal = crearClip(ruta);
-        if (clipPrincipal != null) {
-            clipPrincipal.loop(Clip.LOOP_CONTINUOUSLY);
-            clipPrincipal.start();
-        }
-    }
 
-    public void pararMusicaPrincipal() {
-        if (clipPrincipal != null && clipPrincipal.isRunning())
-            clipPrincipal.stop();
-    }
-
-    public boolean isMusicaPrincipalActiva() {
-        return clipPrincipal != null && clipPrincipal.isRunning();
-    }
-
-    // -----------------------
-    // Efectos de sonido
-    // -----------------------
-    public void reproducirEfecto(String ruta) {
-        if (!efectosActivos)
-            return;
-        Clip clip = crearClip(ruta);
-        if (clip != null)
-            clip.start();
-    }
-
-    // -----------------------
-    // Control global
-    // -----------------------
-    public void setMusicaActiva(boolean activa) {
-        musicaActiva = activa;
-        if (!musicaActiva) {
-            pararMusicaSecundaria();
-            pararMusicaPrincipal();
-        }
-    }
-
-    public void setEfectosActivos(boolean activa) {
-        efectosActivos = activa;
-    }
-
-    // -----------------------
-    // Método interno para crear clips
-    // -----------------------
-    private Clip crearClip(String ruta) {
         try {
             InputStream audioSrc = getClass().getResourceAsStream(ruta);
+            if (audioSrc == null)
+                return;
+
             InputStream bufferedIn = new java.io.BufferedInputStream(audioSrc);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
 
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            return clip;
+            clipMusica = AudioSystem.getClip();
+            clipMusica.open(audioStream);
+            clipMusica.loop(Clip.LOOP_CONTINUOUSLY);
+            clipMusica.start();
+
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+    }
+
+    public void pararMusica() {
+        if (clipMusica != null) {
+            clipMusica.stop();
+            clipMusica.close();
+            clipMusica = null;
+        }
+    }
+
+    public void setMusicaActiva(boolean activar, String ruta) {
+        musicaActiva = activar;
+        if (activar) {
+            reproducirMusica(ruta);
+        } else {
+            pararMusica();
+        }
+    }
+
+    public boolean isMusicaActiva() {
+        return musicaActiva;
+    }
+
+    // ----------------- Efectos -----------------
+    public void reproducirEfecto(String ruta) {
+        if (!efectosActivos)
+            return;
+
+        try {
+            InputStream audioSrc = getClass().getResourceAsStream(ruta);
+            if (audioSrc == null)
+                return;
+
+            InputStream bufferedIn = new java.io.BufferedInputStream(audioSrc);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
+
+            clipEfecto = AudioSystem.getClip();
+            clipEfecto.open(audioStream);
+            clipEfecto.start(); // se reproduce una vez
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setEfectosActivos(boolean activar) {
+        efectosActivos = activar;
+    }
+
+    public boolean isEfectosActivos() {
+        return efectosActivos;
     }
 }

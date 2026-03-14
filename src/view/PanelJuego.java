@@ -22,7 +22,6 @@ public class PanelJuego extends JPanel {
     public PanelJuego(Partida partida, MotorJuego motor) {
         this.partida = partida;
         this.motor = motor;
-
         setLayout(null);
         setBounds(0, 0, 1000, 800);
 
@@ -31,7 +30,10 @@ public class PanelJuego extends JPanel {
         if (icon != null)
             fondo = icon.getImage();
 
-        // Labels
+        // Música de fondo (misma que el menú o distinta si quieres)
+        SoundManager.getInstancia().reproducirMusica("/resources/AudioPrincipal.wav");
+
+        // Pregunta
         preguntaLabel = new JLabel("", SwingConstants.CENTER);
         preguntaLabel.setBounds(100, 150, 800, 100);
         preguntaLabel.setForeground(Color.WHITE);
@@ -44,57 +46,35 @@ public class PanelJuego extends JPanel {
         puntuacionLabel.setFont(new Font("Arial", Font.BOLD, 18));
         add(puntuacionLabel);
 
-        // Botones de respuestas
-        boton1 = crearBoton(200, 270, 600, 60, 1);
-        boton2 = crearBoton(200, 370, 600, 60, 2);
-        boton3 = crearBoton(200, 470, 600, 60, 3);
-        boton4 = crearBoton(200, 570, 600, 60, 4);
+        boton1 = crearBoton(200, 300, 250, 60, 1);
+        boton2 = crearBoton(550, 300, 250, 60, 2);
+        boton3 = crearBoton(200, 400, 250, 60, 3);
+        boton4 = crearBoton(550, 400, 250, 60, 4);
 
-        // Botón Volver
         JButton botonVolver = new JButton("Volver al Menú");
         botonVolver.setBounds(30, 700, 200, 50);
-        botonVolver.setBorderPainted(false);
         add(botonVolver);
         botonVolver.addActionListener((ActionEvent e) -> {
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
             if (frame != null) {
                 frame.getContentPane().removeAll();
                 frame.getContentPane().add(new PanelMenu(partida));
-
-                // Volver a música del menú si está activada
-                if (partida.isMusicaActiva()) {
-                    SoundManager.getInstancia().pararMusicaPrincipal();
-                    SoundManager.getInstancia().reproducirMusicaSecundaria("/resources/AudioPrincipal.wav");
-                }
-
                 frame.revalidate();
                 frame.repaint();
             }
         });
 
         actualizarPregunta();
-
     }
 
     private JButton crearBoton(int x, int y, int ancho, int alto, int opcion) {
         JButton boton = new JButton();
         boton.setBounds(x, y, ancho, alto);
-
-        // Colores personalizados
-        switch (opcion) {
-            case 1 -> boton.setBackground(new Color(220, 120, 120));
-            case 2 -> boton.setBackground(new Color(140, 200, 140));
-            case 3 -> boton.setBackground(new Color(240, 190, 120));
-            case 4 -> boton.setBackground(new Color(150, 200, 220));
-        }
-        boton.setForeground(Color.WHITE); // Texto blanco
-        boton.setOpaque(true);
-        boton.setBorderPainted(true);
-        boton.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255, 120), 2));
-        boton.setFocusPainted(false);
-
         add(boton);
-        boton.addActionListener((ActionEvent e) -> responder(opcion));
+        boton.addActionListener((ActionEvent e) -> {
+            SoundManager.getInstancia().reproducirEfecto("/resources/EfectoSonido.wav");
+            responder(opcion);
+        });
         return boton;
     }
 

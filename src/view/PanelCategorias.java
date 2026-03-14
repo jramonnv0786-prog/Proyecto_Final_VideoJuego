@@ -1,10 +1,12 @@
 package view;
 
 import controller.MotorJuego;
+import model.Partida;
+import util.SoundManager;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.*;
-import model.Partida;
 
 public class PanelCategorias extends JPanel {
 
@@ -21,7 +23,10 @@ public class PanelCategorias extends JPanel {
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/MenuCategorias.jpeg"));
         fondo = icon.getImage();
 
-        // Array de imágenes y claves de categorías correctas
+        // Música de fondo (misma que el menú)
+        SoundManager.getInstancia().reproducirMusica("/resources/AudioPrincipal.wav");
+
+        // Array de imágenes y nombres
         String[] imagenes = {
                 "/resources/programacion.png",
                 "/resources/entornos.png",
@@ -40,7 +45,6 @@ public class PanelCategorias extends JPanel {
                 "Sostenibilidad"
         };
 
-        // Claves que coinciden con BancoPreguntas
         String[] claves = {
                 "programacion",
                 "entornos",
@@ -50,32 +54,22 @@ public class PanelCategorias extends JPanel {
                 "sostenibilidad"
         };
 
-        // Distribución automática: 2 columnas, 3 filas
-        int xInicial = 170;
-        int yInicial = 160;
-        int ancho = 225;
-        int alto = 125;
-        int separacionX = 400; // espacio horizontal entre columnas
-        int separacionY = 180; // espacio vertical entre filas
-        int margenTexto = 5; // espacio entre botón y etiqueta
+        int xInicial = 170, yInicial = 160;
+        int ancho = 225, alto = 125;
+        int separacionX = 400, separacionY = 180, margenTexto = 5;
 
         for (int i = 0; i < imagenes.length; i++) {
             int fila = i / 2;
             int col = i % 2;
             int x = xInicial + col * separacionX;
             int y = yInicial + fila * separacionY;
-
             addBotonCategoria(imagenes[i], nombres[i], claves[i], x, y, ancho, alto, margenTexto);
         }
 
-        // Botón Volver
         JButton botonVolver = new JButton("Volver al Menú");
         botonVolver.setBounds(30, 700, 200, 50);
         add(botonVolver);
         botonVolver.addActionListener((ActionEvent e) -> {
-            // Reiniciar puntuación
-            partida.reiniciarPuntuacion();
-
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
             if (frame != null) {
                 frame.getContentPane().removeAll();
@@ -88,7 +82,6 @@ public class PanelCategorias extends JPanel {
 
     private void addBotonCategoria(String rutaImagen, String nombreVisible, String claveCategoria,
             int x, int y, int ancho, int alto, int margenTexto) {
-        // Crear botón con imagen
         ImageIcon icon = new ImageIcon(getClass().getResource(rutaImagen));
         Image img = icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
         JButton boton = new JButton(new ImageIcon(img));
@@ -97,16 +90,16 @@ public class PanelCategorias extends JPanel {
         boton.setFocusPainted(false);
         add(boton);
 
-        // Crear etiqueta debajo con el nombre visible
         JLabel etiqueta = new JLabel(nombreVisible, SwingConstants.CENTER);
         etiqueta.setBounds(x, y + alto + margenTexto, ancho, 25);
         etiqueta.setForeground(Color.WHITE);
         etiqueta.setFont(new Font("Arial", Font.BOLD, 16));
         add(etiqueta);
 
-        // Acción del botón
         boton.addActionListener((ActionEvent e) -> {
-            MotorJuego motor = new MotorJuego(claveCategoria); // clave correcta
+            // Música de preguntas (opcional: puedes usar otra canción)
+            // SoundManager.getInstancia().reproducirMusica("/resources/MusicaPreguntas.wav");
+            MotorJuego motor = new MotorJuego(claveCategoria);
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
             if (frame != null) {
                 frame.getContentPane().removeAll();

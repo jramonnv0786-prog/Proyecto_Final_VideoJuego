@@ -18,40 +18,28 @@ public class PanelMenu extends JPanel {
 		this.partida = partida;
 		setLayout(null);
 
-		// Nombre del jugador
 		JLabel labelNombre = new JLabel("Jugador: " + partida.getNombreJugador());
 		labelNombre.setBounds(20, 20, 300, 30);
 		labelNombre.setForeground(Color.WHITE);
 		labelNombre.setFont(new Font("Arial", Font.BOLD, 20));
 		add(labelNombre);
 
-		// Fondo
 		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoMenu.jpg"));
 		fondo = icon.getImage();
 
-		// Botón Jugar
+		// ----------------- Botón Jugar -----------------
 		botonJugar = crearBoton(277, 215, 440, 138);
-		botonJugar.addActionListener((ActionEvent e) -> {
-			if (partida.isEfectosActivos())
-				SoundManager.getInstancia().reproducirEfecto("/resources/EfectoSonido.wav");
-
-			// Parar música del menú antes de PanelJuego
-			SoundManager.getInstancia().pararMusicaSecundaria();
-
+		botonJugar.addActionListener(e -> {
+			SoundManager.getInstancia().reproducirEfecto("/resources/EfectoSonido.wav");
+			SoundManager.getInstancia().pararMusica(); // la música del menú para
 			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 			if (frame != null) {
 				TutorialDialog tutorial = new TutorialDialog(frame);
 				tutorial.setVisible(true);
 
-				String[] opciones = { "Fácil (10 preg.)", "Medio (20 preg.)", "Difícil (Todas)" };
-				int seleccion = JOptionPane.showOptionDialog(this,
-						"Elige la dificultad del juego:",
-						"Selección de Dificultad",
-						JOptionPane.DEFAULT_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null,
-						opciones,
-						opciones[0]);
+				String[] opciones = { "Fácil", "Medio", "Difícil" };
+				int seleccion = JOptionPane.showOptionDialog(this, "Elige dificultad", "Dificultad",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 
 				if (seleccion != -1) {
 					MotorJuego motor = new MotorJuego(seleccion);
@@ -64,12 +52,10 @@ public class PanelMenu extends JPanel {
 			}
 		});
 
-		// Botón Categorías
+		// ----------------- Botón Categorías -----------------
 		botonCategorias = crearBoton(277, 398, 440, 138);
-		botonCategorias.addActionListener((ActionEvent e) -> {
-			if (partida.isEfectosActivos())
-				SoundManager.getInstancia().reproducirEfecto("/resources/EfectoSonido.wav");
-
+		botonCategorias.addActionListener(e -> {
+			SoundManager.getInstancia().reproducirEfecto("/resources/EfectoSonido.wav");
 			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 			if (frame != null) {
 				frame.getContentPane().removeAll();
@@ -80,12 +66,10 @@ public class PanelMenu extends JPanel {
 			}
 		});
 
-		// Botón Ajustes
+		// ----------------- Botón Ajustes -----------------
 		botonAjustes = crearBoton(277, 580, 440, 138);
-		botonAjustes.addActionListener((ActionEvent e) -> {
-			if (partida.isEfectosActivos())
-				SoundManager.getInstancia().reproducirEfecto("/resources/EfectoSonido.wav");
-
+		botonAjustes.addActionListener(e -> {
+			SoundManager.getInstancia().reproducirEfecto("/resources/EfectoSonido.wav");
 			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 			if (frame != null) {
 				frame.getContentPane().removeAll();
@@ -95,9 +79,8 @@ public class PanelMenu extends JPanel {
 			}
 		});
 
-		// Música del menú solo si está activada
-		if (partida.isMusicaActiva())
-			SoundManager.getInstancia().reproducirMusicaSecundaria("/resources/AudioPrincipal.wav");
+		// Música de fondo del menú
+		SoundManager.getInstancia().reproducirMusica("/resources/AudioPrincipal.wav");
 
 		setupKeyBindings();
 	}
@@ -109,6 +92,7 @@ public class PanelMenu extends JPanel {
 
 		InputMap im = rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap am = rootPane.getActionMap();
+
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cerrar");
 		am.put("cerrar", new AbstractAction() {
 			@Override
@@ -123,9 +107,8 @@ public class PanelMenu extends JPanel {
 	private JButton crearBoton(int x, int y, int ancho, int alto) {
 		JButton boton = new JButton();
 		boton.setBounds(x, y, ancho, alto);
-		boton.setBorderPainted(true);
 		boton.setContentAreaFilled(false);
-		boton.setOpaque(false);
+		boton.setBorderPainted(false);
 		add(boton);
 		return boton;
 	}
