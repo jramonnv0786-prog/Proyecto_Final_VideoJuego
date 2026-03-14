@@ -25,4 +25,23 @@ public class Partida {
     public void reiniciarPuntuacion() {
         puntuacionTotal = 0;
     }
+
+    private boolean musicaActiva = true;
+    private boolean efectosActivos = true;
+
+    public boolean isMusicaActiva() {
+        return musicaActiva;
+    }
+
+    public void setMusicaActiva(boolean activa) {
+        musicaActiva = activa;
+    }
+
+    public boolean isEfectosActivos() {
+        return efectosActivos;
+    }
+
+    public void setEfectosActivos(boolean activa) {
+        efectosActivos = activa;
+    }
 }

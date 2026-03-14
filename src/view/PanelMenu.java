@@ -11,7 +11,7 @@ import javax.sound.sampled.*;
 
 public class PanelMenu extends JPanel {
 
-	private JButton botonJugar, botonCategorias, botonCreditos;
+	private JButton botonJugar, botonCategorias, botonAjustes;
 	private Image fondo;
 	private Clip clip;
 	private Partida partida;
@@ -28,7 +28,7 @@ public class PanelMenu extends JPanel {
 		add(labelNombre);
 
 		// Fondo
-		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondo.png"));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoMenu.png"));
 		fondo = icon.getImage();
 
 		// -----------------
@@ -78,15 +78,15 @@ public class PanelMenu extends JPanel {
 		});
 
 		// -----------------
-		// Botón Créditos
+		// Botón ajustes
 		// -----------------
-		botonCreditos = crearBoton(277, 580, 440, 138);
-		botonCreditos.setBorderPainted(false);
-		botonCreditos.addActionListener((ActionEvent e) -> {
+		botonAjustes = crearBoton(277, 580, 440, 138);
+		botonAjustes.setBorderPainted(false);
+		botonAjustes.addActionListener((ActionEvent e) -> {
 			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 			if (frame != null) {
 				frame.getContentPane().removeAll();
-				frame.getContentPane().add(new PanelCreditos());
+				frame.getContentPane().add(new PanelAjustes(partida));
 				frame.revalidate();
 				frame.repaint();
 			}
