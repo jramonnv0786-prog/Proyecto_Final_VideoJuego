@@ -1,11 +1,7 @@
 package view;
 
 import model.Partida;
-<<<<<<< Updated upstream
 import util.SoundManager;
-=======
->>>>>>> Stashed changes
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,10 +9,6 @@ import java.awt.event.ActionEvent;
 public class PanelAjustes extends JPanel {
 
     private Partida partida;
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     private JCheckBox cbMusica;
     private JCheckBox cbEfectos;
 
@@ -25,7 +17,6 @@ public class PanelAjustes extends JPanel {
         setLayout(null);
         setBounds(0, 0, 1000, 800);
 
-<<<<<<< Updated upstream
         // Música
         cbMusica = new JCheckBox("Activar Música de Fondo");
         cbMusica.setBounds(350, 200, 300, 30);
@@ -55,7 +46,7 @@ public class PanelAjustes extends JPanel {
         cbEfectos.addActionListener((ActionEvent e) -> partida.setEfectosActivos(cbEfectos.isSelected()));
 
         // Volver
-=======
+
         // Casilla Música
         cbMusica = new JCheckBox("Activar Música de Fondo");
         cbMusica.setBounds(350, 200, 300, 30);
@@ -71,20 +62,16 @@ public class PanelAjustes extends JPanel {
         add(cbEfectos);
 
         // Botón Volver
->>>>>>> Stashed changes
         JButton botonVolver = new JButton("Volver al Menú");
         botonVolver.setBounds(350, 350, 200, 50);
         add(botonVolver);
 
         botonVolver.addActionListener((ActionEvent e) -> {
-<<<<<<< Updated upstream
-=======
             // Guardar los ajustes en la partida
             partida.setMusicaActiva(cbMusica.isSelected());
             partida.setEfectosActivos(cbEfectos.isSelected());
 
             // Volver al menú principal
->>>>>>> Stashed changes
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
             if (frame != null) {
                 frame.getContentPane().removeAll();
