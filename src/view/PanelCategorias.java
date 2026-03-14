@@ -1,12 +1,17 @@
 package view;
 
-import controller.MotorJuego;
-import model.Partida;
-import util.SoundManager;
-
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import util.SoundManager;
+import model.Partida;
 
 public class PanelCategorias extends JPanel {
 
@@ -19,107 +24,103 @@ public class PanelCategorias extends JPanel {
         setLayout(null);
         setBounds(0, 0, 1000, 800);
 
-        // Fondo
-        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/MenuCategorias.jpeg"));
-        fondo = icon.getImage();
+        // BOTON PROGRAMACION
+        Programacion = crearBotonImagen("/resources/Programacion.png", 200, 150);
+        add(Programacion);
+        add(crearEtiqueta("Programación", 200, 235));
+        Programacion.addActionListener((ActionEvent e) -> {
+            cambiarPanel(new PanelProgramacion(partida));
+        });
 
-        String[] imagenes = {
-                "/resources/programacion.png",
-                "/resources/entornos.png",
-                "/resources/lenguajedemarca.png",
-                "/resources/digitalizacion.png",
-                "/resources/sistemas.png",
-                "/resources/sostenibilidad.png"
-        };
+        // BOTON ENTORNOS
+        EntornosDesarrollo = crearBotonImagen("/resources/Entornos.png", 600, 150);
+        add(EntornosDesarrollo);
+        add(crearEtiqueta("Entornos de Desarrollo", 600, 235));
+        EntornosDesarrollo.addActionListener((ActionEvent e) -> {
+            cambiarPanel(new PanelEntornos(partida));
+        });
 
-        String[] nombres = {
-                "Programación",
-                "Entornos de Desarrollo",
-                "Lenguaje de Marca",
-                "Digitalización",
-                "Sistemas Informático",
-                "Sostenibilidad"
-        };
+        // BOTON LENGUAJE
+        LenguajeMarca = crearBotonImagen("/resources/Lenguajedemarca.png", 200, 300);
+        add(LenguajeMarca);
+        add(crearEtiqueta("Lenguaje de Marcas", 200, 385));
+        LenguajeMarca.addActionListener((ActionEvent e) -> {
+            cambiarPanel(new PanelLenguajeMarca(partida));
+        });
 
-        String[] claves = {
-                "programacion",
-                "entornos",
-                "lenguaje de marca",
-                "digitalizacion",
-                "sistemas",
-                "sostenibilidad"
-        };
+        // BOTON DIGITALIZACION
+        Digitalizacion = crearBotonImagen("/resources/Digitalizacion.png", 600, 300);
+        add(Digitalizacion);
+        add(crearEtiqueta("Digitalización", 600, 385));
+        Digitalizacion.addActionListener((ActionEvent e) -> {
+            cambiarPanel(new PanelDigitalizacion(partida));
+        });
 
-        int xInicial = 170, yInicial = 160, ancho = 225, alto = 125;
-        int separacionX = 400, separacionY = 180, margenTexto = 5;
+        // BOTON SISTEMA
+        SistemaInformatico = crearBotonImagen("/resources/Sistemas.png", 200, 450);
+        add(SistemaInformatico);
+        add(crearEtiqueta("Sistemas Informáticos", 200, 535));
+        SistemaInformatico.addActionListener((ActionEvent e) -> {
+            cambiarPanel(new PanelSistemas(partida));
+        });
 
-        for (int i = 0; i < imagenes.length; i++) {
-            int fila = i / 2;
-            int col = i % 2;
-            int x = xInicial + col * separacionX;
-            int y = yInicial + fila * separacionY;
+        // BOTON Sostenibilidad
+        Sostenibilidad = crearBotonImagen("/resources/Sostenibilidad.png", 600, 450);
+        add(Sostenibilidad);
+        add(crearEtiqueta("Sostenibilidad", 600, 535));
+        Sostenibilidad.addActionListener((ActionEvent e) -> {
+            cambiarPanel(new PanelSostenibilidad(partida));
+        });
 
-            addBotonCategoria(imagenes[i], nombres[i], claves[i], x, y, ancho, alto, margenTexto);
-        }
-
-        // Botón Volver
+        // BOTON VOLVER
         JButton botonVolver = new JButton("Volver al Menú");
         botonVolver.setBounds(30, 700, 200, 50);
         add(botonVolver);
         botonVolver.addActionListener((ActionEvent e) -> {
-            partida.reiniciarPuntuacion();
-            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            if (frame != null) {
-                frame.getContentPane().removeAll();
-                frame.getContentPane().add(new PanelMenu(partida));
-
-                // Música del menú
-                if (partida.isMusicaActiva()) {
-                    SoundManager.getInstancia().pararMusicaPrincipal();
-                    SoundManager.getInstancia().reproducirMusicaSecundaria("/resources/AudioPrincipal.wav");
-                }
-
-                frame.revalidate();
-                frame.repaint();
-            }
+            cambiarPanel(new PanelMenu(partida));
         });
     }
 
-    private void addBotonCategoria(String rutaImagen, String nombreVisible, String claveCategoria,
-            int x, int y, int ancho, int alto, int margenTexto) {
-        ImageIcon icon = new ImageIcon(getClass().getResource(rutaImagen));
-        Image img = icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
-        JButton boton = new JButton(new ImageIcon(img));
-        boton.setBounds(x, y, ancho, alto);
-        boton.setContentAreaFilled(false);
-        boton.setFocusPainted(false);
-        add(boton);
+    private JButton crearBotonImagen(String ruta, int x, int y) {
+        java.net.URL url = getClass().getResource(ruta);
+        if (url != null) {
+            ImageIcon icon = new ImageIcon(url);
+            Image img = icon.getImage().getScaledInstance(200, 80, Image.SCALE_SMOOTH);
+            JButton boton = new JButton(new ImageIcon(img));
+            boton.setBounds(x, y, 200, 80);
+            boton.setContentAreaFilled(false);
+            boton.setBorderPainted(false);
+            boton.setFocusPainted(false);
+            return boton;
+        }
+        JButton botonFallback = new JButton(ruta);
+        botonFallback.setBounds(x, y, 200, 80);
+        return botonFallback;
+    }
 
-        JLabel etiqueta = new JLabel(nombreVisible, SwingConstants.CENTER);
-        etiqueta.setBounds(x, y + alto + margenTexto, ancho, 25);
-        etiqueta.setForeground(Color.WHITE);
+    private JLabel crearEtiqueta(String texto, int x, int y) {
+        JLabel etiqueta = new JLabel(texto, SwingConstants.CENTER);
+        etiqueta.setBounds(x, y, 200, 30);
+        etiqueta.setForeground(Color.WHITE); // Color blanco
         etiqueta.setFont(new Font("Arial", Font.BOLD, 16));
-        add(etiqueta);
-
-        boton.addActionListener((ActionEvent e) -> {
-            if (partida.isEfectosActivos())
-                SoundManager.getInstancia().reproducirEfecto("/resources/EfectoSonido.wav");
-
-            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            if (frame != null) {
-                MotorJuego motor = new MotorJuego(claveCategoria);
-                frame.getContentPane().removeAll();
-                frame.getContentPane().add(new PanelJuego(partida, motor));
-                frame.revalidate();
-                frame.repaint();
-            }
-        });
+        return etiqueta;
     }
 
-    @Override
+    private void cambiarPanel(JPanel panel) {
+        javax.swing.JFrame ventana = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (ventana != null) {
+            ventana.getContentPane().removeAll();
+            ventana.getContentPane().add(panel);
+            ventana.revalidate();
+            ventana.repaint();
+        }
+    }
+
+    @Override // Pintar el fondo
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (fondo != null)
+        if (fondo != null) {
             g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 }
