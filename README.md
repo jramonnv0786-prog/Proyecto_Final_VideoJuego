@@ -89,7 +89,7 @@ Los principales cambios fueron:
 En resumen, el proyecto pasó de un boceto conceptual a un diseño completo, coherente con una aplicación funcional con menús, categorías, sonido y lógica de juego bien estructurada.
 
 
-```
+
 ```mermaid
 classDiagram
     direction LR
