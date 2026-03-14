@@ -54,6 +54,7 @@ public class PanelJuego extends JPanel {
         // Botón volver
         JButton botonVolver = new JButton("Volver al Menú");
         botonVolver.setBounds(30, 700, 200, 50);
+        botonVolver.setBorderPainted(false);
         add(botonVolver);
         botonVolver.addActionListener((ActionEvent e) -> {
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);

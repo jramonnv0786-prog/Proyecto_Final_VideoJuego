@@ -19,7 +19,7 @@ public class PanelCategorias extends JPanel {
         setBounds(0, 0, 1000, 800);
 
         // Fondo
-        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoMenu.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/MenuCategorias.jpeg"));
         fondo = icon.getImage();
 
         // Array de imágenes y claves de categorías correctas
@@ -37,7 +37,7 @@ public class PanelCategorias extends JPanel {
                 "Entornos de Desarrollo",
                 "Lenguaje de Marca",
                 "Digitalización",
-                "Sistemas Informáticos",
+                "Sistemas Informático",
                 "Sostenibilidad"
         };
 
@@ -74,6 +74,9 @@ public class PanelCategorias extends JPanel {
         botonVolver.setBounds(30, 700, 200, 50);
         add(botonVolver);
         botonVolver.addActionListener((ActionEvent e) -> {
+            // Reiniciar puntuación
+            partida.reiniciarPuntuacion();
+
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
             if (frame != null) {
                 frame.getContentPane().removeAll();
@@ -92,7 +95,6 @@ public class PanelCategorias extends JPanel {
         JButton boton = new JButton(new ImageIcon(img));
         boton.setBounds(x, y, ancho, alto);
         boton.setContentAreaFilled(false);
-        boton.setBorderPainted(false);
         boton.setFocusPainted(false);
         add(boton);
 

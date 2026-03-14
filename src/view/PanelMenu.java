@@ -20,18 +20,22 @@ public class PanelMenu extends JPanel {
 		this.partida = partida;
 		setLayout(null);
 
+		// Nombre jugador
 		JLabel labelNombre = new JLabel("Jugador: " + partida.getNombreJugador());
 		labelNombre.setBounds(20, 20, 300, 30);
 		labelNombre.setForeground(Color.WHITE);
 		labelNombre.setFont(new Font("Arial", Font.BOLD, 20));
 		add(labelNombre);
 
+		// Fondo
 		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondo.png"));
-		if (icon != null)
-			fondo = icon.getImage();
+		fondo = icon.getImage();
 
+		// -----------------
 		// Botón Jugar
+		// -----------------
 		botonJugar = crearBoton(277, 215, 440, 138);
+		botonJugar.setBorderPainted(false);
 		botonJugar.addActionListener((ActionEvent e) -> {
 			String[] opciones = { "Fácil (10 preg.)", "Medio (20 preg.)", "Difícil (Todas)" };
 			int seleccion = JOptionPane.showOptionDialog(this,
@@ -47,6 +51,8 @@ public class PanelMenu extends JPanel {
 				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 				if (frame != null) {
 					frame.getContentPane().removeAll();
+					// Antes de iniciar el juego, reiniciamos la puntuación
+					partida.reiniciarPuntuacion();
 					frame.getContentPane().add(new PanelJuego(partida, motor));
 					frame.revalidate();
 					frame.repaint();
@@ -54,20 +60,28 @@ public class PanelMenu extends JPanel {
 			}
 		});
 
+		// -----------------
 		// Botón Categorías
+		// -----------------
 		botonCategorias = crearBoton(277, 398, 440, 138);
+		botonCategorias.setBorderPainted(false);
 		botonCategorias.addActionListener((ActionEvent e) -> {
 			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 			if (frame != null) {
 				frame.getContentPane().removeAll();
+				// Reiniciar puntuación antes de ir a categorías
+				partida.reiniciarPuntuacion();
 				frame.getContentPane().add(new PanelCategorias(partida));
 				frame.revalidate();
 				frame.repaint();
 			}
 		});
 
+		// -----------------
 		// Botón Créditos
+		// -----------------
 		botonCreditos = crearBoton(277, 580, 440, 138);
+		botonCreditos.setBorderPainted(false);
 		botonCreditos.addActionListener((ActionEvent e) -> {
 			JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 			if (frame != null) {
@@ -78,6 +92,7 @@ public class PanelMenu extends JPanel {
 			}
 		});
 
+		// Música de fondo
 		iniciarMusica("/resources/CancionFondo.wav");
 	}
 
