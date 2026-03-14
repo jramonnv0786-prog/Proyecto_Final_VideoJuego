@@ -13,53 +13,50 @@ public class MotorJuego {
     private int indice = 0;
     private int puntuacion = 0;
 
+    // Constructor para dificultad (juego aleatorio)
     public MotorJuego(int dificultad) {
-        // Cargar todas las preguntas
         List<Pregunta> todas = BancoPreguntas.getAllPreguntas();
         Collections.shuffle(todas);
 
-        // Ajustar según dificultad
         int limite;
         switch (dificultad) {
-            case 0: // Fácil
+            case 0:
                 limite = 10;
                 break;
-            case 1: // Medio
+            case 1:
                 limite = 20;
                 break;
-            default: // Difícil
+            default:
                 limite = todas.size();
                 break;
         }
 
-        // Tomar el mínimo entre el límite y el total disponible
         int numPreguntas = Math.min(limite, todas.size());
         preguntas = new ArrayList<>(todas.subList(0, numPreguntas));
     }
 
-    // DEVOLVER LA PREGUNTA ACTUAL
-    public Pregunta getPreguntaActual() {
-        if (indice < preguntas.size()) {
-            return preguntas.get(indice);
-        } else {
-            return null; // fin del juego
-        }
+    // Constructor para categoría específica
+    public MotorJuego(String categoria) {
+        preguntas = new ArrayList<>(BancoPreguntas.getPreguntasPorCategoria(categoria));
+        Collections.shuffle(preguntas);
     }
 
-    // COMPROBAR RESPUESTA
+    public Pregunta getPreguntaActual() {
+        if (indice < preguntas.size())
+            return preguntas.get(indice);
+        return null;
+    }
+
     public boolean comprobarRespuesta(int respuestaJugador) {
         Pregunta p = getPreguntaActual();
-
         if (p == null)
             return false;
 
         boolean acierto = (respuestaJugador == p.getCorrecta());
+        if (acierto)
+            puntuacion++;
 
-        if (acierto) {
-            puntuacion++; // suma 1 punto si acierta
-        }
-
-        indice++; // pasar a la siguiente pregunta
+        indice++;
         return acierto;
     }
 
@@ -68,6 +65,6 @@ public class MotorJuego {
     }
 
     public boolean hayPreguntas() {
-        return (preguntas != null && indice < preguntas.size());
+        return indice < preguntas.size();
     }
 }

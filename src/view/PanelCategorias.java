@@ -1,137 +1,125 @@
 package view;
 
+import controller.MotorJuego;
+import model.Partida;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.*;
 
 public class PanelCategorias extends JPanel {
 
-    private model.Partida partida;
+    private Partida partida;
     private Image fondo;
 
-    private static final int BOTON_ANCHO = 150;
-private static final int BOTON_ALTO = 100;
-
-    public PanelCategorias(model.Partida partida) {
+    public PanelCategorias(Partida partida) {
         this.partida = partida;
 
-        // Cargar imagen de fondo
+        setLayout(null);
+        setBounds(0, 0, 1000, 800);
+
+        // Fondo
         ImageIcon icon = new ImageIcon(getClass().getResource("/resources/fondoMenu.png"));
         fondo = icon.getImage();
 
-        setLayout(new BorderLayout());
-
-        // Panel contenedor centrado
-        JPanel panelCentral = new JPanel();
-        panelCentral.setOpaque(false); // Para que se vea el fondo
-        panelCentral.setLayout(new GridBagLayout());
-        add(panelCentral, BorderLayout.CENTER);
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        // Incrementamos el margen superior a 80
-        gbc.insets = new Insets(50, 30, 20, 30); // top, left, bottom, right
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-
-        // Array con nombres de categorías y rutas de imagen
-        String[][] categorias = {
-                { "Programación", "/resources/Programacion.png" },
-                { "Entornos", "/resources/Entornos.png" },
-                { "Lenguaje de Marca", "/resources/Lenguajedemarca.png" },
-                { "Digitalización", "/resources/Digitalizacion.png" },
-                { "Sistemas", "/resources/Sistemas.png" },
-                { "Sostenibilidad", "/resources/Sostenibilidad.png" }
+        // Array de imágenes y claves de categorías correctas
+        String[] imagenes = {
+                "/resources/programacion.png",
+                "/resources/entornos.png",
+                "/resources/lenguajedemarca.png",
+                "/resources/digitalizacion.png",
+                "/resources/sistemas.png",
+                "/resources/sostenibilidad.png"
         };
 
-        for (int i = 0; i < categorias.length; i++) {
-            String nombre = categorias[i][0];
-            String ruta = categorias[i][1];
+        String[] nombres = {
+                "Programación",
+                "Entornos de Desarrollo",
+                "Lenguaje de Marca",
+                "Digitalización",
+                "Sistemas Informáticos",
+                "Sostenibilidad"
+        };
 
-            // Crear botón con imagen
-            JButton boton = crearBotonImagen(ruta);
-            // Pie de foto
-            JLabel label = new JLabel(nombre, SwingConstants.CENTER);
-            label.setForeground(Color.WHITE);
-            label.setFont(new Font("Arial", Font.BOLD, 16));
+        // Claves que coinciden con BancoPreguntas
+        String[] claves = {
+                "programacion",
+                "entornos",
+                "lenguaje de marca",
+                "digitalizacion",
+                "sistemas",
+                "sostenibilidad"
+        };
 
-            // Panel que contiene botón + label
-            JPanel panelBoton = new JPanel();
-            panelBoton.setOpaque(false);
-            panelBoton.setLayout(new BorderLayout());
-            panelBoton.add(boton, BorderLayout.CENTER);
-            panelBoton.add(label, BorderLayout.SOUTH);
+        // Distribución automática: 2 columnas, 3 filas
+        int xInicial = 100;
+        int yInicial = 150;
+        int ancho = 250;
+        int alto = 100;
+        int separacionX = 400; // espacio horizontal entre columnas
+        int separacionY = 200; // espacio vertical entre filas
+        int margenTexto = 5; // espacio entre botón y etiqueta
 
-            // Añadir al panel central
-            panelCentral.add(panelBoton, gbc);
+        for (int i = 0; i < imagenes.length; i++) {
+            int fila = i / 2;
+            int col = i % 2;
+            int x = xInicial + col * separacionX;
+            int y = yInicial + fila * separacionY;
 
-            // Manejo de columnas
-            if (gbc.gridx == 0) {
-                gbc.gridx = 1; // siguiente columna
-            } else {
-                gbc.gridx = 0;
-                gbc.gridy++; // nueva fila
-            }
-
-            // ActionListener para cada botón
-            final int index = i; // para usar dentro de lambda
-            boton.addActionListener((ActionEvent e) -> {
-                cambiarPanelPorIndice(index);
-            });
+            addBotonCategoria(imagenes[i], nombres[i], claves[i], x, y, ancho, alto, margenTexto);
         }
 
-        // BOTON VOLVER
+        // Botón Volver
         JButton botonVolver = new JButton("Volver al Menú");
-        botonVolver.setPreferredSize(new Dimension(200, 50));
-        botonVolver.addActionListener((ActionEvent e) -> cambiarPanel(new PanelMenu(partida)));
-        JPanel panelVolver = new JPanel();
-        panelVolver.setOpaque(false);
-        panelVolver.add(botonVolver);
-        add(panelVolver, BorderLayout.SOUTH);
+        botonVolver.setBounds(30, 700, 200, 50);
+        add(botonVolver);
+        botonVolver.addActionListener((ActionEvent e) -> {
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            if (frame != null) {
+                frame.getContentPane().removeAll();
+                frame.getContentPane().add(new PanelMenu(partida));
+                frame.revalidate();
+                frame.repaint();
+            }
+        });
     }
 
-    private JButton crearBotonImagen(String rutaImagen) {
+    private void addBotonCategoria(String rutaImagen, String nombreVisible, String claveCategoria,
+            int x, int y, int ancho, int alto, int margenTexto) {
+        // Crear botón con imagen
         ImageIcon icon = new ImageIcon(getClass().getResource(rutaImagen));
-        if (icon.getImage() == null) {
-            System.err.println("No se encontró la imagen: " + rutaImagen);
-            return new JButton();
-        }
-
-        Image imgEscalada = icon.getImage().getScaledInstance(BOTON_ANCHO, BOTON_ALTO, Image.SCALE_SMOOTH);
-        JButton boton = new JButton(new ImageIcon(imgEscalada));
+        Image img = icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+        JButton boton = new JButton(new ImageIcon(img));
+        boton.setBounds(x, y, ancho, alto);
         boton.setContentAreaFilled(false);
-        boton.setBorderPainted(true);
+        boton.setBorderPainted(false);
         boton.setFocusPainted(false);
-        return boton;
-    }
+        add(boton);
 
-    private void cambiarPanelPorIndice(int index) {
-        switch (index) {
-            case 0 -> cambiarPanel(new PanelProgramacion(partida));
-            case 1 -> cambiarPanel(new PanelEntornos(partida));
-            case 2 -> cambiarPanel(new PanelLenguajeMarca(partida));
-            case 3 -> cambiarPanel(new PanelDigitalizacion(partida));
-            case 4 -> cambiarPanel(new PanelSistemas(partida));
-            case 5 -> cambiarPanel(new PanelSostenibilidad(partida));
-        }
-    }
+        // Crear etiqueta debajo con el nombre visible
+        JLabel etiqueta = new JLabel(nombreVisible, SwingConstants.CENTER);
+        etiqueta.setBounds(x, y + alto + margenTexto, ancho, 25);
+        etiqueta.setForeground(Color.WHITE);
+        etiqueta.setFont(new Font("Arial", Font.BOLD, 16));
+        add(etiqueta);
 
-    private void cambiarPanel(JPanel nuevoPanel) {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        if (frame == null)
-            return;
-
-        Container content = frame.getContentPane();
-        content.removeAll();
-        content.add(nuevoPanel);
-        content.revalidate();
-        content.repaint();
+        // Acción del botón
+        boton.addActionListener((ActionEvent e) -> {
+            MotorJuego motor = new MotorJuego(claveCategoria); // clave correcta
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            if (frame != null) {
+                frame.getContentPane().removeAll();
+                frame.getContentPane().add(new PanelJuego(partida, motor));
+                frame.revalidate();
+                frame.repaint();
+            }
+        });
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (fondo != null) {
+        if (fondo != null)
             g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
-        }
     }
 }

@@ -2,16 +2,18 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import model.BancoPreguntas;
 import model.Pregunta;
 
-public class MotorLenguajeDeMarca {
+public class MotorPregunta {
 
     private ArrayList<Pregunta> preguntas;
     private int indice = 0;
     private int puntuacion = 0;
 
-    public MotorLenguajeDeMarca() {
-        preguntas = (java.util.ArrayList<model.Pregunta>) model.BancoPreguntas.getPreguntasLenguajeDeMarca();
+    // Recibe la categoría y carga automáticamente las preguntas
+    public MotorPregunta(String categoria) {
+        preguntas = new ArrayList<>(BancoPreguntas.getPreguntasPorCategoria(categoria));
         Collections.shuffle(preguntas);
     }
 
@@ -30,7 +32,6 @@ public class MotorLenguajeDeMarca {
             return false;
 
         boolean acierto = (respuestaJugador == p.getCorrecta());
-
         if (acierto) {
             puntuacion++;
         }

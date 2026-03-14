@@ -1,67 +1,58 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BancoPreguntas {
 
-        public static List<Pregunta> getPreguntasEntornos() {
-                return new ArrayList<>(List.of(
+        private static final Map<String, List<Pregunta>> banco = new HashMap<>();
+
+        static {
+                // -------------------------
+                // ENTORNOS DE DESARROLLO
+                // -------------------------
+                banco.put("entornos", new ArrayList<>(List.of(
                                 new Pregunta("¿Qué significa IDE?", "Entorno de Desarrollo Integrado",
-                                                "Interfaz de Datos",
-                                                "Base de Datos Interna", "Editor de Diseño", 1),
+                                                "Interfaz de Datos", "Base de Datos Interna", "Editor de Diseño", 1),
                                 new Pregunta("¿Cuál es un ejemplo de IDE popular?", "Microsoft Word", "Eclipse",
-                                                "Photoshop", "Excel",
-                                                2),
-                                new Pregunta("¿Qué es Git?", "Un lenguaje de programación",
-                                                "Un control de versiones",
+                                                "Photoshop", "Excel", 2),
+                                new Pregunta("¿Qué es Git?", "Un lenguaje de programación", "Un control de versiones",
                                                 "Un IDE", "Un compilador", 2),
                                 new Pregunta("¿Qué comando de Git se usa para subir cambios al repositorio remoto?",
-                                                "git pull",
-                                                "git push", "git commit", "git add", 2),
+                                                "git pull", "git push", "git commit", "git add", 2),
                                 new Pregunta("¿Qué es un framework?", "Un tipo de hardware",
-                                                "Herramientas para desarrollar software",
-                                                "Un sistema operativo",
+                                                "Herramientas para desarrollar software", "Un sistema operativo",
                                                 "Un navegador web", 2),
                                 new Pregunta("¿Cuál es un ejemplo de framework para Java?", "React", "Spring", "Django",
                                                 "Laravel", 2),
                                 new Pregunta("¿Qué es el testing unitario?", "Probar todo el software",
-                                                "Probar componentes individuales",
-                                                "Probar la interfaz",
+                                                "Probar componentes individuales", "Probar la interfaz",
                                                 "Probar la base de datos", 2),
                                 new Pregunta("¿Qué herramienta se usa comúnmente para testing en Java?", "JUnit",
-                                                "Selenium", "Postman",
-                                                "Jenkins", 1),
-                                new Pregunta("¿Qué es Maven?", "Un IDE",
-                                                "Gestor de proyectos y dependencias",
+                                                "Selenium", "Postman", "Jenkins", 1),
+                                new Pregunta("¿Qué es Maven?", "Un IDE", "Gestor de proyectos y dependencias",
                                                 "Un lenguaje de programación", "Un servidor web", 2),
                                 new Pregunta("¿Qué archivo configura las dependencias en Maven?", "pom.xml",
-                                                "build.gradle",
-                                                "package.json", "requirements.txt", 1),
+                                                "build.gradle", "package.json", "requirements.txt", 1),
                                 new Pregunta("¿Qué es Scrum?", "Un lenguaje de programación", "Una metodología ágil",
-                                                "Un IDE",
-                                                "Un framework", 2),
+                                                "Un IDE", "Un framework", 2),
                                 new Pregunta("¿Cuál es el rol del Scrum Master?", "Programar código",
-                                                "Facilitar el proceso Scrum",
-                                                "Diseñar la interfaz", "Gestionar la base de datos", 2),
+                                                "Facilitar el proceso Scrum", "Diseñar la interfaz",
+                                                "Gestionar la base de datos", 2),
                                 new Pregunta("¿Qué es la integración continua?", "Una base de datos",
-                                                "Integrar cambios frecuentemente",
-                                                "Un lenguaje de scripting",
+                                                "Integrar cambios frecuentemente", "Un lenguaje de scripting",
                                                 "Un servidor de aplicaciones", 2),
                                 new Pregunta("¿Qué herramienta se usa para integración continua?", "Git", "Jenkins",
-                                                "Eclipse", "Maven",
-                                                2),
-                                new Pregunta("¿Qué es Docker?", "Un IDE",
-                                                "Plataforma basada en contenedores",
-                                                "Un control de versiones", "Un framework web", 2)));
-        }
+                                                "Eclipse", "Maven", 2),
+                                new Pregunta("¿Qué es Docker?", "Un IDE", "Plataforma basada en contenedores",
+                                                "Un control de versiones", "Un framework web", 2))));
 
-        public static List<Pregunta> getPreguntasDigitalizacion() {
-                return new ArrayList<>(List.of(
+                // -------------------------
+                // DIGITALIZACIÓN
+                // -------------------------
+                banco.put("digitalizacion", new ArrayList<>(List.of(
                                 new Pregunta("¿Qué es la transformación digital?", "Pasar todos los archivos a PDF",
                                                 "Integrar tecnología en todas las áreas de una empresa",
-                                                "Comprar ordenadores nuevos",
-                                                "Usar redes sociales para publicidad", 2),
+                                                "Comprar ordenadores nuevos", "Usar redes sociales para publicidad", 2),
                                 new Pregunta("¿Qué es la 'Computación en la nube'?",
                                                 "Almacenamiento y servicios a través de internet",
                                                 "Predicción del clima mediante software",
@@ -75,36 +66,31 @@ public class BancoPreguntas {
                                                 "Conjuntos de datos demasiado grandes y complejos para procesar tradicionalmente",
                                                 "Una empresa de telecomunicaciones",
                                                 "El servidor principal de internet", 2),
-                                new Pregunta(
-                                                "¿Qué tecnología de bloques inmutables usan las criptomonedas?",
-                                                "Inteligencia Artificial", "Machine Learning", "Blockchain", "5G", 3),
-                                new Pregunta("¿Qué protege redes y sistemas de ciberataques?",
-                                                "Ciberseguridad", "Cybermarketing", "SEO", "Software Open Source", 1),
-                                new Pregunta(
-                                                "¿Qué identidad virtual recopila nuestros rastros online?",
-                                                "IP estática", "Huella digital", "Avatar", "Cookies", 2),
-                                new Pregunta("¿Qué es el E-commerce?",
-                                                "Enviar correos electrónicos comerciales",
+                                new Pregunta("¿Qué tecnología usan las criptomonedas?", "Inteligencia Artificial",
+                                                "Machine Learning", "Blockchain", "5G", 3),
+                                new Pregunta("¿Qué protege redes y sistemas de ciberataques?", "Ciberseguridad",
+                                                "Cybermarketing", "SEO", "Software Open Source", 1),
+                                new Pregunta("¿Qué identidad virtual recopila nuestros rastros online?", "IP estática",
+                                                "Huella digital", "Avatar", "Cookies", 2),
+                                new Pregunta("¿Qué es el E-commerce?", "Enviar correos electrónicos comerciales",
                                                 "Aprender economía por internet",
                                                 "Compra y venta de productos o servicios a través de internet",
                                                 "Bancos que solo tienen cajeros", 3),
                                 new Pregunta("¿Qué significa SEO?", "Search Engine Optimization",
                                                 "System Electronic Output", "Secure Enterprise Operations",
                                                 "Software Execution Order", 1),
-                                new Pregunta("¿Qué es la 'Brecha Digital'?",
-                                                "Un virus que rompe el sistema operativo",
+                                new Pregunta("¿Qué es la 'Brecha Digital'?", "Un virus que rompe el sistema operativo",
                                                 "Desigualdad en el acceso y uso de las TIC",
                                                 "Espacio entre dos monitores", "Avería física en un cable de red", 2),
-                                new Pregunta("¿Qué tecnología simula la inteligencia humana?",
-                                                "Realidad Virtual (VR)", "Inteligencia Artificial (IA)",
-                                                "Internet de las Cosas (IoT)",
+                                new Pregunta("¿Qué tecnología simula la inteligencia humana?", "Realidad Virtual (VR)",
+                                                "Inteligencia Artificial (IA)", "Internet de las Cosas (IoT)",
                                                 "Realidad Aumentada (AR)", 2),
                                 new Pregunta("¿Qué es el phishing?", "Un juego de pesca en línea",
                                                 "Técnica para mejorar la velocidad de internet",
                                                 "Suplantación de identidad para robar datos confidenciales",
                                                 "Un tipo de filtro para fotografías", 3),
-                                new Pregunta("¿Por qué destaca la Industria 4.0?",
-                                                "Uso de energía de vapor", "Producción en cadena automatizada clásica",
+                                new Pregunta("¿Por qué destaca la Industria 4.0?", "Uso de energía de vapor",
+                                                "Producción en cadena automatizada clásica",
                                                 "Sistemas ciberfísicos, IoT e IA en la industria",
                                                 "Invención de la bombilla", 3),
                                 new Pregunta("¿Cuál es la mayor ventaja del teletrabajo?",
@@ -112,370 +98,208 @@ public class BancoPreguntas {
                                                 "Flexibilidad geográfica y de horarios",
                                                 "Reduce los sueldos a la mitad",
                                                 "Elimina la necesidad de usar internet", 2),
-                                new Pregunta(
-                                                "¿Qué tecnología superpone objetos virtuales al mundo real?",
-                                                "Realidad Virtual (VR)", "Realidad Aumentada (AR)", "Metaverso",
-                                                "Cloud Computing", 2)));
-        }
+                                new Pregunta("¿Qué tecnología superpone objetos virtuales al mundo real?",
+                                                "Realidad Virtual (VR)",
+                                                "Realidad Aumentada (AR)", "Metaverso", "Cloud Computing", 2))));
 
-        public static List<Pregunta> getPreguntasLenguajeDeMarca() {
-                return new ArrayList<>(List.of(
+                // -------------------------
+                // LENGUAJE DE MARCA
+                // -------------------------
+                banco.put("lenguaje de marca", new ArrayList<>(List.of(
                                 new Pregunta("¿Qué significa HTML?", "Hyper Terminal Markup Language",
                                                 "HyperText Markup Language",
                                                 "High Transfer Machine Language", "Hyperlink Text Management Language",
                                                 2),
-                                new Pregunta("¿Cuál de las siguientes etiquetas define el título de un documento HTML?",
-                                                "<head>",
-                                                "<meta>", "<title>", "<h1>", 3),
-                                new Pregunta("¿Qué lenguaje se usa principalmente para dar estilo a las páginas web?",
-                                                "HTML",
+                                new Pregunta("¿Cuál de estas etiquetas define el título de un documento HTML?",
+                                                "<head>", "<meta>", "<title>", "<h1>", 3),
+                                new Pregunta("¿Qué lenguaje se usa para dar estilo a las páginas web?", "HTML",
                                                 "JavaScript", "XML", "CSS", 4),
                                 new Pregunta("¿Qué significa XML?", "eXtensible Markup Language", "Extra Modern Link",
                                                 "eXecutable Multiple Language", "X-Markup Language", 1),
-                                new Pregunta("¿Cuál es la etiqueta correcta para insertar una imagen en HTML?",
-                                                "<image src='img.jpg'>",
-                                                "<img href='img.jpg'>", "<img src='img.jpg'>", "<pic src='img.jpg'>",
-                                                3),
-                                new Pregunta("¿Qué etiqueta se utiliza para crear un enlace (hipervínculo) en HTML?",
-                                                "<link>", "<a>",
-                                                "<href>", "<url>", 2),
-                                new Pregunta("En HTML5, ¿cuál etiqueta se usa para reproducir contenido de video?",
-                                                "<media>",
-                                                "<movie>", "<video>", "<mp4>", 3),
+                                new Pregunta("¿Cuál es la etiqueta correcta para insertar una imagen?",
+                                                "<image src='img.jpg'>", "<img href='img.jpg'>", "<img src='img.jpg'>",
+                                                "<pic src='img.jpg'>", 3),
+                                new Pregunta("¿Qué etiqueta se usa para crear un enlace (hipervínculo)?", "<link>",
+                                                "<a>", "<href>", "<url>", 2),
+                                new Pregunta("En HTML5, ¿qué etiqueta se usa para reproducir contenido de video?",
+                                                "<media>", "<movie>", "<video>", "<mp4>", 3),
                                 new Pregunta("¿Qué significa JSON?", "Java Standard Output Network",
-                                                "JavaScript Object Notation",
-                                                "JavaScript Oriented Network", "Java Serialized Object Node", 2),
-                                new Pregunta("¿Cuál es la estructura básica de una tabla en HTML?",
-                                                "<table>, <tr>, <td>",
+                                                "JavaScript Object Notation", "JavaScript Oriented Network",
+                                                "Java Serialized Object Node", 2),
+                                new Pregunta("¿Cuál es la estructura básica de una tabla?", "<table>, <tr>, <td>",
                                                 "<table>, <row>, <cell>", "<tab>, <tr>, <td>",
                                                 "<table>, <head>, <body>", 1),
-                                new Pregunta("¿Qué atributo HTML se usa para definir estilos en línea (inline)?",
-                                                "class", "font",
-                                                "style", "styles", 3),
-                                new Pregunta("¿Cuál de estos NO es un lenguaje de marcado?", "HTML", "XML", "Markdown",
+                                new Pregunta("¿Qué atributo HTML se usa para definir estilos en línea?", "class",
+                                                "font", "style", "styles", 3),
+                                new Pregunta("Cuál de estos NO es un lenguaje de marcado?", "HTML", "XML", "Markdown",
                                                 "Python", 4),
-                                new Pregunta("¿Qué etiqueta de HTML5 se usa para el contenido principal de un documento?",
-                                                "<main>",
+                                new Pregunta("¿Qué etiqueta HTML5 se usa para contenido principal?", "<main>",
                                                 "<content>", "<section>", "<body>", 1),
-                                new Pregunta("¿Qué lenguaje se usa comúnmente para escribir archivos de configuración simples?",
-                                                "YAML",
+                                new Pregunta("¿Qué lenguaje se usa para archivos de configuración simples?", "YAML",
                                                 "C++", "Java", "PHP", 1),
                                 new Pregunta("¿Qué versión de HTML introdujo elementos semánticos como <article> y <nav>?",
-                                                "HTML 3.2",
-                                                "HTML 4.01", "XHTML", "HTML5", 4),
-                                new Pregunta(
-                                                "¿Qué atributo se usa en las imágenes (<img>) para el texto alternativo si la imagen no carga?",
-                                                "title", "src", "alt", "description", 3)));
+                                                "HTML 3.2", "HTML 4.01", "XHTML", "HTML5", 4),
+                                new Pregunta("¿Qué atributo se usa en <img> para texto alternativo?", "title", "src",
+                                                "alt", "description", 3))));
+
+                // -------------------------
+                // PROGRAMACIÓN
+                // -------------------------
+                banco.put("programacion", new ArrayList<>(List.of(
+                                new Pregunta("¿Qué es una variable?", "Un valor fijo", "Un contenedor de datos",
+                                                "Un tipo de bucle", "Una función", 2),
+                                new Pregunta("¿Qué es un bucle for?", "Una condición", "Un ciclo que se repite",
+                                                "Un tipo de variable", "Una función", 2),
+                                new Pregunta("¿Qué es un array?", "Una función", "Un conjunto de datos del mismo tipo",
+                                                "Un bucle", "Una variable especial", 2),
+                                new Pregunta("¿Qué es recursión?", "Una función que se llama a sí misma",
+                                                "Un bucle for", "Una variable global", "Un array", 1),
+                                new Pregunta("¿Qué es un algoritmo?", "Un paso para ejecutar un programa",
+                                                "Una estructura de datos", "Un lenguaje de programación", "Un IDE", 1),
+                                new Pregunta("¿Qué lenguaje se usa para desarrollo web?", "Python", "Java",
+                                                "JavaScript", "C++", 3),
+                                new Pregunta("¿Qué es POO?", "Programación orientada a objetos", "Proceso operativo",
+                                                "Propiedad de objeto", "Prueba de operación", 1),
+                                new Pregunta("¿Qué es GitHub?", "Un compilador", "Un control de versiones remoto",
+                                                "Un IDE", "Un lenguaje", 2),
+                                new Pregunta("¿Qué es un constructor?", "Una función especial de una clase", "Un bucle",
+                                                "Una variable", "Un array", 1),
+                                new Pregunta("¿Qué es una interfaz?", "Una función", "Un contrato que define métodos",
+                                                "Un IDE", "Un bucle", 2),
+                                new Pregunta("¿Qué es encapsulación?", "Ocultar datos internos de una clase",
+                                                "Un tipo de bucle", "Un array", "Un IDE", 1),
+                                new Pregunta("¿Qué es herencia?", "Copiar un código",
+                                                "Permitir reutilización de clases", "Crear un IDE", "Un array", 2),
+                                new Pregunta("¿Qué es polimorfismo?",
+                                                "Un método que cambia de comportamiento según contexto", "Una variable",
+                                                "Un array", "Un IDE", 1),
+                                new Pregunta("¿Qué es un IDE?", "Un compilador", "Un entorno de desarrollo",
+                                                "Un lenguaje", "Un servidor", 2),
+                                new Pregunta("¿Qué es debugging?", "Escribir código", "Probar y corregir errores",
+                                                "Compilar", "Instalar", 2))));
+
+                // -------------------------
+                // SISTEMAS
+                // -------------------------
+                banco.put("sistemas", new ArrayList<>(List.of(
+                                new Pregunta("¿Qué es un sistema operativo?", "Un programa que administra hardware",
+                                                "Un lenguaje de programación", "Una base de datos", "Un compilador", 1),
+                                new Pregunta("¿Qué es Linux?", "Un sistema operativo", "Un IDE", "Un lenguaje",
+                                                "Un servidor web", 1),
+                                new Pregunta("¿Qué es Windows?", "Un IDE", "Un sistema operativo", "Un lenguaje",
+                                                "Una base de datos", 2),
+                                new Pregunta("¿Qué es un kernel?", "Núcleo del sistema operativo", "Una variable",
+                                                "Un array", "Un IDE", 1),
+                                new Pregunta("¿Qué es la memoria RAM?", "Memoria de solo lectura",
+                                                "Memoria volátil de acceso rápido",
+                                                "Un disco duro", "Una variable", 2),
+                                new Pregunta("¿Qué es un servidor?", "Un programa o máquina que provee servicios",
+                                                "Un lenguaje", "Un IDE", "Una base de datos", 1),
+                                new Pregunta("¿Qué es un proceso?", "Un programa en ejecución", "Un archivo",
+                                                "Un bucle", "Una variable", 1),
+                                new Pregunta("¿Qué es un driver?", "Controlador de hardware", "Una variable",
+                                                "Un array", "Un IDE", 1),
+                                new Pregunta("¿Qué es una base de datos?", "Un lenguaje", "Un compilador",
+                                                "Colección organizada de datos", "Un IDE", 3),
+                                new Pregunta("¿Qué es un firewall?", "Un antivirus",
+                                                "Un programa para filtrar tráfico de red",
+                                                "Un IDE", "Una variable", 2),
+                                new Pregunta("¿Qué es virtualización?", "Crear máquinas virtuales", "Instalar Linux",
+                                                "Actualizar Windows", "Programar en Java", 1),
+                                new Pregunta("¿Qué es RAID?", "Redundant Array of Independent Disks", "Un lenguaje",
+                                                "Un IDE", "Un servidor", 1),
+                                new Pregunta("¿Qué es TCP/IP?", "Protocolo de red", "Un IDE", "Un lenguaje",
+                                                "Una base de datos", 1),
+                                new Pregunta("¿Qué es DNS?", "Direct Name Service", "Domain Name System",
+                                                "Data Network Server", "Dynamic Name System", 2),
+                                new Pregunta("¿Qué es un switch?", "Un tipo de software", "Un hardware de red",
+                                                "Un lenguaje", "Un IDE", 2))));
+
+                // -------------------------
+                // SOSTENIBILIDAD
+                // -------------------------
+                banco.put("sostenibilidad", new ArrayList<>(List.of(
+                                new Pregunta("¿Qué es la sostenibilidad?",
+                                                "Uso racional de recursos para el presente y futuro",
+                                                "Gastar recursos sin límite", "Invertir solo en tecnología",
+                                                "Usar energía eléctrica", 1),
+                                new Pregunta("¿Qué es la huella de carbono?", "Cantidad de CO2 emitida",
+                                                "Un archivo de datos", "Un servidor web", "Un lenguaje", 1),
+                                new Pregunta("¿Qué es reciclaje?", "Separar y procesar residuos para reusarlos",
+                                                "Usar más plástico", "Eliminar residuos quemándolos",
+                                                "Comprar nuevos materiales", 1),
+                                new Pregunta("¿Qué es economía circular?", "Reutilización y reducción de recursos",
+                                                "Comprar más productos", "Gastar energía innecesaria",
+                                                "Un sistema operativo", 1),
+                                new Pregunta("¿Qué son energías renovables?", "Fuentes de energía que se regeneran",
+                                                "Combustibles fósiles", "Un tipo de IDE", "Una base de datos", 1),
+                                new Pregunta("¿Qué es eficiencia energética?", "Uso eficiente de energía",
+                                                "Mal uso de electricidad", "Instalar más luces", "Comprar energía", 1),
+                                new Pregunta("¿Qué es cambio climático?", "Alteración del clima por actividad humana",
+                                                "El cambio de estación", "Un lenguaje", "Un IDE", 1),
+                                new Pregunta("¿Qué es movilidad sostenible?",
+                                                "Transportes y vehículos amigables con el medio ambiente",
+                                                "Solo coches eléctricos", "Solo transporte público",
+                                                "Uso de combustibles fósiles", 1),
+                                new Pregunta("¿Qué es responsabilidad social?",
+                                                "Compromiso con la comunidad y el medio ambiente",
+                                                "Solo beneficios económicos", "Ignorar leyes", "Invertir en tecnología",
+                                                1),
+                                new Pregunta("¿Qué es contaminación?", "Alteración del entorno natural con residuos",
+                                                "Un idioma", "Un programa", "Un IDE", 1),
+                                new Pregunta("¿Qué es biodiversidad?", "Variedad de seres vivos en un ecosistema",
+                                                "Cantidad de árboles", "Cantidad de animales", "Solo humanos", 1),
+                                new Pregunta("¿Qué es energías limpias?", "Energía que no contamina",
+                                                "Combustibles fósiles", "Energía nuclear", "Carbón", 1),
+                                new Pregunta("¿Qué es ecoeficiencia?",
+                                                "Optimización de recursos y procesos con bajo impacto ambiental",
+                                                "Gastar más energía", "Usar más plástico", "Comprar más materiales", 1),
+                                new Pregunta("¿Qué es el desarrollo sostenible?",
+                                                "Satisfacer necesidades presentes sin comprometer futuras",
+                                                "Invertir en tecnología", "Ignorar recursos naturales",
+                                                "Aumentar consumo energético", 1),
+                                new Pregunta("¿Qué es huella hídrica?",
+                                                "Cantidad de agua utilizada para producir bienes o servicios",
+                                                "Cantidad de CO2", "Cantidad de basura", "Cantidad de energía", 1))));
+        }
+
+        // -------------------------
+        // MÉTODOS GET
+        // -------------------------
+        public static List<Pregunta> getPreguntasPorCategoria(String categoria) {
+                if (categoria == null)
+                        return Collections.emptyList();
+                String clave = categoria.trim().toLowerCase();
+                return banco.getOrDefault(clave, Collections.emptyList());
+        }
+
+        public static List<Pregunta> getAllPreguntas() {
+                List<Pregunta> todas = new ArrayList<>();
+                banco.values().forEach(todas::addAll);
+                return todas;
+        }
+
+        public static List<Pregunta> getPreguntasEntornos() {
+                return getPreguntasPorCategoria("entornos");
+        }
+
+        public static List<Pregunta> getPreguntasDigitalizacion() {
+                return getPreguntasPorCategoria("digitalizacion");
+        }
+
+        public static List<Pregunta> getPreguntasLenguajeDeMarca() {
+                return getPreguntasPorCategoria("lenguaje de marca");
         }
 
         public static List<Pregunta> getPreguntasProgramacion() {
-                return new ArrayList<>(List.of(
-                                new Pregunta(
-                                                "¿Qué lenguaje de programación se utiliza principalmente para el desarrollo web del lado del cliente?",
-                                                "Java", "Python", "JavaScript", "C#", 3),
-                                new Pregunta("¿Cuál es el propósito principal de la sentencia 'if' en programming?",
-                                                "Repetir código",
-                                                "Realizar cálculos matemáticos", "Tomar decisiones condicionales",
-                                                "Declarar variables", 3),
-                                new Pregunta("¿Qué estructura de datos se utiliza para almacenar una colección ordenada de elementos?",
-                                                "Array (Arreglo)", "Objeto", "Variable booleana", "Constante", 1),
-                                new Pregunta("¿Qué significa 'HTML' en el contexto del desarrollo web?",
-                                                "High Transfer Markup Language", "HyperText Markup Language",
-                                                "Hyperlink and Text Management Language", "Home Tool Markup Language",
-                                                2),
-                                new Pregunta("¿Cuál es el resultado de la siguiente operación: 5 + 3 * 2?", "16", "11",
-                                                "13", "8", 2),
-                                new Pregunta("¿Qué tipo de dato se utiliza para representar valores verdadero o falso?",
-                                                "String",
-                                                "Integer", "Boolean", "Float", 3),
-                                new Pregunta(
-                                                "¿Qué se utiliza para comentar una sola línea en la mayoría de los lenguajes de programación?",
-                                                "//", "/* */", "#", "<!-- -->", 1),
-                                new Pregunta("¿Qué significa 'API' en el contexto de software?",
-                                                "Advanced Programming Interface",
-                                                "Application Programming Interface", "Automated Program Instruction",
-                                                "Application Process Integration", 2),
-                                new Pregunta(
-                                                "¿Qué estructura de control se utiliza para repetir un bloque de código mientras una condición sea verdadera?",
-                                                "If-else", "Switch", "While", "For", 3),
-                                new Pregunta(
-                                                "¿Qué lenguaje de programación se utiliza principalmente para el desarrollo de aplicaciones Android?",
-                                                "Swift", "Kotlin", "Dart", "Ruby", 2),
-                                new Pregunta("¿Qué significa el acrónimo POO (o OOP en inglés)?",
-                                                "Programación Orientada a Objetos",
-                                                "Programación Oficial de Ordenadores",
-                                                "Programa Organizado en Operaciones",
-                                                "Posicionamiento Original de Objetos", 1),
-                                new Pregunta("¿Qué mecanismo permite a una clase adquirir las propiedades y métodos de otra clase?",
-                                                "Polimorfismo", "Encapsulamiento", "Herencia", "Abstracción", 3),
-                                new Pregunta("¿Qué es un 'bug' en el contexto de la programación?",
-                                                "Una nueva característica del programa",
-                                                "Un error o fallo en el código",
-                                                "Un tipo de algoritmo de ordenación",
-                                                "Una herramienta de diseño de interfaces", 2),
-                                new Pregunta(
-                                                "¿Cómo se llama la acción de traducir código fuente en código máquina para que lo entienda el ordenador?",
-                                                "Interpretación", "Traducción", "Compilación", "Depuración", 3),
-                                new Pregunta(
-                                                "¿Qué lenguaje está diseñado principalmente para realizar consultas, crear y gestionar bases de datos relacionales?",
-                                                "Python", "SQL", "C++", "HTML", 2)));
+                return getPreguntasPorCategoria("programacion");
         }
 
         public static List<Pregunta> getPreguntasSistemas() {
-                return new ArrayList<>(List.of(
-                                new Pregunta(
-                                                "¿Qué componente es considerado el cerebro del ordenador?",
-                                                "CPU",
-                                                "RAM",
-                                                "Disco duro",
-                                                "Fuente de poder",
-                                                1),
-
-                                new Pregunta(
-                                                "¿Qué tipo de memoria es volátil y pierde su contenido al apagar el equipo?",
-                                                "ROM",
-                                                "SSD",
-                                                "RAM",
-                                                "USB",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué dispositivo convierte señales digitales en analógicas y viceversa?",
-                                                "Switch",
-                                                "Router",
-                                                "Repetidor",
-                                                "Módem",
-                                                4),
-
-                                new Pregunta(
-                                                "¿Qué sistema operativo es de código abierto?",
-                                                "Windows",
-                                                "macOS",
-                                                "Linux",
-                                                "ChromeOS",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué protocolo se utiliza para transferir archivos entre computadoras?",
-                                                "DNS",
-                                                "FTP",
-                                                "SMTP",
-                                                "HTTP",
-                                                2),
-
-                                new Pregunta(
-                                                "¿Qué tipo de red abarca distancias muy grandes, como países o continentes?",
-                                                "LAN",
-                                                "PAN",
-                                                "WAN",
-                                                "MAN",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué dispositivo asigna direcciones IP dentro de una red local?",
-                                                "Hub",
-                                                "Router",
-                                                "Switch",
-                                                "Firewall",
-                                                2),
-
-                                new Pregunta(
-                                                "¿Qué significa el acrónimo BIOS?",
-                                                "Binary Input System",
-                                                "Basic Input Output System",
-                                                "Boot Instruction System",
-                                                "Basic Internal System",
-                                                2),
-
-                                new Pregunta(
-                                                "¿Cuál es la función principal de un firewall?",
-                                                "Almacenar datos",
-                                                "Aumentar velocidad",
-                                                "Filtrar tráfico de red",
-                                                "Reparar errores",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué tipo de software gestiona los recursos del hardware?",
-                                                "Sistema Operativo",
-                                                "Firmware",
-                                                "Drivers",
-                                                "Apps",
-                                                1),
-
-                                new Pregunta(
-                                                "¿Qué sistema de archivos es común en Windows?",
-                                                "EXT4",
-                                                "APFS",
-                                                "NTFS",
-                                                "FAT32",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué componente almacena de forma permanente el sistema operativo?",
-                                                "RAM",
-                                                "Gráfica",
-                                                "CPU",
-                                                "Disco Duro",
-                                                4),
-
-                                new Pregunta(
-                                                "¿Qué tecnología permite ejecutar varias máquinas virtuales en un mismo equipo?",
-                                                "Fragmentación",
-                                                "Virtualización",
-                                                "Multiplexación",
-                                                "Compilación",
-                                                2),
-
-                                new Pregunta(
-                                                "¿Qué comando se utiliza para comprobar la conectividad con otro host?",
-                                                "tracert",
-                                                "netstat",
-                                                "ping",
-                                                "ipconfig",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué tipo de copia de seguridad solo guarda los archivos modificados desde la última copia completa?",
-                                                "Completa",
-                                                "Espejo",
-                                                "Incremental",
-                                                "Diferencial",
-                                                3)));
-
+                return getPreguntasPorCategoria("sistemas");
         }
 
         public static List<Pregunta> getPreguntasSostenibilidad() {
-                return new ArrayList<>(List.of(
-                                new Pregunta(
-                                                "¿Qué impacto ambiental grave tiene la Inteligencia Artificial?",
-                                                "Destrucción del ozono",
-                                                "Alto consumo energético",
-                                                "Residuos nucleares",
-                                                "Agotamiento del silicio",
-                                                2),
-
-                                new Pregunta(
-                                                "¿Cómo reducir la contaminación generada por una web?",
-                                                "Añadiendo más videos",
-                                                "Optimizando imágenes y código",
-                                                "Usando fondos negros",
-                                                "Evitando usar HTML",
-                                                2),
-
-                                new Pregunta(
-                                                "¿Cómo se denomina a la basura electrónica desechada?",
-                                                "E-waste o RAEE",
-                                                "Data smog",
-                                                "Spam físico",
-                                                "Green-tech",
-                                                1),
-
-                                new Pregunta(
-                                                "¿Por qué un email con un archivo enorme contamina?",
-                                                "Ralentiza los ordenadores",
-                                                "Consume papel indirectamente",
-                                                "Gasta energía en los servidores",
-                                                "Desgasta la pantalla",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué es el 'Green Hosting' o alojamiento verde?",
-                                                "Servidores pintados de verde",
-                                                "Servidores que usan energía renovable",
-                                                "Hosting para webs de botánica",
-                                                "Servicios sin JavaScript",
-                                                2),
-
-                                new Pregunta(
-                                                "¿Qué son los 'Datos Oscuros' o 'Dark Data'?",
-                                                "Datos almacenados sin uso",
-                                                "Páginas de la Dark Web",
-                                                "Virus ocultos",
-                                                "Código encriptado",
-                                                1),
-
-                                new Pregunta(
-                                                "¿Qué mineral para baterías es polémico por su impacto ambiental?",
-                                                "Cuarzo",
-                                                "Cobalto",
-                                                "Cobre",
-                                                "Plomo",
-                                                2),
-
-                                new Pregunta(
-                                                "¿Qué actividad digital consume más energía?",
-                                                "Leer PDFs en la nube",
-                                                "El streaming de video en 4K",
-                                                "Enviar mensajes de texto",
-                                                "Descargar canciones",
-                                                2),
-
-                                new Pregunta(
-                                                "¿Qué busca principalmente el 'Green Web Design'?",
-                                                "Reducir la carga de diseño",
-                                                "Añadir imágenes de plantas",
-                                                "Usar formatos BMP",
-                                                "Que la web solo funcione de día",
-                                                1),
-
-                                new Pregunta(
-                                                "¿Cuál es el gran problema ecológico del Bitcoin?",
-                                                "Ruido en los servidores",
-                                                "Uso de papel para recibos",
-                                                "Su descomunal gasto eléctrico",
-                                                "Toxicidad de las monedas",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Qué movimiento ecológico alarga la vida del hardware?",
-                                                "El Overclocking",
-                                                "La Obsolescencia Programada",
-                                                "El Derecho a Reparar",
-                                                "El reciclaje azul",
-                                                3),
-
-                                new Pregunta(
-                                                "¿Cómo ahorrar energía en nuestra nube personal?",
-                                                "Borrando correos y archivos inútiles",
-                                                "Comprimiendo la memoria RAM",
-                                                "Imprimiendo los emails",
-                                                "Dejando el PC encendido",
-                                                1),
-
-                                new Pregunta(
-                                                "¿Qué recursos físicos masivos requiere un Data Center?",
-                                                "Solo espacio en metros cuadrados",
-                                                "Electricidad y agua",
-                                                "Oxígeno a presión",
-                                                "Luz solar directa",
-                                                2),
-
-                                new Pregunta(
-                                                "Si internet fuera un país, ¿dónde estaría en consumo eléctrico?",
-                                                "En el Top 10 mundial",
-                                                "Sería el último país",
-                                                "No tendría impacto medible",
-                                                "Fuera del Top 100",
-                                                1),
-
-                                new Pregunta(
-                                                "¿Qué es la 'Obsolescencia programada' en la tecnología?",
-                                                "Un software de calendario",
-                                                "Aparatos para que dejen de funcionar",
-                                                "Un bug en Windows",
-                                                "Actualizaciones de malware",
-                                                2)));
+                return getPreguntasPorCategoria("sostenibilidad");
         }
-
-	public static List<Pregunta> getAllPreguntas() {
-		List<Pregunta> todas = new ArrayList<>();
-		todas.addAll(getPreguntasEntornos());
-		todas.addAll(getPreguntasDigitalizacion());
-		todas.addAll(getPreguntasLenguajeDeMarca());
-		todas.addAll(getPreguntasProgramacion());
-		todas.addAll(getPreguntasSistemas());
-		todas.addAll(getPreguntasSostenibilidad());
-		return todas;
-	}
 }
